@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Our Vigo Week · family plan</title>
-<meta name="description" content="Our private planning tool for a family week in Vigo — beaches, parks, the Cíes, restaurants and a map." />
+<title>Nuestra semana en Vigo · plan familiar</title>
+<meta name="description" content="Nuestra herramienta privada para planificar una semana familiar en Vigo — playas, parques, las Cíes, restaurantes y un mapa." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -34,17 +34,17 @@
   .menu-btn{display:none;background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink)}
   @media(max-width:900px){.navlinks{display:none}.menu-btn{display:block}}
 
-  .hero{position:relative;min-height:82vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
   .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05)}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,86,96,.1) 0%,rgba(7,50,55,.25) 45%,rgba(9,40,45,.86) 100%)}
-  .hero-inner{position:relative;z-index:2;padding:60px 0 50px}
+  .hero-inner{position:relative;z-index:2;padding:60px 0 104px}
   .note-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:600;margin-bottom:16px}
   .hero h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.3)}
-  .hero p.lead{font-size:clamp(1.02rem,2.2vw,1.3rem);max-width:620px;margin:16px 0 24px;color:#f3f0e8}
+  .hero p.lead{font-size:clamp(1.02rem,2.2vw,1.3rem);max-width:640px;margin:16px 0 24px;color:#f3f0e8}
   .pills{display:flex;flex-wrap:wrap;gap:10px}
   .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
 
-  .stats{margin-top:-58px;position:relative;z-index:5}
+  .stats{margin-top:-48px;position:relative;z-index:5}
   .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   @media(max-width:820px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:460px){.stat-grid{grid-template-columns:1fr}}
@@ -169,15 +169,15 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">🌊 Our Vigo Week</div>
+    <div class="brand">🌊 Nuestra semana en Vigo</div>
     <div class="navlinks" id="navlinks">
-      <a href="#sun">Timing</a>
-      <a href="#activities">Activities</a>
-      <a href="#compare">Compare</a>
-      <a href="#days">Day Plans</a>
-      <a href="#food">Food</a>
-      <a href="#map-sec">Map</a>
-      <a href="#pack">Packing</a>
+      <a href="#sun">Horario</a>
+      <a href="#activities">Planes</a>
+      <a href="#compare">Comparar</a>
+      <a href="#days">Días</a>
+      <a href="#food">Comer</a>
+      <a href="#map-sec">Mapa</a>
+      <a href="#pack">Maleta</a>
     </div>
     <button class="menu-btn" id="menuBtn">☰</button>
   </div>
@@ -186,40 +186,40 @@
 <header class="hero">
   <div class="hero-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg/1280px-Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg')"></div>
   <div class="hero-inner wrap">
-    <span class="note-chip">🗒️ Our private plan · just for us</span>
-    <h1>Our week in Vigo</h1>
-    <p class="lead">Everything we need in one place: where to go, when it's calm, how hard each day is, the best food, and a map to tie it together — paced around a 3-year-old and the August sun.</p>
+    <span class="note-chip">🗒️ Nuestro plan privado · solo para nosotros</span>
+    <h1>Nuestra semana en Vigo</h1>
+    <p class="lead">Todo lo que necesitamos en un solo sitio: dónde ir, cuándo hay calma, qué esfuerzo tiene cada día, la mejor comida y un mapa que lo une todo — al ritmo de un peque de 3 años y del sol de agosto.</p>
     <div class="pills">
-      <span class="pill">🏖️ Beaches</span>
-      <span class="pill">🌳 Shady parks</span>
-      <span class="pill">⛴️ The Cíes</span>
-      <span class="pill">🦪 Oyster Street</span>
+      <span class="pill">🏖️ Playas</span>
+      <span class="pill">🌳 Parques con sombra</span>
+      <span class="pill">⛴️ Las Cíes</span>
+      <span class="pill">🦪 Calle de las Ostras</span>
     </div>
   </div>
 </header>
 
 <div class="wrap stats">
   <div class="stat-grid">
-    <div class="stat reveal"><div class="ic">🌡️</div><div class="k">25°C</div><div class="l">Avg August high (77°F) — the warmest month</div></div>
-    <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Cool lows (61°F) — good sleeping weather</div></div>
-    <div class="stat reveal"><div class="ic">⏰</div><div class="k">11:00</div><div class="l">Get to beaches before this for parking</div></div>
-    <div class="stat reveal"><div class="ic">⛴️</div><div class="k">~1,700</div><div class="l">Daily Cíes cap — book a weekday sailing</div></div>
+    <div class="stat reveal"><div class="ic">🌡️</div><div class="k">25°C</div><div class="l">Máxima media de agosto (77°F) — el mes más caluroso</div></div>
+    <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Mínimas frescas (61°F) — buen tiempo para dormir</div></div>
+    <div class="stat reveal"><div class="ic">⏰</div><div class="k">11:00</div><div class="l">Llega a las playas antes de esta hora para aparcar</div></div>
+    <div class="stat reveal"><div class="ic">⛴️</div><div class="k">~1.700</div><div class="l">Cupo diario de las Cíes — reserva ferry entre semana</div></div>
   </div>
 </div>
 
 <section id="sun" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Our sun-check</div>
-      <h2>When is it kind for the little one?</h2>
-      <p>Drag across the day. Green = go; the red band is the midday block we skip.</p>
+      <div class="eyebrow">Nuestro control del sol</div>
+      <h2>¿Cuándo es amable con el peque?</h2>
+      <p>Desliza por el día. Verde = adelante; la franja roja es el bloque de mediodía que evitamos.</p>
     </div>
     <div class="sun-card reveal">
       <div class="sun-track">
         <div class="sun-zones">
-          <div class="zone" style="flex:6.5">🌅 Best</div>
-          <div class="zone danger" style="flex:4">☀️ Avoid</div>
-          <div class="zone" style="flex:7.5">🌇 Best</div>
+          <div class="zone" style="flex:6.5">🌅 Mejor</div>
+          <div class="zone danger" style="flex:4">☀️ Evitar</div>
+          <div class="zone" style="flex:7.5">🌇 Mejor</div>
         </div>
         <div class="sun-marker" id="sunMarker" data-t="09:00" style="left:37.5%"></div>
       </div>
@@ -232,23 +232,23 @@
 <section id="activities">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Our shortlist, ranked for a 3-year-old</div>
-      <h2>Where we could go</h2>
-      <p>Each card shows how relaxed or active the day is, and whether it's better midweek or on a weekend. Filter to plan a specific kind of day.</p>
+      <div class="eyebrow">Nuestra lista, ordenada para un peque de 3 años</div>
+      <h2>Dónde podríamos ir</h2>
+      <p>Cada tarjeta muestra lo relajado o activo que es el día, y si va mejor entre semana o en fin de semana. Filtra para planear un tipo de día concreto.</p>
     </div>
     <div class="filters reveal" id="filters">
-      <span class="flabel">Type</span>
-      <button class="chip active" data-f="all">All</button>
-      <button class="chip" data-f="beach">🏖️ Beaches</button>
-      <button class="chip" data-f="park">🌳 Parks</button>
-      <button class="chip" data-f="daytrip">🚗 Day trips</button>
-      <button class="chip" data-f="rainy">☔ Rainy-proof</button>
-      <button class="chip" data-f="stroller">👶 Stroller-easy</button>
+      <span class="flabel">Tipo</span>
+      <button class="chip active" data-f="all">Todo</button>
+      <button class="chip" data-f="beach">🏖️ Playas</button>
+      <button class="chip" data-f="park">🌳 Parques</button>
+      <button class="chip" data-f="daytrip">🚗 Excursiones</button>
+      <button class="chip" data-f="rainy">☔ A prueba de lluvia</button>
+      <button class="chip" data-f="stroller">👶 Fácil con carrito</button>
       <span class="filter-divider"></span>
-      <span class="flabel">Intensity</span>
-      <button class="chip intens" data-f="chill">🛋️ Relaxed</button>
-      <button class="chip intens" data-f="easy">🚶 Easy stroll</button>
-      <button class="chip intens" data-f="active">🥾 Active / hike</button>
+      <span class="flabel">Intensidad</span>
+      <button class="chip intens" data-f="chill">🛋️ Relajado</button>
+      <button class="chip intens" data-f="easy">🚶 Paseo fácil</button>
+      <button class="chip intens" data-f="active">🥾 Activo / ruta</button>
     </div>
     <div class="cards" id="cards"></div>
   </div>
@@ -257,19 +257,19 @@
 <section id="compare" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">At a glance</div>
-      <h2>Compare everything</h2>
-      <p>Tap a heading to sort. Drive times are off-peak from central Vigo — weekend beach traffic can add 10–20 min.</p>
+      <div class="eyebrow">De un vistazo</div>
+      <h2>Compara todo</h2>
+      <p>Toca una cabecera para ordenar. Los tiempos de coche son sin tráfico desde el centro de Vigo — en finde el tráfico de playa puede sumar 10–20 min.</p>
     </div>
     <div class="table-scroll reveal">
       <table id="cmp">
         <thead><tr>
-          <th data-k="name">Place <span class="arr">↕</span></th>
-          <th data-k="drive" data-num="1">Drive (min) <span class="arr">↕</span></th>
-          <th data-k="intensity">Intensity <span class="arr">↕</span></th>
-          <th data-k="best">Better day <span class="arr">↕</span></th>
-          <th data-k="cost">Cost <span class="arr">↕</span></th>
-          <th data-k="stroller">Stroller <span class="arr">↕</span></th>
+          <th data-k="name">Lugar <span class="arr">↕</span></th>
+          <th data-k="drive" data-num="1">Coche (min) <span class="arr">↕</span></th>
+          <th data-k="intensity">Intensidad <span class="arr">↕</span></th>
+          <th data-k="best">Mejor día <span class="arr">↕</span></th>
+          <th data-k="cost">Precio <span class="arr">↕</span></th>
+          <th data-k="stroller">Carrito <span class="arr">↕</span></th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -280,14 +280,14 @@
 <section id="days">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Ready-to-go days</div>
-      <h2>Three day plans</h2>
-      <p>Central Vigo as our base, a midday slow-down for naps, and a bad-weather backup for each.</p>
+      <div class="eyebrow">Días listos para usar</div>
+      <h2>Tres planes de día</h2>
+      <p>El centro de Vigo como base, una pausa a mediodía para la siesta y un plan B para el mal tiempo en cada uno.</p>
     </div>
     <div class="tabs" id="dayTabs">
-      <button class="tab active" data-d="0">🏖️ Easy Coast Day</button>
-      <button class="tab" data-d="1">⛴️ Cíes Special Day</button>
-      <button class="tab" data-d="2">🌳 Green Shade Day</button>
+      <button class="tab active" data-d="0">🏖️ Día de costa fácil</button>
+      <button class="tab" data-d="1">⛴️ Día especial Cíes</button>
+      <button class="tab" data-d="2">🌳 Día verde con sombra</button>
     </div>
     <div id="dayPanels"></div>
   </div>
@@ -296,9 +296,9 @@
 <section id="food" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Where to eat</div>
-      <h2>The food shortlist</h2>
-      <p>From street-shucked oysters to a Michelin dome and family seafood in Baiona — each with the dish to actually order, and when to go.</p>
+      <div class="eyebrow">Dónde comer</div>
+      <h2>La lista de comida</h2>
+      <p>Desde ostras abiertas en la calle hasta una cúpula con estrella Michelin y marisco familiar en Baiona — cada uno con el plato que hay que pedir y cuándo ir.</p>
     </div>
     <div class="rests" id="rests"></div>
   </div>
@@ -307,13 +307,13 @@
 <section id="map-sec">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Everything, mapped</div>
-      <h2>Our map</h2>
-      <p>Coral = places to go, teal = food. Click any pin to open it in Google Maps or get directions.</p>
+      <div class="eyebrow">Todo, en el mapa</div>
+      <h2>Nuestro mapa</h2>
+      <p>Coral = sitios para ir, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
     </div>
     <div class="map-legend reveal">
-      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Activities</label>
-      <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurants</label>
+      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Actividades</label>
+      <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurantes</label>
     </div>
     <div id="map" class="reveal"></div>
   </div>
@@ -322,9 +322,9 @@
 <section id="pack" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Before we go</div>
-      <h2>Packing checklist</h2>
-      <p>Ticks save automatically in this browser.</p>
+      <div class="eyebrow">Antes de irnos</div>
+      <h2>Lista de la maleta</h2>
+      <p>Lo marcado se guarda solo en este navegador.</p>
     </div>
     <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start" class="packgrid">
       <ul class="pack-list" id="packList" style="list-style:none;padding:0;margin:0;columns:2;column-gap:26px"></ul>
@@ -332,11 +332,11 @@
         <div class="ring" id="ring" style="--p:0;width:150px;height:150px;border-radius:50%;margin:6px auto 14px;background:conic-gradient(var(--green) 0%,#eee 0);display:flex;align-items:center;justify-content:center">
           <div style="width:116px;height:116px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center">
             <div class="pct" id="pct" style="font-family:Fraunces;font-size:2rem;font-weight:700;color:var(--sea-deep)">0%</div>
-            <div style="font-size:.72rem;color:var(--slate)">packed</div>
+            <div style="font-size:.72rem;color:var(--slate)">preparado</div>
           </div>
         </div>
-        <div style="font-weight:600" id="packCount">0 of 0 items</div>
-        <button class="reset" id="resetPack" style="margin-top:12px;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-size:.82rem;color:var(--slate);cursor:pointer">Reset</button>
+        <div style="font-weight:600" id="packCount">0 de 0 artículos</div>
+        <button class="reset" id="resetPack" style="margin-top:12px;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-size:.82rem;color:var(--slate);cursor:pointer">Reiniciar</button>
       </div>
     </div>
   </div>
@@ -345,53 +345,53 @@
 <footer>
   <div class="wrap">
     <div>
-      <div style="font-family:Fraunces;font-size:1.3rem;font-weight:700">🌊 Our Vigo Week</div>
-      <p class="cite">Our own planning notes. Photos: Wikimedia Commons. Guidance from official Vigo &amp; Galicia tourism, the Cíes National Park, ferry/museum operators, AEMET climate norms, and restaurant coverage (Michelin Guide, local food press). Re-check hours &amp; ferry bookings close to travel.</p>
+      <div style="font-family:Fraunces;font-size:1.3rem;font-weight:700">🌊 Nuestra semana en Vigo</div>
+      <p class="cite">Nuestras notas de planificación. Fotos: Wikimedia Commons. Información de turismo oficial de Vigo y Galicia, el Parque Nacional de las Cíes, operadores de ferry y museos, normales climáticas de AEMET y prensa gastronómica (Guía Michelin, medios locales). Vuelve a comprobar horarios y reservas de ferry cerca del viaje.</p>
     </div>
-    <div style="text-align:right">Happy planning 🧡</div>
+    <div style="text-align:right">¡Feliz planificación! 🧡</div>
   </div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-const INT={chill:{c:"i1",t:"🛋️ Relaxed",s:"Relaxed"},easy:{c:"i2",t:"🚶 Easy stroll",s:"Easy"},active:{c:"i3",t:"🥾 Active / hike",s:"Active"}};
-const BEST={weekday:"Best midweek",either:"Any day",mixed:"Mixed"};
+const INT={chill:{c:"i1",t:"🛋️ Relajado",s:"Relajado"},easy:{c:"i2",t:"🚶 Paseo fácil",s:"Fácil"},active:{c:"i3",t:"🥾 Activo / ruta",s:"Activo"}};
+const BEST={weekday:"Mejor entre semana",either:"Cualquier día",mixed:"Mixto"};
 
 const PLACES=[
- {rank:1,name:"Samil Beach",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2115,lng:-8.7727,img:"https://upload.wikimedia.org/wikipedia/commons/8/86/Praia_de_Samil%2C_Navia%2C_Vigo.jpg",drive:"15–20 min",driveN:18,dur:"2–4 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia de Samil, Vigo",desc:"Vigo's biggest, most family-focused beach: play area, pools zone, pine-grove shade, toilets, showers, cafés and free parking.",when:"Weekends & August afternoons get packed — go a <b>weekday morning</b> or after 17:00."},
- {rank:2,name:"Castrelos Park & Gardens",cats:["park","stroller","rainy","easy"],int:"easy",best:"either",lat:42.2205,lng:-8.7267,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Castrelos_entrada_al_parque_-_panoramio.jpg/1280px-Castrelos_entrada_al_parque_-_panoramio.jpg",drive:"10–15 min",driveN:12,dur:"2–3 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Parque de Castrelos, Vigo",desc:"River walks, a huge playground, ducks & swans, and formal gardens around the pazo. The free museum makes it a great shade/reset day.",when:"<b>Any day</b> — big enough to absorb weekend crowds; lovely on a Sunday morning too."},
- {rank:3,name:"Cíes Islands Day Trip",cats:["daytrip","beach","active"],int:"active",best:"weekday",lat:42.2197,lng:-8.9010,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg/1280px-Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg",drive:"port + ~45 min ferry",driveN:55,dur:"Full day",cost:"~€24–27",stroller:"Partial",booking:"Yes",q:"Illas Cíes",desc:"Our special-memory day. Sea access only, capacity-limited. Keep it to Rodas Beach + short wandering; carrier + lots of water.",when:"Book a <b>weekday sailing</b> — fewer people and easier ferry slots than weekends."},
- {rank:4,name:"Museo do Mar & Alcabre",cats:["rainy","stroller","easy"],int:"easy",best:"either",lat:42.2158,lng:-8.7817,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg/1280px-2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg",drive:"15–20 min",driveN:18,dur:"1.5–3 hrs",cost:"€3 · under-8s free",stroller:"Yes",booking:"No",q:"Museo do Mar de Galicia, Vigo",desc:"Aquarium, baby-changing toilets, on-site restaurant, parking and lighthouse views. Our best beach-day swap.",when:"<b>Any day</b>, great rainy-day backup — check the afternoon hours before going."},
- {rank:5,name:"O Vao & Canido Coast",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2000,lng:-8.7890,img:"https://upload.wikimedia.org/wikipedia/commons/6/6f/Fogueira_de_San_Xo%C3%A1n_na_praia_do_Vao%2C_Vigo_-_3664070566.jpg",drive:"15–25 min",driveN:22,dur:"2–4 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia do Vao, Vigo",desc:"A more local, lower-key beach day than Samil. O Vao = more space; Canido = promenade restaurants for lunch.",when:"Parking fills fast — <b>strongly a weekday</b> pick, arrive before 11:00."},
- {rank:6,name:"Monte do Castro",cats:["park","easy"],int:"easy",best:"either",lat:42.2358,lng:-8.7237,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Fortaleza_del_Castro_de_Vigo_09.jpg/1280px-Fortaleza_del_Castro_de_Vigo_09.jpg",drive:"5–10 min",driveN:8,dur:"1–2 hrs",cost:"Free",stroller:"Partial",booking:"No",q:"Monte do Castro, Vigo",desc:"Big views, fort walls, gardens and a playground above the city. Drive near the top and keep it short.",when:"<b>Any day</b> — sunset is quieter midweek. Great quick stop around nap time."},
- {rank:7,name:"Baiona & Ladeira Beach",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"mixed",lat:42.1205,lng:-8.8400,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg/1280px-Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg",drive:"30–35 min",driveN:33,dur:"4–6 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia da Ladeira, Baiona",desc:"A handsome walled town plus a big promenade-backed beach with services. Beach + stroller-friendly town walk in one.",when:"<b>Weekday for the beach</b>, weekend for the town buzz and market."},
- {rank:8,name:"Vigo–Cangas Ferry & Rodeira",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"weekday",lat:42.2647,lng:-8.7847,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cangas_-_Rodeira.jpg/1280px-Cangas_-_Rodeira.jpg",drive:"20 min ferry",driveN:20,dur:"4–5 hrs",cost:"from €1.52",stroller:"Yes",booking:"Advised",q:"Praia de Rodeira, Cangas",desc:"A boat experience without the full Cíes commitment. 20-min crossing; Rodeira is central with ramps to the sand.",when:"Weekend ferries & Rodeira get busy — <b>midweek is calmer</b>."},
- {rank:9,name:"Soutomaior Castle & Gardens",cats:["daytrip","park","rainy","easy"],int:"easy",best:"either",lat:42.3300,lng:-8.5680,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Castelo_de_Soutomaior_-_1.jpg/1280px-Castelo_de_Soutomaior_-_1.jpg",drive:"25–30 min",driveN:28,dur:"2–3 hrs",cost:"Family €5",stroller:"Yes",booking:"Recommended",q:"Castelo de Soutomaior",desc:"A shaded half-day among mature trees, long summer hours, family tickets. Cooler and calmer than the beach.",when:"<b>Any day</b> — rarely crowded, so weekends are fine."},
- {rank:10,name:"Monte Aloia Natural Park",cats:["daytrip","park","active"],int:"active",best:"weekday",lat:42.0847,lng:-8.6533,img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Vistas_Aloia_2.JPG",drive:"35–40 min",driveN:38,dur:"2–3 hrs",cost:"Free",stroller:"Limited",booking:"No",q:"Parque Natural Monte Aloia",desc:"Viewpoints and a botanical trail with games. Do only the easy sections near the visitor centre — mornings only in August.",when:"Quietest on a <b>weekday morning</b>; weekends draw local picnickers."},
- {rank:11,name:"Granja de Briz Sensory Park",cats:["daytrip","park","stroller","chill"],int:"chill",best:"weekday",lat:42.3897,lng:-8.6939,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg/1920px-Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg",drive:"40–45 min",driveN:43,dur:"1.5–3 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Granxa de Briz, Marín",desc:"A former farm turned nature park with sensory games, a small labyrinth and shaded paths. Our 'just let her play' afternoon.",when:"<b>Weekday afternoons</b> are calm; weekends fill with local families."},
- {rank:12,name:"Castiñeiras Lake",cats:["daytrip","park","easy"],int:"easy",best:"weekday",lat:42.3560,lng:-8.6720,img:"https://upload.wikimedia.org/wikipedia/commons/8/82/Lago_Casti%C3%B1eiras%2C_Vilaboa%2C_Galiza.jpg",drive:"40–50 min",driveN:45,dur:"2–4 hrs",cost:"Free",stroller:"Partial",booking:"No",q:"Lago de Castiñeiras",desc:"Tables, benches, fountains, toilets and an approved BBQ area in a cool wooded lakeside setting. Kind alternative to open sand.",when:"Weekends = BBQ/picnic crowds. <b>Midweek is peaceful.</b>"}
+ {rank:1,name:"Playa de Samil",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2115,lng:-8.7727,img:"https://upload.wikimedia.org/wikipedia/commons/8/86/Praia_de_Samil%2C_Navia%2C_Vigo.jpg",drive:"15–20 min",driveN:18,dur:"2–4 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Praia de Samil, Vigo",desc:"La playa más grande y familiar de Vigo: zona de juegos, piscinas, sombra de pinar, aseos, duchas, cafeterías y aparcamiento gratis.",when:"Los findes y las tardes de agosto se llenan — ve <b>entre semana por la mañana</b> o a partir de las 17:00."},
+ {rank:2,name:"Parque de Castrelos y Pazo",cats:["park","stroller","rainy","easy"],int:"easy",best:"either",lat:42.2205,lng:-8.7267,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Castrelos_entrada_al_parque_-_panoramio.jpg/1280px-Castrelos_entrada_al_parque_-_panoramio.jpg",drive:"10–15 min",driveN:12,dur:"2–3 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Parque de Castrelos, Vigo",desc:"Paseos junto al río, un parque infantil enorme, patos y cisnes, y jardines formales junto al pazo. El museo gratuito lo hace un gran día de sombra y descanso.",when:"<b>Cualquier día</b> — es grande y absorbe la gente del finde; precioso también un domingo por la mañana."},
+ {rank:3,name:"Excursión a las Islas Cíes",cats:["daytrip","beach","active"],int:"active",best:"weekday",lat:42.2197,lng:-8.9010,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg/1280px-Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg",drive:"puerto + ferry ~45 min",driveN:55,dur:"Todo el día",cost:"~24–27 €",stroller:"Parcial",booking:"Sí",q:"Illas Cíes",desc:"Nuestro día especial. Acceso solo por mar y con cupo. Limítalo a la playa de Rodas y un paseo corto; mochila portabebés y mucha agua.",when:"Reserva un <b>ferry entre semana</b> — menos gente y mejores horarios que en finde."},
+ {rank:4,name:"Museo do Mar y Alcabre",cats:["rainy","stroller","easy"],int:"easy",best:"either",lat:42.2158,lng:-8.7817,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg/1280px-2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg",drive:"15–20 min",driveN:18,dur:"1,5–3 h",cost:"3 € · <8 gratis",stroller:"Sí",booking:"No",q:"Museo do Mar de Galicia, Vigo",desc:"Acuario, aseos con cambiador, restaurante propio, aparcamiento y vistas al faro. Nuestro mejor plan B para un día de playa.",when:"<b>Cualquier día</b>, gran plan para la lluvia — revisa el horario de tarde antes de ir."},
+ {rank:5,name:"Costa de O Vao y Canido",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2000,lng:-8.7890,img:"https://upload.wikimedia.org/wikipedia/commons/6/6f/Fogueira_de_San_Xo%C3%A1n_na_praia_do_Vao%2C_Vigo_-_3664070566.jpg",drive:"15–25 min",driveN:22,dur:"2–4 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Praia do Vao, Vigo",desc:"Un día de playa más local y tranquilo que Samil. O Vao = más espacio; Canido = restaurantes en el paseo para comer.",when:"El aparcamiento se llena rápido — <b>mejor entre semana</b>, llega antes de las 11:00."},
+ {rank:6,name:"Monte do Castro",cats:["park","easy"],int:"easy",best:"either",lat:42.2358,lng:-8.7237,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Fortaleza_del_Castro_de_Vigo_09.jpg/1280px-Fortaleza_del_Castro_de_Vigo_09.jpg",drive:"5–10 min",driveN:8,dur:"1–2 h",cost:"Gratis",stroller:"Parcial",booking:"No",q:"Monte do Castro, Vigo",desc:"Grandes vistas, murallas, jardines y un parque infantil sobre la ciudad. Sube en coche cerca de la cima y hazlo corto.",when:"<b>Cualquier día</b> — el atardecer es más tranquilo entre semana. Buena parada rápida a la hora de la siesta."},
+ {rank:7,name:"Baiona y playa de Ladeira",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"mixed",lat:42.1205,lng:-8.8400,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg/1280px-Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg",drive:"30–35 min",driveN:33,dur:"4–6 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Praia da Ladeira, Baiona",desc:"Un bonito pueblo amurallado más una gran playa con paseo y servicios. Playa y paseo por el pueblo con carrito en un mismo día.",when:"<b>Entre semana para la playa</b>, finde para el ambiente y el mercado del pueblo."},
+ {rank:8,name:"Ferry Vigo–Cangas y Rodeira",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"weekday",lat:42.2647,lng:-8.7847,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cangas_-_Rodeira.jpg/1280px-Cangas_-_Rodeira.jpg",drive:"ferry 20 min",driveN:20,dur:"4–5 h",cost:"desde 1,52 €",stroller:"Sí",booking:"Aconsejado",q:"Praia de Rodeira, Cangas",desc:"Experiencia de barco sin comprometerte a las Cíes. Travesía de 20 min; Rodeira es céntrica y con rampas a la arena.",when:"Los ferris y Rodeira se llenan en finde — <b>entre semana hay más calma</b>."},
+ {rank:9,name:"Castillo y jardines de Soutomaior",cats:["daytrip","park","rainy","easy"],int:"easy",best:"either",lat:42.3300,lng:-8.5680,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Castelo_de_Soutomaior_-_1.jpg/1280px-Castelo_de_Soutomaior_-_1.jpg",drive:"25–30 min",driveN:28,dur:"2–3 h",cost:"Familiar 5 €",stroller:"Sí",booking:"Recomendado",q:"Castelo de Soutomaior",desc:"Media jornada con sombra entre árboles centenarios, horario amplio en verano y entrada familiar. Más fresco y tranquilo que la playa.",when:"<b>Cualquier día</b> — casi nunca hay gente, así que el finde va bien."},
+ {rank:10,name:"Parque Natural Monte Aloia",cats:["daytrip","park","active"],int:"active",best:"weekday",lat:42.0847,lng:-8.6533,img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Vistas_Aloia_2.JPG",drive:"35–40 min",driveN:38,dur:"2–3 h",cost:"Gratis",stroller:"Limitado",booking:"No",q:"Parque Natural Monte Aloia",desc:"Miradores y una ruta botánica con juegos. Haz solo los tramos fáciles cerca del centro de visitantes — solo por la mañana en agosto.",when:"Más tranquilo un <b>día de semana por la mañana</b>; los findes atraen a familias locales de picnic."},
+ {rank:11,name:"Granxa de Briz (parque sensorial)",cats:["daytrip","park","stroller","chill"],int:"chill",best:"weekday",lat:42.3897,lng:-8.6939,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg/1920px-Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg",drive:"40–45 min",driveN:43,dur:"1,5–3 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Granxa de Briz, Marín",desc:"Una antigua granja convertida en parque natural con juegos sensoriales, un pequeño laberinto y senderos con sombra. Nuestra tarde de 'que juegue a gusto'.",when:"Las <b>tardes entre semana</b> están tranquilas; los findes se llenan de familias locales."},
+ {rank:12,name:"Lago de Castiñeiras",cats:["daytrip","park","easy"],int:"easy",best:"weekday",lat:42.3560,lng:-8.6720,img:"https://upload.wikimedia.org/wikipedia/commons/8/82/Lago_Casti%C3%B1eiras%2C_Vilaboa%2C_Galiza.jpg",drive:"40–50 min",driveN:45,dur:"2–4 h",cost:"Gratis",stroller:"Parcial",booking:"No",q:"Lago de Castiñeiras",desc:"Mesas, bancos, fuentes, aseos y una zona de barbacoa autorizada en un entorno de lago con bosque. Alternativa amable a la arena.",when:"Findes = gente de barbacoa y picnic. <b>Entre semana hay paz.</b>"}
 ];
 
 const RESTS=[
- {name:"Rúa da Pescadería (Oyster Street)",area:"Casco Vello · A Pedra",price:"€",lat:42.2415,lng:-8.7255,dish:"Fresh Galician oysters, shucked street-side, with cold Albariño",desc:"A centuries-old ritual: buy oysters (1–2€ each) from the street ostreras, pay the terrace for the wine. Pure Vigo.",when:"Kiosks Mon–Sat ~9–14 & 17–20. Go a <b>weekday ~11:00</b> for the local vibe — weekends bring cruise crowds.",q:"Rúa da Pescadería, Vigo"},
- {name:"Silabario",area:"Central · Celta HQ, 6th floor",price:"€€€€ · Michelin ★",lat:42.2360,lng:-8.7180,dish:"New-Galician tasting menu; sublime Galician flat oysters",desc:"Chef Alberto González's contemporary Galician cooking under a glass dome. A special grown-ups' dinner.",when:"The <b>weekday 'Berbés' market menu</b> is a famous bargain for a starred kitchen. Book ahead.",q:"Silabario Príncipe 44, Vigo"},
- {name:"Morrofino",area:"Central · Serafín Avendaño",price:"€€€ · Bib Gourmand",lat:42.2340,lng:-8.7150,dish:"Smoked-butter croquette with prawns & garlic (Michelin singled it out)",desc:"Open-kitchen urban taberna: technically sharp contemporary tapas with a street-food directness.",when:"Dinner — <b>reserve</b>. Any day of the week.",q:"Morrofino Serafín Avendaño 4, Vigo"},
- {name:"Parrillada Samil",area:"Behind Hotel Samil",price:"€€",lat:42.2098,lng:-8.7690,dish:"Pulpo á feira & grilled zamburiñas (plus a kids' playground)",desc:"Family taberna with a terrace, swings for kids and its own parking. Roughly 25–30€ per person.",when:"Perfect for a <b>Samil beach-day lunch</b>. Reserve on weekends.",q:"Parrillada Samil, Vigo"},
- {name:"Beach Club Marina Cíes",area:"On Samil beach",price:"€€–€€€",lat:42.2118,lng:-8.7738,dish:"Grilled pulpo & tapas with a sunset over the Cíes",desc:"Loungy terrace with hammocks right on Samil — the easy 'after the beach' spot for a drink and a bite.",when:"<b>Golden hour</b> after the beach; relaxed any day.",q:"Beach Club Marina Cies Samil Vigo"},
- {name:"Restaurante Naveira",area:"Baiona · on the port",price:"€€",lat:42.1210,lng:-8.8490,dish:"Arroz con bogavante & croquetas de centollo",desc:"Right on the promenade, excellent value, family-friendly — a local favourite in Baiona.",when:"Pair with a <b>Baiona day</b>; reserve for weekend lunch.",q:"Restaurante Naveira, Baiona"},
- {name:"Pedro Madruga",area:"Baiona · marina & castle",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante & seafood paella, with castle views",desc:"Terrace facing the marina and castle. Kids' menu and high chairs — genuinely good with a toddler.",when:"<b>Family lunch</b> on a Baiona day. Reserve ahead.",q:"Restaurante Pedro Madruga, Baiona"}
+ {name:"Rúa da Pescadería (Calle de las Ostras)",area:"Casco Vello · A Pedra",price:"€",lat:42.2415,lng:-8.7255,dish:"Ostras gallegas abiertas al momento en la calle, con Albariño bien frío",desc:"Un ritual centenario: compra las ostras (1–2 € cada una) a las ostreras y paga el vino en la terraza. Vigo puro.",when:"Puestos lun–sáb ~9–14 y 17–20. Ve un <b>día de semana ~11:00</b> para el ambiente local — en finde llegan los cruceros.",q:"Rúa da Pescadería, Vigo"},
+ {name:"Silabario",area:"Centro · sede del Celta, 6ª planta",price:"€€€€ · Michelin ★",lat:42.2360,lng:-8.7180,dish:"Menú degustación de nueva cocina gallega; ostra plana gallega sublime",desc:"La cocina gallega contemporánea del chef Alberto González bajo una cúpula de cristal. Una cena especial para adultos.",when:"El <b>menú de mercado 'Berbés' entre semana</b> es una ganga para un estrella. Reserva.",q:"Silabario Príncipe 44, Vigo"},
+ {name:"Morrofino",area:"Centro · Serafín Avendaño",price:"€€€ · Bib Gourmand",lat:42.2340,lng:-8.7150,dish:"Croqueta de mantequilla ahumada con gambas y ajo (la que destacó Michelin)",desc:"Taberna urbana con cocina a la vista: tapas contemporáneas y técnicas con alma de comida de calle.",when:"Cena — <b>reserva</b>. Cualquier día de la semana.",q:"Morrofino Serafín Avendaño 4, Vigo"},
+ {name:"Parrillada Samil",area:"Detrás del Hotel Samil",price:"€€",lat:42.2098,lng:-8.7690,dish:"Pulpo á feira y zamburiñas a la plancha (¡y parque infantil!)",desc:"Taberna familiar con terraza, columpios para peques y aparcamiento propio. Unos 25–30 € por persona.",when:"Perfecta para <b>comer en un día de playa en Samil</b>. Reserva los findes.",q:"Parrillada Samil, Vigo"},
+ {name:"Beach Club Marina Cíes",area:"En la playa de Samil",price:"€€–€€€",lat:42.2118,lng:-8.7738,dish:"Pulpo a la parrilla y tapas con puesta de sol sobre las Cíes",desc:"Terraza chill con hamacas en plena Samil — el sitio fácil de 'después de la playa' para tomar algo.",when:"<b>Hora dorada</b> tras la playa; relajado cualquier día.",q:"Beach Club Marina Cies Samil Vigo"},
+ {name:"Restaurante Naveira",area:"Baiona · en el puerto",price:"€€",lat:42.1210,lng:-8.8490,dish:"Arroz con bogavante y croquetas de centollo",desc:"Justo en el paseo, excelente relación calidad-precio, familiar — un clásico local en Baiona.",when:"Combínalo con un <b>día en Baiona</b>; reserva para comer en finde.",q:"Restaurante Naveira, Baiona"},
+ {name:"Pedro Madruga",area:"Baiona · puerto y castillo",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante y paella de marisco, con vistas al castillo",desc:"Terraza frente al puerto deportivo y el castillo. Menú infantil y tronas — genial de verdad con un peque.",when:"<b>Comida familiar</b> en un día en Baiona. Reserva con antelación.",q:"Restaurante Pedro Madruga, Baiona"}
 ];
 
-// ACTIVITY CARDS
+// TARJETAS DE ACTIVIDADES
 const cardsEl=document.getElementById('cards');
-function badge(v){const m={Yes:'b-yes',Partial:'b-part',Limited:'b-part',No:'b-no',Advised:'b-part',Recommended:'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
+function badge(v){const m={'Sí':'b-yes','Parcial':'b-part','Limitado':'b-part','No':'b-no','Aconsejado':'b-part','Recomendado':'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
 function gmap(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;}
 function renderCards(f){
   cardsEl.innerHTML='';
   PLACES.filter(p=>f==='all'||p.cats.includes(f)).forEach(p=>{
     const tags=[];
-    if(p.stroller==='Yes')tags.push('<span class="tag stroller">👶 Stroller ok</span>');
-    if(['Yes','Advised','Recommended'].includes(p.booking))tags.push('<span class="tag booking">📅 Book ahead</span>');
+    if(p.stroller==='Sí')tags.push('<span class="tag stroller">👶 Con carrito</span>');
+    if(['Sí','Aconsejado','Recomendado'].includes(p.booking))tags.push('<span class="tag booking">📅 Reservar</span>');
     const i=INT[p.int];
     const el=document.createElement('article');el.className='card reveal in';
     el.innerHTML=`
@@ -405,7 +405,7 @@ function renderCards(f){
         <p>${p.desc}</p>
         <div class="when">📅 ${p.when}</div>
         <div class="card-foot"><span class="cost">${p.cost}</span>
-          <a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Open in Maps ↗</a></div>
+          <a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Ver en Maps ↗</a></div>
       </div>`;
     cardsEl.appendChild(el);
   });
@@ -417,7 +417,7 @@ document.getElementById('filters').addEventListener('click',e=>{
   b.classList.add('active');renderCards(b.dataset.f);
 });
 
-// TABLE
+// TABLA
 const tbody=document.querySelector('#cmp tbody');
 let sortKey='drive',sortAsc=true;
 function renderTable(){
@@ -440,17 +440,17 @@ document.querySelectorAll('#cmp th').forEach(th=>th.addEventListener('click',()=
   const k=th.dataset.k;if(sortKey===k)sortAsc=!sortAsc;else{sortKey=k;sortAsc=true;}renderTable();
 }));
 
-// ITINERARIES
+// ITINERARIOS
 const DAYS=[
- {title:"Easy Vigo Coast Day",why:"Our low-risk default: lots of outdoor time, a flexible lunch, and a great backup if the weather turns.",
-  items:[["09:30","Drive to Samil Beach (15–20 min)"],["10:00","Sand play + promenade walk while it's cool"],["11:45","Lunch at Parrillada Samil (playground!) or the promenade"],["13:00","Home for nap / quiet car transfer"],["17:00","Museo do Mar + aquarium"],["18:30","Sunset drink at Beach Club Marina Cíes"],["20:00","Back to Vigo"]],
-  rain:"<b>Bad-weather version:</b> skip the beach and do Museo do Mar + Castrelos museum & gardens."},
- {title:"Cíes Special Day",why:"The most memorable outing — but needs a booking and good weather. If the ferry's off or it's too windy/hot, don't force it.",
-  items:[["08:30","Port, board the early (weekday) ferry"],["09:30","Rodas Beach + gentle exploring"],["11:30","Early picnic or island catering"],["12:30","Shade/rest near the lake or beach edge"],["15:00","Optional short walk or a second beach spell"],["16:30","Return ferry"],["17:30","Back in Vigo — oysters on Rúa da Pescadería?"]],
-  rain:"<b>Bad-weather version:</b> swap to the Vigo–Cangas ferry + Rodeira, or go land-based with Castrelos + Museo do Mar."},
- {title:"Green Shade Day",why:"Our antidote to too many beach days — trees, movement and space without a hard hike.",
-  items:[["09:30","Drive to Soutomaior Castle (25–30 min)"],["10:00","Castle gardens + gentle wandering in the shade"],["12:15","Drive to Castiñeiras Lake"],["12:45","Picnic lunch at the tables"],["13:30","Lakeside stroll + quiet shade time"],["15:00","Coffee in Marín, or head back to Vigo"]],
-  rain:"<b>Bad-weather version:</b> keep Soutomaior if showers are light, swap the lake for the free Castrelos museum."}
+ {title:"Día de costa fácil en Vigo",why:"Nuestro plan por defecto de bajo riesgo: mucho tiempo al aire libre, comida flexible y un buen plan B si cambia el tiempo.",
+  items:[["09:30","Coche a la playa de Samil (15–20 min)"],["10:00","Jugar en la arena y paseo mientras hace fresco"],["11:45","Comer en Parrillada Samil (¡parque infantil!) o en el paseo"],["13:00","A casa para la siesta o traslado tranquilo en coche"],["17:00","Museo do Mar y acuario"],["18:30","Copa al atardecer en Beach Club Marina Cíes"],["20:00","Vuelta a Vigo"]],
+  rain:"<b>Versión mal tiempo:</b> salta la playa y haz Museo do Mar + museo y jardines de Castrelos."},
+ {title:"Día especial en las Cíes",why:"La excursión más memorable — pero necesita reserva y buen tiempo. Si no hay ferry o hace demasiado viento o calor, no lo fuerces.",
+  items:[["08:30","Puerto, embarcar en el ferry temprano (entre semana)"],["09:30","Playa de Rodas y exploración tranquila"],["11:30","Picnic temprano o restauración de la isla"],["12:30","Sombra y descanso junto al lago o el borde de la playa"],["15:00","Paseo corto opcional o segundo rato de playa"],["16:30","Ferry de vuelta"],["17:30","De vuelta en Vigo — ¿ostras en la Rúa da Pescadería?"]],
+  rain:"<b>Versión mal tiempo:</b> cambia al ferry Vigo–Cangas + Rodeira, o plan de tierra con Castrelos + Museo do Mar."},
+ {title:"Día verde con sombra",why:"Nuestro antídoto a demasiados días de playa — árboles, movimiento y espacio sin una ruta dura.",
+  items:[["09:30","Coche al Castillo de Soutomaior (25–30 min)"],["10:00","Jardines del castillo y paseo tranquilo a la sombra"],["12:15","Coche al lago de Castiñeiras"],["12:45","Comida de picnic en las mesas"],["13:30","Paseo junto al lago y rato de sombra tranquilo"],["15:00","Café en Marín o vuelta a Vigo"]],
+  rain:"<b>Versión mal tiempo:</b> mantén Soutomaior si llueve poco y cambia el lago por el museo gratuito de Castrelos."}
 ];
 document.getElementById('dayPanels').innerHTML=DAYS.map((d,i)=>`
   <div class="day ${i===0?'active':''}" data-day="${i}">
@@ -463,18 +463,18 @@ document.getElementById('dayTabs').addEventListener('click',e=>{
   document.querySelectorAll('.day').forEach(x=>x.classList.toggle('active',x.dataset.day===t.dataset.d));
 });
 
-// RESTAURANTS
+// RESTAURANTES
 document.getElementById('rests').innerHTML=RESTS.map(r=>`
   <div class="rest reveal">
     <div class="rest-top"><div><h3>${r.name}</h3><div class="area">📍 ${r.area}</div></div><span class="price">${r.price}</span></div>
-    <div class="dish"><span class="lab">⭐ Order this</span>${r.dish}</div>
+    <div class="dish"><span class="lab">⭐ Pide esto</span>${r.dish}</div>
     <p class="desc">${r.desc}</p>
     <div class="rwhen">🕑 ${r.when}</div>
-    <a class="maplink" target="_blank" rel="noopener" href="${gmap(r.q)}">Open in Maps ↗</a>
+    <a class="maplink" target="_blank" rel="noopener" href="${gmap(r.q)}">Ver en Maps ↗</a>
   </div>`).join('');
 
-// PACKING
-const PACK=["UPF hat with neck coverage","High-SPF child sunscreen","Stick sunscreen for top-ups","UV swim shirt","Dry spare clothes","Two swimsuits","Beach shoes / water sandals","Closed shoes (Cíes/Castro)","Toddler carrier","Light stroller","Extra water (Cíes not potable)","Portable shade / beach tent","Picnic kit","Wet bag + wipes + change mat","Motion-sickness backup","Small towel/blanket for naps"];
+// MALETA
+const PACK=["Gorro UPF con cubrenuca","Crema solar infantil alta","Barra solar para retoques","Camiseta de baño UV","Ropa seca de repuesto","Dos bañadores","Escarpines / sandalias de agua","Zapato cerrado (Cíes/Castro)","Mochila portabebés","Silla ligera","Agua extra (Cíes no potable)","Sombra portátil / carpa de playa","Kit de picnic","Bolsa impermeable + toallitas + cambiador","Antimareo por si acaso","Toalla o manta para la siesta"];
 const listEl=document.getElementById('packList');
 const saved=JSON.parse(localStorage.getItem('vigoPack')||'{}');
 listEl.innerHTML=PACK.map((it,i)=>`<li style="break-inside:avoid;margin-bottom:8px"><label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.92rem;padding:7px 9px;border-radius:10px"><input type="checkbox" data-i="${i}" ${saved[i]?'checked':''} style="margin-top:3px;width:17px;height:17px;accent-color:var(--green)"><span>${it}</span></label></li>`).join('');
@@ -482,38 +482,38 @@ function updatePack(){
   const boxes=[...listEl.querySelectorAll('input')],done=boxes.filter(b=>b.checked).length,pct=Math.round(done/boxes.length*100);
   document.getElementById('ring').style.background=`conic-gradient(var(--green) ${pct}%,#eee 0)`;
   document.getElementById('pct').textContent=pct+'%';
-  document.getElementById('packCount').textContent=`${done} of ${boxes.length} items`;
+  document.getElementById('packCount').textContent=`${done} de ${boxes.length} artículos`;
   const m={};boxes.forEach(b=>m[b.dataset.i]=b.checked);localStorage.setItem('vigoPack',JSON.stringify(m));
 }
 listEl.addEventListener('change',updatePack);
 document.getElementById('resetPack').addEventListener('click',()=>{listEl.querySelectorAll('input').forEach(b=>b.checked=false);updatePack();});
 updatePack();
 
-// SUN
+// SOL
 const slider=document.getElementById('sunSlider'),marker=document.getElementById('sunMarker'),verdict=document.getElementById('sunVerdict');
 function fmt(h){const H=Math.floor(h),M=h%1?'30':'00';return `${String(H).padStart(2,'0')}:${M}`;}
 function updateSun(){
   const h=parseFloat(slider.value);marker.style.left=((h-6)/15)*100+'%';marker.dataset.t=fmt(h);
   let v,s;
-  if(h<9){v="🌅 Prime time — cool and quiet";s="Best beach block before the crowds and heat.";}
-  else if(h<11){v="😎 Still good — hustle to park";s="Great until ~11:00; parking fills fast after this.";}
-  else if(h<12.5){v="🌤️ Getting busy and bright";s="Wrap up beach time; head for shade or early lunch.";}
-  else if(h<16.5){v="🚫 Skip the sun with the toddler";s="Nap, museum, shaded park or lunch — not open sand now.";}
-  else if(h<18){v="🌇 Back into the good zone";s="Late-afternoon beach is on again — reapply sunscreen.";}
-  else if(h<20.5){v="🏖️ Golden-hour magic";s="Soft light, cooler sand, thinning crowds.";}
-  else{v="🌙 Wind-down";s="Dinner on a promenade, then home for that 16°C sleep.";}
+  if(h<9){v="🌅 Hora ideal — fresco y tranquilo";s="El mejor bloque de playa antes de la gente y el calor.";}
+  else if(h<11){v="😎 Aún bien — corre a aparcar";s="Bien hasta ~11:00; el aparcamiento se llena rápido después.";}
+  else if(h<12.5){v="🌤️ Empieza a llenarse y aprieta el sol";s="Termina la playa; busca sombra o comida temprano.";}
+  else if(h<16.5){v="🚫 Evita el sol con el peque";s="Siesta, museo, parque con sombra o comer — nada de arena abierta ahora.";}
+  else if(h<18){v="🌇 De vuelta a la zona buena";s="La playa de la tarde vuelve — repón crema solar.";}
+  else if(h<20.5){v="🏖️ Magia de la hora dorada";s="Luz suave, arena más fresca, menos gente.";}
+  else{v="🌙 A bajar el ritmo";s="Cena en un paseo marítimo y a casa, a dormir con esos 16°C.";}
   verdict.innerHTML=v+`<small>${s}</small>`;
 }
 slider.addEventListener('input',updateSun);updateSun();
 
-// MAP
+// MAPA
 const map=L.map('map',{scrollWheelZoom:false}).setView([42.22,-8.75],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
   attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
 function mk(item,color,isRest){
   const m=L.circleMarker([item.lat,item.lng],{radius:9,color:'#fff',weight:2,fillColor:color,fillOpacity:1});
   const g=gmap(item.q),d=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.q)}`;
-  m.bindPopup(`<div class="pop"><b>${isRest?'🍽️ ':''}${item.name}</b><div class="pd">${isRest?('⭐ '+item.dish):(INT[item.int].t+' · '+BEST[item.best])}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Directions</a></div>`);
+  m.bindPopup(`<div class="pop"><b>${isRest?'🍽️ ':''}${item.name}</b><div class="pd">${isRest?('⭐ '+item.dish):(INT[item.int].t+' · '+BEST[item.best])}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Cómo llegar</a></div>`);
   return m;
 }
 const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53',false))).addTo(map);
@@ -525,7 +525,7 @@ document.getElementById('tglRes').addEventListener('change',e=>{e.target.checked
 map.on('focus',()=>map.scrollWheelZoom.enable());
 map.on('blur',()=>map.scrollWheelZoom.disable());
 
-// NAV + REVEAL
+// NAV + REVELADO
 document.getElementById('menuBtn').addEventListener('click',()=>{
   const n=document.getElementById('navlinks');const open=n.style.display==='flex';
   n.style.cssText=open?'':'display:flex;flex-direction:column;position:absolute;top:60px;right:20px;background:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.15)';
