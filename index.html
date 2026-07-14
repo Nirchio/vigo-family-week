@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Vigo Week · family plan</title>
+<meta name="description" content="Our private planning tool for a family week in Vigo — beaches, parks, the Cíes, restaurants and a map." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root{
+    --sea:#0e7c86; --sea-deep:#075660; --sand:#f4ead6; --coral:#ef6f53;
+    --sun:#f4b942; --ink:#16302f; --slate:#5c6b6a; --paper:#fbf8f1;
+    --card:#ffffff; --line:#e7e0d2; --green:#4f9d69; --plum:#8a5a83;
+    --shadow:0 10px 30px rgba(7,86,96,.10); --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0}
+  a{color:var(--sea)}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;color:var(--coral)}
+
+  nav{position:sticky;top:0;z-index:1000;background:rgba(251,248,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:18px;height:60px}
+  .brand{font-family:Fraunces;font-weight:700;font-size:1.1rem;margin-right:auto;display:flex;align-items:center;gap:8px}
+  .navlinks{display:flex;gap:20px}
+  .navlinks a{color:var(--slate);text-decoration:none;font-size:.88rem;font-weight:500}
+  .navlinks a:hover{color:var(--sea)}
+  .menu-btn{display:none;background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink)}
+  @media(max-width:900px){.navlinks{display:none}.menu-btn{display:block}}
+
+  .hero{position:relative;min-height:82vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05)}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,86,96,.1) 0%,rgba(7,50,55,.25) 45%,rgba(9,40,45,.86) 100%)}
+  .hero-inner{position:relative;z-index:2;padding:60px 0 50px}
+  .note-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+  .hero h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.3)}
+  .hero p.lead{font-size:clamp(1.02rem,2.2vw,1.3rem);max-width:620px;margin:16px 0 24px;color:#f3f0e8}
+  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
+
+  .stats{margin-top:-58px;position:relative;z-index:5}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:820px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.stat-grid{grid-template-columns:1fr}}
+  .stat{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .stat .k{font-family:Fraunces;font-weight:700;font-size:2rem;color:var(--sea-deep);line-height:1}
+  .stat .l{font-size:.82rem;color:var(--slate);margin-top:6px}
+  .stat .ic{font-size:1.4rem}
+
+  section{padding:60px 0}
+  .section-head{max-width:730px;margin-bottom:28px}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:8px 0}
+  .section-head p{color:var(--slate);font-size:1.02rem}
+
+  .sun-card{background:linear-gradient(135deg,#fff 0%,#fff8ec 100%);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .sun-track{position:relative;height:74px;border-radius:14px;overflow:hidden;margin:20px 0 6px;background:linear-gradient(90deg,#bfe3e7,#ffe6a8 25%,#f6b24a 50%,#ffe6a8 75%,#bfe3e7)}
+  .sun-zones{position:absolute;inset:0;display:flex}
+  .zone{height:100%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#0006;border-right:1px dashed rgba(0,0,0,.12)}
+  .zone.danger{background:rgba(239,111,83,.28);color:#7a2a17}
+  .sun-marker{position:absolute;top:-6px;width:3px;height:86px;background:#16302f;box-shadow:0 0 0 2px #fff;transition:left .1s}
+  .sun-marker::after{content:attr(data-t);position:absolute;top:-24px;left:50%;transform:translateX(-50%);background:#16302f;color:#fff;font-size:.72rem;padding:2px 7px;border-radius:6px;white-space:nowrap;font-weight:700}
+  .slider{width:100%;accent-color:var(--coral)}
+  .sun-verdict{margin-top:14px;font-weight:600;font-size:1.05rem}
+  .sun-verdict small{display:block;font-weight:400;color:var(--slate);font-size:.9rem;margin-top:2px}
+
+  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px;align-items:center}
+  .filters .flabel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:2px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--slate);padding:7px 14px;border-radius:999px;font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--sea)}
+  .chip.active{background:var(--sea);color:#fff;border-color:var(--sea)}
+  .chip.intens.active{background:var(--plum);border-color:var(--plum)}
+  .filter-divider{width:1px;height:24px;background:var(--line);margin:0 4px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+  @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(7,86,96,.16)}
+  .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#dfe8e8}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .thumb img{transform:scale(1.06)}
+  .rank{position:absolute;top:12px;left:12px;background:var(--coral);color:#fff;font-weight:700;font-size:.8rem;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+  .tags{position:absolute;bottom:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{background:rgba(255,255,255,.94);color:var(--ink);font-size:.68rem;font-weight:700;padding:4px 8px;border-radius:6px}
+  .tag.stroller{background:var(--green);color:#fff}
+  .tag.booking{background:var(--sun);color:#5a3d00}
+  .card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+  .card-body h3{font-size:1.18rem;margin-bottom:8px}
+  .intensity{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;padding:4px 9px;border-radius:8px;margin-bottom:8px}
+  .i1{background:#e5f1f2;color:#0b6470}
+  .i2{background:#eef3e6;color:#4d6a2e}
+  .i3{background:#f6e6ef;color:#8a3f74}
+  .card-body .meta{display:flex;gap:12px;font-size:.78rem;color:var(--slate);margin-bottom:10px;flex-wrap:wrap}
+  .card-body p{font-size:.9rem;color:var(--slate);flex:1;margin:0 0 10px}
+  .when{font-size:.82rem;background:#f7f4ec;border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink)}
+  .when b{color:var(--sea-deep)}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.82rem}
+  .maplink{text-decoration:none;font-weight:600;color:var(--sea)}
+  .cost{font-weight:700;color:var(--sea-deep)}
+
+  .table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:820px;background:#fff;font-size:.87rem}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--sea-deep);color:#fff;font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
+  th:hover{background:var(--sea)}
+  th .arr{opacity:.5;font-size:.75rem}
+  tbody tr:hover{background:#f4faf9}
+  td .badge{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:6px}
+  .b-yes{background:#e2f2e8;color:#2c6a41}
+  .b-part{background:#fdf1d8;color:#8a6100}
+  .b-no{background:#f7e2dc;color:#a03a22}
+
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+  .tab{border:1px solid var(--line);background:#fff;padding:12px 20px;border-radius:14px;cursor:pointer;font-weight:600;font-size:.95rem;color:var(--slate);transition:.15s}
+  .tab.active{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
+  .day{display:none;animation:fade .4s}
+  .day.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .day-head{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:22px}
+  .day-head h3{font-size:1.6rem}
+  .day-head .why{color:var(--slate);flex:1;min-width:260px}
+  .timeline{position:relative;margin-left:12px;padding-left:28px;border-left:2px dashed var(--line)}
+  .tl-item{position:relative;padding:0 0 24px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-dot{position:absolute;left:-37px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--paper)}
+  .tl-time{font-family:Fraunces;font-weight:700;color:var(--sea-deep);font-size:1.05rem}
+  .tl-item p{margin:2px 0 0;color:var(--slate);font-size:.92rem}
+  .rainy{margin-top:20px;background:#eef6f7;border:1px solid #d3e6e8;border-radius:14px;padding:15px 18px;font-size:.9rem}
+  .rainy b{color:var(--sea-deep)}
+
+  .rests{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.rests{grid-template-columns:1fr}}
+  .rest{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .rest-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .rest h3{font-size:1.2rem}
+  .rest .area{font-size:.78rem;color:var(--slate);margin-top:2px}
+  .rest .price{white-space:nowrap;font-size:.78rem;font-weight:700;color:var(--sea-deep);background:#eef6f7;padding:4px 9px;border-radius:8px}
+  .dish{margin:12px 0;padding:12px 14px;background:linear-gradient(135deg,#fff8ec,#fdf2df);border:1px solid #f0e3c8;border-radius:12px;font-size:.9rem}
+  .dish .lab{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--coral);display:block;margin-bottom:3px}
+  .rest p.desc{font-size:.86rem;color:var(--slate);margin:0 0 10px;flex:1}
+  .rest .rwhen{font-size:.8rem;color:var(--ink);background:#f7f4ec;border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:12px}
+  .rest .rwhen b{color:var(--sea-deep)}
+
+  #map{height:520px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);z-index:1}
+  .map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
+  .map-legend label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-weight:600;color:var(--slate)}
+  .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #0002}
+  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)}
+  .leaflet-popup-content{font-family:Inter,sans-serif;margin:12px 14px}
+  .pop b{font-family:Fraunces;font-size:1rem}
+  .pop .pd{font-size:.82rem;color:#5c6b6a;margin:4px 0 8px}
+  .pop a{display:inline-block;background:var(--sea);color:#fff;text-decoration:none;padding:6px 11px;border-radius:8px;font-size:.8rem;font-weight:600;margin-right:6px}
+  .pop a.dir{background:var(--coral)}
+
+  footer{background:var(--sea-deep);color:#dff1f2;padding:40px 0 32px;font-size:.9rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+  .cite{font-size:.78rem;color:#9fc7ca;max-width:640px;margin-top:8px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">🌊 Our Vigo Week</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#sun">Timing</a>
+      <a href="#activities">Activities</a>
+      <a href="#compare">Compare</a>
+      <a href="#days">Day Plans</a>
+      <a href="#food">Food</a>
+      <a href="#map-sec">Map</a>
+      <a href="#pack">Packing</a>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg/1280px-Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg')"></div>
+  <div class="hero-inner wrap">
+    <span class="note-chip">🗒️ Our private plan · just for us</span>
+    <h1>Our week in Vigo</h1>
+    <p class="lead">Everything we need in one place: where to go, when it's calm, how hard each day is, the best food, and a map to tie it together — paced around a 3-year-old and the August sun.</p>
+    <div class="pills">
+      <span class="pill">🏖️ Beaches</span>
+      <span class="pill">🌳 Shady parks</span>
+      <span class="pill">⛴️ The Cíes</span>
+      <span class="pill">🦪 Oyster Street</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap stats">
+  <div class="stat-grid">
+    <div class="stat reveal"><div class="ic">🌡️</div><div class="k">25°C</div><div class="l">Avg August high (77°F) — the warmest month</div></div>
+    <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Cool lows (61°F) — good sleeping weather</div></div>
+    <div class="stat reveal"><div class="ic">⏰</div><div class="k">11:00</div><div class="l">Get to beaches before this for parking</div></div>
+    <div class="stat reveal"><div class="ic">⛴️</div><div class="k">~1,700</div><div class="l">Daily Cíes cap — book a weekday sailing</div></div>
+  </div>
+</div>
+
+<section id="sun" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our sun-check</div>
+      <h2>When is it kind for the little one?</h2>
+      <p>Drag across the day. Green = go; the red band is the midday block we skip.</p>
+    </div>
+    <div class="sun-card reveal">
+      <div class="sun-track">
+        <div class="sun-zones">
+          <div class="zone" style="flex:6.5">🌅 Best</div>
+          <div class="zone danger" style="flex:4">☀️ Avoid</div>
+          <div class="zone" style="flex:7.5">🌇 Best</div>
+        </div>
+        <div class="sun-marker" id="sunMarker" data-t="09:00" style="left:37.5%"></div>
+      </div>
+      <input type="range" min="6" max="21" value="9" step="0.5" class="slider" id="sunSlider" />
+      <div class="sun-verdict" id="sunVerdict"></div>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our shortlist, ranked for a 3-year-old</div>
+      <h2>Where we could go</h2>
+      <p>Each card shows how relaxed or active the day is, and whether it's better midweek or on a weekend. Filter to plan a specific kind of day.</p>
+    </div>
+    <div class="filters reveal" id="filters">
+      <span class="flabel">Type</span>
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="beach">🏖️ Beaches</button>
+      <button class="chip" data-f="park">🌳 Parks</button>
+      <button class="chip" data-f="daytrip">🚗 Day trips</button>
+      <button class="chip" data-f="rainy">☔ Rainy-proof</button>
+      <button class="chip" data-f="stroller">👶 Stroller-easy</button>
+      <span class="filter-divider"></span>
+      <span class="flabel">Intensity</span>
+      <button class="chip intens" data-f="chill">🛋️ Relaxed</button>
+      <button class="chip intens" data-f="easy">🚶 Easy stroll</button>
+      <button class="chip intens" data-f="active">🥾 Active / hike</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section id="compare" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">At a glance</div>
+      <h2>Compare everything</h2>
+      <p>Tap a heading to sort. Drive times are off-peak from central Vigo — weekend beach traffic can add 10–20 min.</p>
+    </div>
+    <div class="table-scroll reveal">
+      <table id="cmp">
+        <thead><tr>
+          <th data-k="name">Place <span class="arr">↕</span></th>
+          <th data-k="drive" data-num="1">Drive (min) <span class="arr">↕</span></th>
+          <th data-k="intensity">Intensity <span class="arr">↕</span></th>
+          <th data-k="best">Better day <span class="arr">↕</span></th>
+          <th data-k="cost">Cost <span class="arr">↕</span></th>
+          <th data-k="stroller">Stroller <span class="arr">↕</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="days">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Ready-to-go days</div>
+      <h2>Three day plans</h2>
+      <p>Central Vigo as our base, a midday slow-down for naps, and a bad-weather backup for each.</p>
+    </div>
+    <div class="tabs" id="dayTabs">
+      <button class="tab active" data-d="0">🏖️ Easy Coast Day</button>
+      <button class="tab" data-d="1">⛴️ Cíes Special Day</button>
+      <button class="tab" data-d="2">🌳 Green Shade Day</button>
+    </div>
+    <div id="dayPanels"></div>
+  </div>
+</section>
+
+<section id="food" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Where to eat</div>
+      <h2>The food shortlist</h2>
+      <p>From street-shucked oysters to a Michelin dome and family seafood in Baiona — each with the dish to actually order, and when to go.</p>
+    </div>
+    <div class="rests" id="rests"></div>
+  </div>
+</section>
+
+<section id="map-sec">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Everything, mapped</div>
+      <h2>Our map</h2>
+      <p>Coral = places to go, teal = food. Click any pin to open it in Google Maps or get directions.</p>
+    </div>
+    <div class="map-legend reveal">
+      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Activities</label>
+      <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurants</label>
+    </div>
+    <div id="map" class="reveal"></div>
+  </div>
+</section>
+
+<section id="pack" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Before we go</div>
+      <h2>Packing checklist</h2>
+      <p>Ticks save automatically in this browser.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start" class="packgrid">
+      <ul class="pack-list" id="packList" style="list-style:none;padding:0;margin:0;columns:2;column-gap:26px"></ul>
+      <div class="progress-card reveal" style="background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);text-align:center;position:sticky;top:80px">
+        <div class="ring" id="ring" style="--p:0;width:150px;height:150px;border-radius:50%;margin:6px auto 14px;background:conic-gradient(var(--green) 0%,#eee 0);display:flex;align-items:center;justify-content:center">
+          <div style="width:116px;height:116px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div class="pct" id="pct" style="font-family:Fraunces;font-size:2rem;font-weight:700;color:var(--sea-deep)">0%</div>
+            <div style="font-size:.72rem;color:var(--slate)">packed</div>
+          </div>
+        </div>
+        <div style="font-weight:600" id="packCount">0 of 0 items</div>
+        <button class="reset" id="resetPack" style="margin-top:12px;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-size:.82rem;color:var(--slate);cursor:pointer">Reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div style="font-family:Fraunces;font-size:1.3rem;font-weight:700">🌊 Our Vigo Week</div>
+      <p class="cite">Our own planning notes. Photos: Wikimedia Commons. Guidance from official Vigo &amp; Galicia tourism, the Cíes National Park, ferry/museum operators, AEMET climate norms, and restaurant coverage (Michelin Guide, local food press). Re-check hours &amp; ferry bookings close to travel.</p>
+    </div>
+    <div style="text-align:right">Happy planning 🧡</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const INT={chill:{c:"i1",t:"🛋️ Relaxed",s:"Relaxed"},easy:{c:"i2",t:"🚶 Easy stroll",s:"Easy"},active:{c:"i3",t:"🥾 Active / hike",s:"Active"}};
+const BEST={weekday:"Best midweek",either:"Any day",mixed:"Mixed"};
+
+const PLACES=[
+ {rank:1,name:"Samil Beach",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2115,lng:-8.7727,img:"https://upload.wikimedia.org/wikipedia/commons/8/86/Praia_de_Samil%2C_Navia%2C_Vigo.jpg",drive:"15–20 min",driveN:18,dur:"2–4 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia de Samil, Vigo",desc:"Vigo's biggest, most family-focused beach: play area, pools zone, pine-grove shade, toilets, showers, cafés and free parking.",when:"Weekends & August afternoons get packed — go a <b>weekday morning</b> or after 17:00."},
+ {rank:2,name:"Castrelos Park & Gardens",cats:["park","stroller","rainy","easy"],int:"easy",best:"either",lat:42.2205,lng:-8.7267,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Castrelos_entrada_al_parque_-_panoramio.jpg/1280px-Castrelos_entrada_al_parque_-_panoramio.jpg",drive:"10–15 min",driveN:12,dur:"2–3 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Parque de Castrelos, Vigo",desc:"River walks, a huge playground, ducks & swans, and formal gardens around the pazo. The free museum makes it a great shade/reset day.",when:"<b>Any day</b> — big enough to absorb weekend crowds; lovely on a Sunday morning too."},
+ {rank:3,name:"Cíes Islands Day Trip",cats:["daytrip","beach","active"],int:"active",best:"weekday",lat:42.2197,lng:-8.9010,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg/1280px-Praia_de_Rodas%2C_Illas_C%C3%ADes%2C_Vigo%2C_Galiza.jpg",drive:"port + ~45 min ferry",driveN:55,dur:"Full day",cost:"~€24–27",stroller:"Partial",booking:"Yes",q:"Illas Cíes",desc:"Our special-memory day. Sea access only, capacity-limited. Keep it to Rodas Beach + short wandering; carrier + lots of water.",when:"Book a <b>weekday sailing</b> — fewer people and easier ferry slots than weekends."},
+ {rank:4,name:"Museo do Mar & Alcabre",cats:["rainy","stroller","easy"],int:"easy",best:"either",lat:42.2158,lng:-8.7817,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg/1280px-2018_Museo_do_Mar_de_Galicia._Alcabre._Vigo._Galiza.jpg",drive:"15–20 min",driveN:18,dur:"1.5–3 hrs",cost:"€3 · under-8s free",stroller:"Yes",booking:"No",q:"Museo do Mar de Galicia, Vigo",desc:"Aquarium, baby-changing toilets, on-site restaurant, parking and lighthouse views. Our best beach-day swap.",when:"<b>Any day</b>, great rainy-day backup — check the afternoon hours before going."},
+ {rank:5,name:"O Vao & Canido Coast",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2000,lng:-8.7890,img:"https://upload.wikimedia.org/wikipedia/commons/6/6f/Fogueira_de_San_Xo%C3%A1n_na_praia_do_Vao%2C_Vigo_-_3664070566.jpg",drive:"15–25 min",driveN:22,dur:"2–4 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia do Vao, Vigo",desc:"A more local, lower-key beach day than Samil. O Vao = more space; Canido = promenade restaurants for lunch.",when:"Parking fills fast — <b>strongly a weekday</b> pick, arrive before 11:00."},
+ {rank:6,name:"Monte do Castro",cats:["park","easy"],int:"easy",best:"either",lat:42.2358,lng:-8.7237,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Fortaleza_del_Castro_de_Vigo_09.jpg/1280px-Fortaleza_del_Castro_de_Vigo_09.jpg",drive:"5–10 min",driveN:8,dur:"1–2 hrs",cost:"Free",stroller:"Partial",booking:"No",q:"Monte do Castro, Vigo",desc:"Big views, fort walls, gardens and a playground above the city. Drive near the top and keep it short.",when:"<b>Any day</b> — sunset is quieter midweek. Great quick stop around nap time."},
+ {rank:7,name:"Baiona & Ladeira Beach",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"mixed",lat:42.1205,lng:-8.8400,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg/1280px-Ria_de_Baiona._Praia_da_Ladeira_e_Illas_C%C3%ADes.jpg",drive:"30–35 min",driveN:33,dur:"4–6 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Praia da Ladeira, Baiona",desc:"A handsome walled town plus a big promenade-backed beach with services. Beach + stroller-friendly town walk in one.",when:"<b>Weekday for the beach</b>, weekend for the town buzz and market."},
+ {rank:8,name:"Vigo–Cangas Ferry & Rodeira",cats:["daytrip","beach","stroller","easy"],int:"easy",best:"weekday",lat:42.2647,lng:-8.7847,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cangas_-_Rodeira.jpg/1280px-Cangas_-_Rodeira.jpg",drive:"20 min ferry",driveN:20,dur:"4–5 hrs",cost:"from €1.52",stroller:"Yes",booking:"Advised",q:"Praia de Rodeira, Cangas",desc:"A boat experience without the full Cíes commitment. 20-min crossing; Rodeira is central with ramps to the sand.",when:"Weekend ferries & Rodeira get busy — <b>midweek is calmer</b>."},
+ {rank:9,name:"Soutomaior Castle & Gardens",cats:["daytrip","park","rainy","easy"],int:"easy",best:"either",lat:42.3300,lng:-8.5680,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Castelo_de_Soutomaior_-_1.jpg/1280px-Castelo_de_Soutomaior_-_1.jpg",drive:"25–30 min",driveN:28,dur:"2–3 hrs",cost:"Family €5",stroller:"Yes",booking:"Recommended",q:"Castelo de Soutomaior",desc:"A shaded half-day among mature trees, long summer hours, family tickets. Cooler and calmer than the beach.",when:"<b>Any day</b> — rarely crowded, so weekends are fine."},
+ {rank:10,name:"Monte Aloia Natural Park",cats:["daytrip","park","active"],int:"active",best:"weekday",lat:42.0847,lng:-8.6533,img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Vistas_Aloia_2.JPG",drive:"35–40 min",driveN:38,dur:"2–3 hrs",cost:"Free",stroller:"Limited",booking:"No",q:"Parque Natural Monte Aloia",desc:"Viewpoints and a botanical trail with games. Do only the easy sections near the visitor centre — mornings only in August.",when:"Quietest on a <b>weekday morning</b>; weekends draw local picnickers."},
+ {rank:11,name:"Granja de Briz Sensory Park",cats:["daytrip","park","stroller","chill"],int:"chill",best:"weekday",lat:42.3897,lng:-8.6939,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg/1920px-Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg",drive:"40–45 min",driveN:43,dur:"1.5–3 hrs",cost:"Free",stroller:"Yes",booking:"No",q:"Granxa de Briz, Marín",desc:"A former farm turned nature park with sensory games, a small labyrinth and shaded paths. Our 'just let her play' afternoon.",when:"<b>Weekday afternoons</b> are calm; weekends fill with local families."},
+ {rank:12,name:"Castiñeiras Lake",cats:["daytrip","park","easy"],int:"easy",best:"weekday",lat:42.3560,lng:-8.6720,img:"https://upload.wikimedia.org/wikipedia/commons/8/82/Lago_Casti%C3%B1eiras%2C_Vilaboa%2C_Galiza.jpg",drive:"40–50 min",driveN:45,dur:"2–4 hrs",cost:"Free",stroller:"Partial",booking:"No",q:"Lago de Castiñeiras",desc:"Tables, benches, fountains, toilets and an approved BBQ area in a cool wooded lakeside setting. Kind alternative to open sand.",when:"Weekends = BBQ/picnic crowds. <b>Midweek is peaceful.</b>"}
+];
+
+const RESTS=[
+ {name:"Rúa da Pescadería (Oyster Street)",area:"Casco Vello · A Pedra",price:"€",lat:42.2415,lng:-8.7255,dish:"Fresh Galician oysters, shucked street-side, with cold Albariño",desc:"A centuries-old ritual: buy oysters (1–2€ each) from the street ostreras, pay the terrace for the wine. Pure Vigo.",when:"Kiosks Mon–Sat ~9–14 & 17–20. Go a <b>weekday ~11:00</b> for the local vibe — weekends bring cruise crowds.",q:"Rúa da Pescadería, Vigo"},
+ {name:"Silabario",area:"Central · Celta HQ, 6th floor",price:"€€€€ · Michelin ★",lat:42.2360,lng:-8.7180,dish:"New-Galician tasting menu; sublime Galician flat oysters",desc:"Chef Alberto González's contemporary Galician cooking under a glass dome. A special grown-ups' dinner.",when:"The <b>weekday 'Berbés' market menu</b> is a famous bargain for a starred kitchen. Book ahead.",q:"Silabario Príncipe 44, Vigo"},
+ {name:"Morrofino",area:"Central · Serafín Avendaño",price:"€€€ · Bib Gourmand",lat:42.2340,lng:-8.7150,dish:"Smoked-butter croquette with prawns & garlic (Michelin singled it out)",desc:"Open-kitchen urban taberna: technically sharp contemporary tapas with a street-food directness.",when:"Dinner — <b>reserve</b>. Any day of the week.",q:"Morrofino Serafín Avendaño 4, Vigo"},
+ {name:"Parrillada Samil",area:"Behind Hotel Samil",price:"€€",lat:42.2098,lng:-8.7690,dish:"Pulpo á feira & grilled zamburiñas (plus a kids' playground)",desc:"Family taberna with a terrace, swings for kids and its own parking. Roughly 25–30€ per person.",when:"Perfect for a <b>Samil beach-day lunch</b>. Reserve on weekends.",q:"Parrillada Samil, Vigo"},
+ {name:"Beach Club Marina Cíes",area:"On Samil beach",price:"€€–€€€",lat:42.2118,lng:-8.7738,dish:"Grilled pulpo & tapas with a sunset over the Cíes",desc:"Loungy terrace with hammocks right on Samil — the easy 'after the beach' spot for a drink and a bite.",when:"<b>Golden hour</b> after the beach; relaxed any day.",q:"Beach Club Marina Cies Samil Vigo"},
+ {name:"Restaurante Naveira",area:"Baiona · on the port",price:"€€",lat:42.1210,lng:-8.8490,dish:"Arroz con bogavante & croquetas de centollo",desc:"Right on the promenade, excellent value, family-friendly — a local favourite in Baiona.",when:"Pair with a <b>Baiona day</b>; reserve for weekend lunch.",q:"Restaurante Naveira, Baiona"},
+ {name:"Pedro Madruga",area:"Baiona · marina & castle",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante & seafood paella, with castle views",desc:"Terrace facing the marina and castle. Kids' menu and high chairs — genuinely good with a toddler.",when:"<b>Family lunch</b> on a Baiona day. Reserve ahead.",q:"Restaurante Pedro Madruga, Baiona"}
+];
+
+// ACTIVITY CARDS
+const cardsEl=document.getElementById('cards');
+function badge(v){const m={Yes:'b-yes',Partial:'b-part',Limited:'b-part',No:'b-no',Advised:'b-part',Recommended:'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
+function gmap(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;}
+function renderCards(f){
+  cardsEl.innerHTML='';
+  PLACES.filter(p=>f==='all'||p.cats.includes(f)).forEach(p=>{
+    const tags=[];
+    if(p.stroller==='Yes')tags.push('<span class="tag stroller">👶 Stroller ok</span>');
+    if(['Yes','Advised','Recommended'].includes(p.booking))tags.push('<span class="tag booking">📅 Book ahead</span>');
+    const i=INT[p.int];
+    const el=document.createElement('article');el.className='card reveal in';
+    el.innerHTML=`
+      <div class="thumb"><span class="rank">${p.rank}</span>
+        <img loading="lazy" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0e7c86,#f4b942)'">
+        <div class="tags">${tags.join('')}</div></div>
+      <div class="card-body">
+        <span class="intensity ${i.c}">${i.t}</span>
+        <h3>${p.name}</h3>
+        <div class="meta"><span>🚗 ${p.drive}</span><span>⏱️ ${p.dur}</span></div>
+        <p>${p.desc}</p>
+        <div class="when">📅 ${p.when}</div>
+        <div class="card-foot"><span class="cost">${p.cost}</span>
+          <a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Open in Maps ↗</a></div>
+      </div>`;
+    cardsEl.appendChild(el);
+  });
+}
+renderCards('all');
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  document.querySelectorAll('#filters .chip').forEach(c=>c.classList.remove('active'));
+  b.classList.add('active');renderCards(b.dataset.f);
+});
+
+// TABLE
+const tbody=document.querySelector('#cmp tbody');
+let sortKey='drive',sortAsc=true;
+function renderTable(){
+  const rows=[...PLACES].sort((a,b)=>{
+    let x,y;
+    if(sortKey==='drive'){x=a.driveN;y=b.driveN;}
+    else if(sortKey==='intensity'){const o={chill:1,easy:2,active:3};x=o[a.int];y=o[b.int];}
+    else if(sortKey==='best'){x=a.best;y=b.best;}
+    else{x=a[sortKey];y=b[sortKey];}
+    if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}
+    return (x<y?-1:x>y?1:0)*(sortAsc?1:-1);
+  });
+  tbody.innerHTML=rows.map(p=>`<tr>
+    <td><b>${p.name}</b></td><td>${p.drive}</td>
+    <td>${INT[p.int].t}</td><td>${BEST[p.best]}</td>
+    <td>${p.cost}</td><td>${badge(p.stroller)}</td></tr>`).join('');
+}
+renderTable();
+document.querySelectorAll('#cmp th').forEach(th=>th.addEventListener('click',()=>{
+  const k=th.dataset.k;if(sortKey===k)sortAsc=!sortAsc;else{sortKey=k;sortAsc=true;}renderTable();
+}));
+
+// ITINERARIES
+const DAYS=[
+ {title:"Easy Vigo Coast Day",why:"Our low-risk default: lots of outdoor time, a flexible lunch, and a great backup if the weather turns.",
+  items:[["09:30","Drive to Samil Beach (15–20 min)"],["10:00","Sand play + promenade walk while it's cool"],["11:45","Lunch at Parrillada Samil (playground!) or the promenade"],["13:00","Home for nap / quiet car transfer"],["17:00","Museo do Mar + aquarium"],["18:30","Sunset drink at Beach Club Marina Cíes"],["20:00","Back to Vigo"]],
+  rain:"<b>Bad-weather version:</b> skip the beach and do Museo do Mar + Castrelos museum & gardens."},
+ {title:"Cíes Special Day",why:"The most memorable outing — but needs a booking and good weather. If the ferry's off or it's too windy/hot, don't force it.",
+  items:[["08:30","Port, board the early (weekday) ferry"],["09:30","Rodas Beach + gentle exploring"],["11:30","Early picnic or island catering"],["12:30","Shade/rest near the lake or beach edge"],["15:00","Optional short walk or a second beach spell"],["16:30","Return ferry"],["17:30","Back in Vigo — oysters on Rúa da Pescadería?"]],
+  rain:"<b>Bad-weather version:</b> swap to the Vigo–Cangas ferry + Rodeira, or go land-based with Castrelos + Museo do Mar."},
+ {title:"Green Shade Day",why:"Our antidote to too many beach days — trees, movement and space without a hard hike.",
+  items:[["09:30","Drive to Soutomaior Castle (25–30 min)"],["10:00","Castle gardens + gentle wandering in the shade"],["12:15","Drive to Castiñeiras Lake"],["12:45","Picnic lunch at the tables"],["13:30","Lakeside stroll + quiet shade time"],["15:00","Coffee in Marín, or head back to Vigo"]],
+  rain:"<b>Bad-weather version:</b> keep Soutomaior if showers are light, swap the lake for the free Castrelos museum."}
+];
+document.getElementById('dayPanels').innerHTML=DAYS.map((d,i)=>`
+  <div class="day ${i===0?'active':''}" data-day="${i}">
+    <div class="day-head"><h3>${d.title}</h3><div class="why">${d.why}</div></div>
+    <div class="timeline">${d.items.map(it=>`<div class="tl-item"><span class="tl-dot"></span><div class="tl-time">${it[0]}</div><p>${it[1]}</p></div>`).join('')}</div>
+    <div class="rainy">☔ ${d.rain}</div></div>`).join('');
+document.getElementById('dayTabs').addEventListener('click',e=>{
+  const t=e.target.closest('.tab');if(!t)return;
+  document.querySelectorAll('#dayTabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+  document.querySelectorAll('.day').forEach(x=>x.classList.toggle('active',x.dataset.day===t.dataset.d));
+});
+
+// RESTAURANTS
+document.getElementById('rests').innerHTML=RESTS.map(r=>`
+  <div class="rest reveal">
+    <div class="rest-top"><div><h3>${r.name}</h3><div class="area">📍 ${r.area}</div></div><span class="price">${r.price}</span></div>
+    <div class="dish"><span class="lab">⭐ Order this</span>${r.dish}</div>
+    <p class="desc">${r.desc}</p>
+    <div class="rwhen">🕑 ${r.when}</div>
+    <a class="maplink" target="_blank" rel="noopener" href="${gmap(r.q)}">Open in Maps ↗</a>
+  </div>`).join('');
+
+// PACKING
+const PACK=["UPF hat with neck coverage","High-SPF child sunscreen","Stick sunscreen for top-ups","UV swim shirt","Dry spare clothes","Two swimsuits","Beach shoes / water sandals","Closed shoes (Cíes/Castro)","Toddler carrier","Light stroller","Extra water (Cíes not potable)","Portable shade / beach tent","Picnic kit","Wet bag + wipes + change mat","Motion-sickness backup","Small towel/blanket for naps"];
+const listEl=document.getElementById('packList');
+const saved=JSON.parse(localStorage.getItem('vigoPack')||'{}');
+listEl.innerHTML=PACK.map((it,i)=>`<li style="break-inside:avoid;margin-bottom:8px"><label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.92rem;padding:7px 9px;border-radius:10px"><input type="checkbox" data-i="${i}" ${saved[i]?'checked':''} style="margin-top:3px;width:17px;height:17px;accent-color:var(--green)"><span>${it}</span></label></li>`).join('');
+function updatePack(){
+  const boxes=[...listEl.querySelectorAll('input')],done=boxes.filter(b=>b.checked).length,pct=Math.round(done/boxes.length*100);
+  document.getElementById('ring').style.background=`conic-gradient(var(--green) ${pct}%,#eee 0)`;
+  document.getElementById('pct').textContent=pct+'%';
+  document.getElementById('packCount').textContent=`${done} of ${boxes.length} items`;
+  const m={};boxes.forEach(b=>m[b.dataset.i]=b.checked);localStorage.setItem('vigoPack',JSON.stringify(m));
+}
+listEl.addEventListener('change',updatePack);
+document.getElementById('resetPack').addEventListener('click',()=>{listEl.querySelectorAll('input').forEach(b=>b.checked=false);updatePack();});
+updatePack();
+
+// SUN
+const slider=document.getElementById('sunSlider'),marker=document.getElementById('sunMarker'),verdict=document.getElementById('sunVerdict');
+function fmt(h){const H=Math.floor(h),M=h%1?'30':'00';return `${String(H).padStart(2,'0')}:${M}`;}
+function updateSun(){
+  const h=parseFloat(slider.value);marker.style.left=((h-6)/15)*100+'%';marker.dataset.t=fmt(h);
+  let v,s;
+  if(h<9){v="🌅 Prime time — cool and quiet";s="Best beach block before the crowds and heat.";}
+  else if(h<11){v="😎 Still good — hustle to park";s="Great until ~11:00; parking fills fast after this.";}
+  else if(h<12.5){v="🌤️ Getting busy and bright";s="Wrap up beach time; head for shade or early lunch.";}
+  else if(h<16.5){v="🚫 Skip the sun with the toddler";s="Nap, museum, shaded park or lunch — not open sand now.";}
+  else if(h<18){v="🌇 Back into the good zone";s="Late-afternoon beach is on again — reapply sunscreen.";}
+  else if(h<20.5){v="🏖️ Golden-hour magic";s="Soft light, cooler sand, thinning crowds.";}
+  else{v="🌙 Wind-down";s="Dinner on a promenade, then home for that 16°C sleep.";}
+  verdict.innerHTML=v+`<small>${s}</small>`;
+}
+slider.addEventListener('input',updateSun);updateSun();
+
+// MAP
+const map=L.map('map',{scrollWheelZoom:false}).setView([42.22,-8.75],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
+function mk(item,color,isRest){
+  const m=L.circleMarker([item.lat,item.lng],{radius:9,color:'#fff',weight:2,fillColor:color,fillOpacity:1});
+  const g=gmap(item.q),d=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.q)}`;
+  m.bindPopup(`<div class="pop"><b>${isRest?'🍽️ ':''}${item.name}</b><div class="pd">${isRest?('⭐ '+item.dish):(INT[item.int].t+' · '+BEST[item.best])}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Directions</a></div>`);
+  return m;
+}
+const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53',false))).addTo(map);
+const resLayer=L.layerGroup(RESTS.map(r=>mk(r,'#0e7c86',true))).addTo(map);
+const all=[...PLACES,...RESTS].map(x=>[x.lat,x.lng]);
+map.fitBounds(all,{padding:[40,40]});
+document.getElementById('tglAct').addEventListener('change',e=>{e.target.checked?actLayer.addTo(map):map.removeLayer(actLayer);});
+document.getElementById('tglRes').addEventListener('change',e=>{e.target.checked?resLayer.addTo(map):map.removeLayer(resLayer);});
+map.on('focus',()=>map.scrollWheelZoom.enable());
+map.on('blur',()=>map.scrollWheelZoom.disable());
+
+// NAV + REVEAL
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  const n=document.getElementById('navlinks');const open=n.style.display==='flex';
+  n.style.cssText=open?'':'display:flex;flex-direction:column;position:absolute;top:60px;right:20px;background:#fff;padding:16px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.15)';
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
