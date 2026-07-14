@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nuestra semana en Vigo · plan familiar</title>
-<meta name="description" content="Nuestra herramienta privada para planificar una semana familiar en Vigo, playas, parques, las Cíes, restaurantes y un mapa." />
+<title>Nuestro mes en Vigo · plan familiar</title>
+<meta name="description" content="Nuestra herramienta privada para planificar un mes familiar en Vigo, playas, parques, las Cíes, restaurantes y un mapa." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -68,6 +68,17 @@
   .slider{width:100%;accent-color:var(--coral)}
   .sun-verdict{margin-top:14px;font-weight:600;font-size:1.05rem}
   .sun-verdict small{display:block;font-weight:400;color:var(--slate);font-size:.9rem;margin-top:2px}
+  .sun-recs{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px}
+  .sun-recs .rl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-bottom:8px}
+  .sun-recs .rchips{display:flex;flex-wrap:wrap;gap:8px}
+  .rchip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;transition:.15s}
+  .rchip:hover{border-color:var(--sea);color:var(--sea)}
+  .rchip .rt{font-size:.9em}
+  .book{display:inline-block;margin-top:10px;background:var(--coral);color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-size:.82rem;font-weight:700}
+  .book:hover{background:#e05a3e}
+  .card-foot .book{margin-top:0;padding:6px 11px;font-size:.78rem}
+  .rest .book{align-self:flex-start}
+  .pop a.book2{background:var(--sun);color:#5a3d00}
 
   .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px;align-items:center}
   .filters .flabel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:2px}
@@ -91,6 +102,7 @@
   .tag.booking{background:var(--sun);color:#5a3d00}
   .card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
   .card-body h3{font-size:1.18rem;margin-bottom:8px}
+  .citycard{border-top:4px solid var(--plum)}
   .intensity{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;padding:4px 9px;border-radius:8px;margin-bottom:8px}
   .i1{background:#e5f1f2;color:#0b6470}
   .i2{background:#eef3e6;color:#4d6a2e}
@@ -150,7 +162,7 @@
   .map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
   .map-legend label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-weight:600;color:var(--slate)}
   .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #0002}
-  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)}
+  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)} .dot.city{background:var(--plum)}
   .leaflet-popup-content{font-family:Inter,sans-serif;margin:12px 14px}
   .pop b{font-family:Fraunces;font-size:1rem}
   .pop .pd{font-size:.82rem;color:#5c6b6a;margin:4px 0 8px}
@@ -169,10 +181,11 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">🌊 Nuestra semana en Vigo</div>
+    <div class="brand">🌊 Nuestro mes en Vigo</div>
     <div class="navlinks" id="navlinks">
       <a href="#sun">Horario</a>
       <a href="#activities">Planes</a>
+      <a href="#city">Ciudad</a>
       <a href="#compare">Comparar</a>
       <a href="#days">Días</a>
       <a href="#food">Comer</a>
@@ -187,8 +200,7 @@
   <div class="hero-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg/1280px-Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg')"></div>
   <div class="hero-inner wrap">
     <span class="note-chip">🗒️ Nuestro plan privado · solo para nosotros</span>
-    <h1>Nuestra semana en Vigo</h1>
-    <p class="lead">Todo lo que necesitamos en un solo sitio: dónde ir, cuándo hay calma, qué esfuerzo tiene cada día, la mejor comida y un mapa que lo une todo, al ritmo de un peque de 3 años y del sol de agosto.</p>
+    <h1>Nuestro mes en Vigo</h1>
     <div class="pills">
       <span class="pill">🏖️ Playas</span>
       <span class="pill">🌳 Parques con sombra</span>
@@ -225,6 +237,7 @@
       </div>
       <input type="range" min="6" max="21" value="9" step="0.5" class="slider" id="sunSlider" />
       <div class="sun-verdict" id="sunVerdict"></div>
+      <div class="sun-recs" id="sunRecs"></div>
     </div>
   </div>
 </section>
@@ -251,6 +264,17 @@
       <button class="chip intens" data-f="active">🥾 Activo / ruta</button>
     </div>
     <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section id="city">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Vigo ciudad con peques</div>
+      <h2>Parques y planes a un paso</h2>
+      <p>Vigo está llena de parquiños de barrio con megatoboganes, más el zoo-parque de A Madroa y museos interactivos. Ideales para rellenar una mañana o una tarde sin coger el coche.</p>
+    </div>
+    <div class="cards" id="cityCards"></div>
   </div>
 </section>
 
@@ -312,7 +336,8 @@
       <p>Coral = sitios para ir, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
     </div>
     <div class="map-legend reveal">
-      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Actividades</label>
+      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Planes y excursiones</label>
+      <label><input type="checkbox" id="tglCity" checked> <span class="dot city"></span> Parques de ciudad</label>
       <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurantes</label>
     </div>
     <div id="map" class="reveal"></div>
@@ -345,7 +370,7 @@
 <footer>
   <div class="wrap">
     <div>
-      <div style="font-family:Fraunces;font-size:1.3rem;font-weight:700">🌊 Nuestra semana en Vigo</div>
+      <div style="font-family:Fraunces;font-size:1.3rem;font-weight:700">🌊 Nuestro mes en Vigo</div>
       <p class="cite">Nuestras notas de planificación. Fotos: Wikimedia Commons. Información de turismo oficial de Vigo y Galicia, el Parque Nacional de las Cíes, operadores de ferry y museos, normales climáticas de AEMET y prensa gastronómica (Guía Michelin, medios locales). Vuelve a comprobar horarios y reservas de ferry cerca del viaje.</p>
     </div>
     <div style="text-align:right">¡Feliz planificación! 🧡</div>
@@ -382,6 +407,29 @@ const RESTS=[
  {name:"Pedro Madruga",area:"Baiona · puerto y castillo",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante y paella de marisco, con vistas al castillo",desc:"Terraza frente al puerto deportivo y el castillo. Menú infantil y tronas, genial de verdad con un peque.",when:"<b>Comida familiar</b> en un día en Baiona. Reserva con antelación.",q:"Restaurante Pedro Madruga, Baiona"}
 ];
 
+// VIGO CIUDAD: parques infantiles y planes a un paso
+const CITY=[
+ {name:"VigoNature (antiguo Vigozoo)",area:"A Madroa · Teis",kind:"🦉 Parque ambiental",lat:42.2494894,lng:-8.6729015,slots:['am','pm'],desc:"El antiguo zoo, ahora parque de naturaleza: animales de granja, suricatas, aves y reptiles, tirolina y actividades familiares los fines de semana.",q:"VigoNature A Madroa Vigo",book:"https://vigonature.es/"},
+ {name:"Verbum, Casa das Palabras",area:"Junto a Samil",kind:"🔤 Museo interactivo",lat:42.2129364,lng:-8.7736954,slots:['mid','pm'],desc:"Museo del lenguaje muy manipulativo, con talleres y cuentacuentos. Plan de interior perfecto para el mediodía o un día de lluvia, a un paso de Samil.",q:"Verbum Casa das Palabras Vigo"},
+ {name:"Museo MARCO",area:"Rúa do Príncipe · centro",kind:"🖼️ Arte y talleres",lat:42.2357986,lng:-8.7211529,slots:['mid','pm'],desc:"Arte contemporáneo con talleres familiares y entrada gratuita. Buen refugio con sombra en pleno centro.",q:"Museo MARCO Vigo"},
+ {name:"Parque de Navia",area:"Navia",kind:"🛝 Macroparque",lat:42.2108975,lng:-8.7572100,slots:['am','pm'],desc:"Uno de los parques infantiles más grandes de la ciudad, con zona específica para menores de 6 años, toboganes y tirolinas.",q:"Parque de Navia Vigo"},
+ {name:"Praza da Independencia",area:"As Travesas",kind:"🛝 Parque infantil",lat:42.2237991,lng:-8.7301282,slots:['am','pm'],desc:"Macroparque muy céntrico y de los que mejor se adaptan a los más pequeños: cúpula para trepar, cama elástica y tobogán gigante.",q:"Praza da Independencia Vigo"},
+ {name:"Alameda Suárez Llanos",area:"Bouzas",kind:"🛝 Ideal para <4 años",lat:42.2243435,lng:-8.7531200,slots:['am','pm'],desc:"Parque nuevo con suelo de goma y juegos pensados para menores de 4 años, casi sin tráfico. Muy cómodo con un peque de 3.",q:"Alameda Suarez Llanos Bouzas Vigo"},
+ {name:"Macroparque de Os Picos",area:"Jenaro de la Fuente · O Calvario",kind:"🚀 Nave espacial",lat:42.2320417,lng:-8.7019613,slots:['am','pm'],desc:"1.500 m² en dos alturas, la de arriba para los más pequeños. Enorme estructura de nave espacial, tirolina de 25 m y rocódromo.",q:"Parque Jenaro de la Fuente Vigo"},
+ {name:"Parque Pedro Alvarado",area:"Teis",kind:"🦕 Dinosaurio",lat:42.2518513,lng:-8.6986479,slots:['am','pm'],desc:"Un gran pterodáctilo con circuito de equilibrio, zonas para trepar, toboganes tubulares y tirolinas.",q:"Parque Pedro Alvarado Teis Vigo"},
+ {name:"Praza de Compostela",area:"Centro · junto al puerto",kind:"🌳 Alameda con juegos",lat:42.2392144,lng:-8.7229991,slots:['am','mid','pm'],desc:"Paseo con árboles centenarios y zona de juegos, muy céntrico. Buen respiro con sombra entre otros planes del casco viejo.",q:"Praza de Compostela Vigo"},
+ {name:"Parque de la rúa Venezuela",area:"Centro",kind:"🛝 Tobogán tubo 7 m",lat:42.2332080,lng:-8.7214897,slots:['am','pm'],desc:"Pequeño pero icónico: un tobogán de tubo de 7 metros y zona de escalada, en pleno centro.",q:"Rua Venezuela 29 Vigo"}
+];
+
+// Franjas horarias por plan (am: mañana, mid: mediodía, pm: tarde)
+const SLOTS={1:['am','pm'],2:['am','mid','pm'],3:['am'],4:['mid','pm'],5:['am','pm'],6:['am','pm'],7:['am','pm'],8:['am','pm'],9:['am','mid','pm'],10:['am'],11:['mid','pm'],12:['am','mid','pm']};
+PLACES.forEach(p=>p.slots=SLOTS[p.rank]);
+// Enlaces de reserva
+const BOOK={3:"https://autorizacionillasatlanticas.xunta.gal/",8:"https://www.mardeons.com/",9:"https://tickets.castelodesoutomaior.com/"};
+PLACES.forEach(p=>{if(BOOK[p.rank])p.book=BOOK[p.rank];});
+const RBOOK={"Silabario":"https://www.silabario.gal/","Morrofino":"https://www.mfgastronomia.es/"};
+RESTS.forEach(r=>{if(RBOOK[r.name])r.book=RBOOK[r.name];});
+
 // TARJETAS DE ACTIVIDADES
 const cardsEl=document.getElementById('cards');
 function badge(v){const m={'Sí':'b-yes','Parcial':'b-part','Limitado':'b-part','No':'b-no','Aconsejado':'b-part','Recomendado':'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
@@ -405,7 +453,7 @@ function renderCards(f){
         <p>${p.desc}</p>
         <div class="when">📅 ${p.when}</div>
         <div class="card-foot"><span class="cost">${p.cost}</span>
-          <a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Ver en Maps ↗</a></div>
+          <span style="display:flex;gap:10px;align-items:center">${p.book?`<a class="book" target="_blank" rel="noopener" href="${p.book}">Reservar ↗</a>`:''}<a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Ver en Maps ↗</a></span></div>
       </div>`;
     cardsEl.appendChild(el);
   });
@@ -416,6 +464,19 @@ document.getElementById('filters').addEventListener('click',e=>{
   document.querySelectorAll('#filters .chip').forEach(c=>c.classList.remove('active'));
   b.classList.add('active');renderCards(b.dataset.f);
 });
+
+// TARJETAS DE CIUDAD
+document.getElementById('cityCards').innerHTML=CITY.map(c=>`
+  <article class="card citycard reveal in">
+    <div class="card-body">
+      <span class="intensity i3">${c.kind}</span>
+      <h3>${c.name}</h3>
+      <div class="meta"><span>📍 ${c.area}</span></div>
+      <p>${c.desc}</p>
+      <div class="card-foot"><span></span>
+        <span style="display:flex;gap:10px;align-items:center">${c.book?`<a class="book" target="_blank" rel="noopener" href="${c.book}">Web ↗</a>`:''}<a class="maplink" target="_blank" rel="noopener" href="${gmap(c.q)}">Ver en Maps ↗</a></span></div>
+    </div>
+  </article>`).join('');
 
 // TABLA
 const tbody=document.querySelector('#cmp tbody');
@@ -470,7 +531,7 @@ document.getElementById('rests').innerHTML=RESTS.map(r=>`
     <div class="dish"><span class="lab">⭐ Pide esto</span>${r.dish}</div>
     <p class="desc">${r.desc}</p>
     <div class="rwhen">🕑 ${r.when}</div>
-    <a class="maplink" target="_blank" rel="noopener" href="${gmap(r.q)}">Ver en Maps ↗</a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">${r.book?`<a class="book" target="_blank" rel="noopener" href="${r.book}">Reservar ↗</a>`:''}<a class="maplink" target="_blank" rel="noopener" href="${gmap(r.q)}">Ver en Maps ↗</a></div>
   </div>`).join('');
 
 // MALETA
@@ -503,6 +564,11 @@ function updateSun(){
   else if(h<20.5){v="🏖️ Magia de la hora dorada";s="Luz suave, arena más fresca, menos gente.";}
   else{v="🌙 A bajar el ritmo";s="Cena en un paseo marítimo y a casa, a dormir con esos 16°C.";}
   verdict.innerHTML=v+`<small>${s}</small>`;
+  const slot=h<11?'am':(h<16.5?'mid':'pm');
+  const pool=[...PLACES.map(p=>({name:p.name,q:p.q,slots:p.slots})),...CITY.map(c=>({name:c.name,q:c.q,slots:c.slots}))];
+  const recs=pool.filter(x=>x.slots.includes(slot));
+  const label=slot==='am'?`☀️ Buenos planes para esta mañana (${fmt(h)})`:(slot==='mid'?`🌳 Mejor con sombra o techo ahora (${fmt(h)})`:`🌇 Buenos planes para la tarde (${fmt(h)})`);
+  document.getElementById('sunRecs').innerHTML=`<div class="rl">${label}</div><div class="rchips">`+recs.map(r=>`<a class="rchip" target="_blank" rel="noopener" href="${gmap(r.q)}"><span class="rt">📍</span>${r.name}</a>`).join('')+`</div>`;
 }
 slider.addEventListener('input',updateSun);updateSun();
 
@@ -510,17 +576,22 @@ slider.addEventListener('input',updateSun);updateSun();
 const map=L.map('map',{scrollWheelZoom:false}).setView([42.22,-8.75],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
   attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
-function mk(item,color,isRest){
+function mk(item,color,type){
   const m=L.circleMarker([item.lat,item.lng],{radius:9,color:'#fff',weight:2,fillColor:color,fillOpacity:1});
   const g=gmap(item.q),d=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.q)}`;
-  m.bindPopup(`<div class="pop"><b>${isRest?'🍽️ ':''}${item.name}</b><div class="pd">${isRest?('⭐ '+item.dish):(INT[item.int].t+' · '+BEST[item.best])}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Cómo llegar</a></div>`);
+  const icon=type==='res'?'🍽️ ':(type==='city'?'🛝 ':'');
+  const pd=type==='res'?('⭐ '+item.dish):(type==='city'?item.kind:(INT[item.int].t+' · '+BEST[item.best]));
+  const bookBtn=item.book?`<a class="book2" href="${item.book}" target="_blank" rel="noopener">Reservar</a>`:'';
+  m.bindPopup(`<div class="pop"><b>${icon}${item.name}</b><div class="pd">${pd}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Cómo llegar</a>${bookBtn}</div>`);
   return m;
 }
-const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53',false))).addTo(map);
-const resLayer=L.layerGroup(RESTS.map(r=>mk(r,'#0e7c86',true))).addTo(map);
-const all=[...PLACES,...RESTS].map(x=>[x.lat,x.lng]);
+const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53','act'))).addTo(map);
+const cityLayer=L.layerGroup(CITY.map(c=>mk(c,'#8a5a83','city'))).addTo(map);
+const resLayer=L.layerGroup(RESTS.map(r=>mk(r,'#0e7c86','res'))).addTo(map);
+const all=[...PLACES,...CITY,...RESTS].map(x=>[x.lat,x.lng]);
 map.fitBounds(all,{padding:[40,40]});
 document.getElementById('tglAct').addEventListener('change',e=>{e.target.checked?actLayer.addTo(map):map.removeLayer(actLayer);});
+document.getElementById('tglCity').addEventListener('change',e=>{e.target.checked?cityLayer.addTo(map):map.removeLayer(cityLayer);});
 document.getElementById('tglRes').addEventListener('change',e=>{e.target.checked?resLayer.addTo(map):map.removeLayer(resLayer);});
 map.on('focus',()=>map.scrollWheelZoom.enable());
 map.on('blur',()=>map.scrollWheelZoom.disable());
