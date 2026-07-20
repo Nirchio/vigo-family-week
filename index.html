@@ -27,24 +27,22 @@
 
   nav{position:sticky;top:0;z-index:1000;background:rgba(251,248,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;gap:18px;height:60px}
-  .brand{font-family:Fraunces;font-weight:700;font-size:1.1rem;margin-right:auto;display:flex;align-items:center;gap:8px}
+  .brand{font-family:Fraunces;font-weight:700;font-size:1.1rem;margin-right:auto;display:flex;align-items:center;gap:8px;cursor:pointer}
   .navlinks{display:flex;gap:20px}
   .navlinks a{color:var(--slate);text-decoration:none;font-size:.88rem;font-weight:500}
   .navlinks a:hover{color:var(--sea)}
   .menu-btn{display:none;background:none;border:0;font-size:1.5rem;cursor:pointer;color:var(--ink)}
   @media(max-width:900px){.navlinks{display:none}.menu-btn{display:block}}
 
-  .hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
   .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05)}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,86,96,.1) 0%,rgba(7,50,55,.25) 45%,rgba(9,40,45,.86) 100%)}
   .hero-inner{position:relative;z-index:2;padding:60px 0 104px}
-  .note-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.3);padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:600;margin-bottom:16px}
   .hero h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.3)}
-  .hero p.lead{font-size:clamp(1.02rem,2.2vw,1.3rem);max-width:640px;margin:16px 0 24px;color:#f3f0e8}
-  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
 
-  .stats{margin-top:-48px;position:relative;z-index:5}
+  .stats{margin-top:-48px;position:relative;z-index:5;scroll-margin-top:70px}
   .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
   @media(max-width:820px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:460px){.stat-grid{grid-template-columns:1fr}}
@@ -53,127 +51,20 @@
   .stat .l{font-size:.82rem;color:var(--slate);margin-top:6px}
   .stat .ic{font-size:1.4rem}
 
-  section{padding:60px 0}
-  .section-head{max-width:730px;margin-bottom:28px}
+  section{padding:60px 0;scroll-margin-top:60px}
+  .section-head{max-width:760px;margin-bottom:28px}
   .section-head h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:8px 0}
   .section-head p{color:var(--slate);font-size:1.02rem}
+  .subhead{max-width:760px;margin:48px 0 20px}
+  .subhead h3{font-size:1.5rem}
+  .subhead p{color:var(--slate);font-size:.98rem;margin-top:4px}
 
-  .sun-card{background:linear-gradient(135deg,#fff 0%,#fff8ec 100%);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
-  .sun-track{position:relative;height:74px;border-radius:14px;overflow:hidden;margin:20px 0 6px;background:linear-gradient(90deg,#bfe3e7,#ffe6a8 25%,#f6b24a 50%,#ffe6a8 75%,#bfe3e7)}
-  .sun-zones{position:absolute;inset:0;display:flex}
-  .zone{height:100%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#0006;border-right:1px dashed rgba(0,0,0,.12)}
-  .zone.danger{background:rgba(239,111,83,.28);color:#7a2a17}
-  .sun-marker{position:absolute;top:-6px;width:3px;height:86px;background:#16302f;box-shadow:0 0 0 2px #fff;transition:left .1s}
-  .sun-marker::after{content:attr(data-t);position:absolute;top:-24px;left:50%;transform:translateX(-50%);background:#16302f;color:#fff;font-size:.72rem;padding:2px 7px;border-radius:6px;white-space:nowrap;font-weight:700}
-  .slider{width:100%;accent-color:var(--coral)}
-  .sun-verdict{margin-top:14px;font-weight:600;font-size:1.05rem}
-  .sun-verdict small{display:block;font-weight:400;color:var(--slate);font-size:.9rem;margin-top:2px}
-  .sun-recs{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px}
-  .sun-recs .rl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-bottom:8px}
-  .sun-recs .rchips{display:flex;flex-wrap:wrap;gap:8px}
-  .rchip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;transition:.15s}
-  .rchip:hover{border-color:var(--sea);color:var(--sea)}
-  .rchip .rt{font-size:.9em}
-  .book{display:inline-block;margin-top:10px;background:var(--coral);color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-size:.82rem;font-weight:700}
-  .book:hover{background:#e05a3e}
-  .card-foot .book{margin-top:0;padding:6px 11px;font-size:.78rem}
-  .rest .book{align-self:flex-start}
-  .pop a.book2{background:var(--sun);color:#5a3d00}
-
-  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px;align-items:center}
-  .filters .flabel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:2px}
-  .chip{border:1px solid var(--line);background:#fff;color:var(--slate);padding:7px 14px;border-radius:999px;font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s}
-  .chip:hover{border-color:var(--sea)}
-  .chip.active{background:var(--sea);color:#fff;border-color:var(--sea)}
-  .chip.intens.active{background:var(--plum);border-color:var(--plum)}
-  .filter-divider{width:1px;height:24px;background:var(--line);margin:0 4px}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
-  @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.cards{grid-template-columns:1fr}}
-  .card{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(7,86,96,.16)}
-  .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#dfe8e8}
-  .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .card:hover .thumb img{transform:scale(1.06)}
-  .rank{position:absolute;top:12px;left:12px;background:var(--coral);color:#fff;font-weight:700;font-size:.8rem;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}
-  .tags{position:absolute;bottom:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap}
-  .tag{background:rgba(255,255,255,.94);color:var(--ink);font-size:.68rem;font-weight:700;padding:4px 8px;border-radius:6px}
-  .tag.stroller{background:var(--green);color:#fff}
-  .tag.booking{background:var(--sun);color:#5a3d00}
-  .card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
-  .card-body h3{font-size:1.18rem;margin-bottom:8px}
-  .citycard{border-top:4px solid var(--plum)}
-  .intensity{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;padding:4px 9px;border-radius:8px;margin-bottom:8px}
-  .i1{background:#e5f1f2;color:#0b6470}
-  .i2{background:#eef3e6;color:#4d6a2e}
-  .i3{background:#f6e6ef;color:#8a3f74}
-  .card-body .meta{display:flex;gap:12px;font-size:.78rem;color:var(--slate);margin-bottom:10px;flex-wrap:wrap}
-  .card-body p{font-size:.9rem;color:var(--slate);flex:1;margin:0 0 10px}
-  .when{font-size:.82rem;background:#f7f4ec;border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink)}
-  .when b{color:var(--sea-deep)}
-  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.82rem}
-  .maplink{text-decoration:none;font-weight:600;color:var(--sea)}
-  .cost{font-weight:700;color:var(--sea-deep)}
-
-  .table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
-  table{border-collapse:collapse;width:100%;min-width:820px;background:#fff;font-size:.87rem}
-  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
-  th{background:var(--sea-deep);color:#fff;font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
-  th:hover{background:var(--sea)}
-  th .arr{opacity:.5;font-size:.75rem}
-  tbody tr:hover{background:#f4faf9}
-  td .badge{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:6px}
-  .b-yes{background:#e2f2e8;color:#2c6a41}
-  .b-part{background:#fdf1d8;color:#8a6100}
-  .b-no{background:#f7e2dc;color:#a03a22}
-
-  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
-  .tab{border:1px solid var(--line);background:#fff;padding:12px 20px;border-radius:14px;cursor:pointer;font-weight:600;font-size:.95rem;color:var(--slate);transition:.15s}
-  .tab.active{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
-  .day{display:none;animation:fade .4s}
-  .day.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .day-head{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:22px}
-  .day-head h3{font-size:1.6rem}
-  .day-head .why{color:var(--slate);flex:1;min-width:260px}
-  .timeline{position:relative;margin-left:12px;padding-left:28px;border-left:2px dashed var(--line)}
-  .tl-item{position:relative;padding:0 0 24px}
-  .tl-item:last-child{padding-bottom:0}
-  .tl-dot{position:absolute;left:-37px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--paper)}
-  .tl-time{font-family:Fraunces;font-weight:700;color:var(--sea-deep);font-size:1.05rem}
-  .tl-item p{margin:2px 0 0;color:var(--slate);font-size:.92rem}
-  .rainy{margin-top:20px;background:#eef6f7;border:1px solid #d3e6e8;border-radius:14px;padding:15px 18px;font-size:.9rem}
-  .rainy b{color:var(--sea-deep)}
-
-  .rests{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  @media(max-width:760px){.rests{grid-template-columns:1fr}}
-  .rest{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  .rest-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .rest h3{font-size:1.2rem}
-  .rest .area{font-size:.78rem;color:var(--slate);margin-top:2px}
-  .rest .price{white-space:nowrap;font-size:.78rem;font-weight:700;color:var(--sea-deep);background:#eef6f7;padding:4px 9px;border-radius:8px}
-  .dish{margin:12px 0;padding:12px 14px;background:linear-gradient(135deg,#fff8ec,#fdf2df);border:1px solid #f0e3c8;border-radius:12px;font-size:.9rem}
-  .dish .lab{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--coral);display:block;margin-bottom:3px}
-  .rest p.desc{font-size:.86rem;color:var(--slate);margin:0 0 10px;flex:1}
-  .rest .rwhen{font-size:.8rem;color:var(--ink);background:#f7f4ec;border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:12px}
-  .rest .rwhen b{color:var(--sea-deep)}
-
-  #map{height:520px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);z-index:1}
-  .map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
-  .map-legend label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-weight:600;color:var(--slate)}
-  .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #0002}
-  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)} .dot.city{background:var(--plum)}
-  .leaflet-popup-content{font-family:Inter,sans-serif;margin:12px 14px}
-  .pop b{font-family:Fraunces;font-size:1rem}
-  .pop .pd{font-size:.82rem;color:#5c6b6a;margin:4px 0 8px}
-  .pop a{display:inline-block;background:var(--sea);color:#fff;text-decoration:none;padding:6px 11px;border-radius:8px;font-size:.8rem;font-weight:600;margin-right:6px}
-  .pop a.dir{background:var(--coral)}
-
-  .rank.rankp{background:var(--sun);color:#5a3d00;font-size:1rem}
   .basecard{margin:26px 0 0;background:linear-gradient(135deg,#fff,#eef6f7);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
   .basecard .bi{font-size:1.7rem}
   .basecard .bt{flex:1;min-width:240px;font-size:.9rem;color:var(--ink)}
   .basecard .bt b{color:var(--sea-deep)}
+
+  /* Agenda */
   .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   @media(max-width:860px){.phases{grid-template-columns:1fr}}
   .phase{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;border-top:4px solid var(--sea)}
@@ -186,10 +77,140 @@
   .phase li::before{content:"›";position:absolute;left:0;color:var(--sea);font-weight:700}
   .keydate{background:linear-gradient(135deg,#fff8ec,#fdf2df);border:1px solid #f0e3c8;border-radius:10px;padding:9px 11px;font-size:.86rem}
   .keydate b{color:var(--coral)}
+
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+  .tab{border:1px solid var(--line);background:#fff;padding:12px 20px;border-radius:14px;cursor:pointer;font-weight:600;font-size:.95rem;color:var(--slate);transition:.15s}
+  .tab.active{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
+  .day{display:none;animation:fade .4s}
+  .day.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .day-head{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:22px}
+  .day-head h3{font-size:1.4rem}
+  .day-head .why{color:var(--slate);flex:1;min-width:260px}
+  .timeline{position:relative;margin-left:12px;padding-left:28px;border-left:2px dashed var(--line)}
+  .tl-item{position:relative;padding:0 0 24px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-dot{position:absolute;left:-37px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--paper)}
+  .tl-time{font-family:Fraunces;font-weight:700;color:var(--sea-deep);font-size:1.05rem}
+  .tl-item p{margin:2px 0 0;color:var(--slate);font-size:.92rem}
+  .rainy{margin-top:20px;background:#eef6f7;border:1px solid #d3e6e8;border-radius:14px;padding:15px 18px;font-size:.9rem}
+  .rainy b{color:var(--sea-deep)}
+
+  /* Sun tool */
+  .sun-card{background:linear-gradient(135deg,#fff 0%,#fff8ec 100%);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:24px}
+  .sun-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .sun-head .eyebrow{color:var(--sea)}
+  .sunfilter{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.83rem;font-weight:700;color:var(--sea-deep);cursor:pointer;white-space:nowrap;transition:.15s}
+  .sunfilter:hover{border-color:var(--sea)}
+  .sunfilter.on{background:var(--coral);color:#fff;border-color:var(--coral)}
+  .sun-track{position:relative;height:64px;border-radius:14px;overflow:hidden;margin:18px 0 6px;background:linear-gradient(90deg,#bfe3e7,#ffe6a8 25%,#f6b24a 50%,#ffe6a8 75%,#bfe3e7)}
+  .sun-zones{position:absolute;inset:0;display:flex}
+  .zone{height:100%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#0006;border-right:1px dashed rgba(0,0,0,.12)}
+  .zone.danger{background:rgba(239,111,83,.28);color:#7a2a17}
+  .sun-marker{position:absolute;top:-6px;width:3px;height:76px;background:#16302f;box-shadow:0 0 0 2px #fff;transition:left .1s}
+  .sun-marker::after{content:attr(data-t);position:absolute;top:-24px;left:50%;transform:translateX(-50%);background:#16302f;color:#fff;font-size:.72rem;padding:2px 7px;border-radius:6px;white-space:nowrap;font-weight:700}
+  .slider{width:100%;accent-color:var(--coral)}
+  .sun-verdict{margin-top:6px;font-weight:600;font-size:1.02rem}
+  .sun-verdict small{display:block;font-weight:400;color:var(--slate);font-size:.88rem;margin-top:2px}
+
+  /* Filters + explore bar */
+  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:6px;align-items:center}
+  .filters .flabel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:2px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--slate);padding:7px 14px;border-radius:999px;font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--sea)}
+  .chip.active{background:var(--sea);color:#fff;border-color:var(--sea)}
+  .chip.intens.active{background:var(--plum);border-color:var(--plum);color:#fff}
+  .chip.carrito.active{background:var(--green);border-color:var(--green);color:#fff}
+  .filter-divider{width:1px;height:24px;background:var(--line);margin:0 4px}
+  .explore-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0 4px;flex-wrap:wrap}
+  .count{font-size:.85rem;color:var(--slate);font-weight:600}
+  .viewtoggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .vt{border:0;background:none;padding:8px 16px;font-size:.83rem;font-weight:600;color:var(--slate);cursor:pointer}
+  .vt.active{background:var(--sea);color:#fff}
+
+  /* Cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:16px}
+  @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(7,86,96,.16)}
+  .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#dfe8e8}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .thumb img{transform:scale(1.06)}
+  .thumb.noimg{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--plum),#b489ab)}
+  .thumb .bigemoji{font-size:3.6rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+  .rank{position:absolute;top:12px;left:12px;background:var(--coral);color:#fff;font-weight:700;font-size:.8rem;min-width:30px;height:30px;padding:0 6px;border-radius:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+  .rank.rankp{background:var(--sun);color:#5a3d00;font-size:1rem}
+  .rank.city{background:var(--plum);font-size:1rem}
+  .tags{position:absolute;bottom:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{background:rgba(255,255,255,.94);color:var(--ink);font-size:.68rem;font-weight:700;padding:4px 8px;border-radius:6px}
+  .tag.stroller{background:var(--green);color:#fff}
+  .tag.booking{background:var(--sun);color:#5a3d00}
+  .card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+  .card-body h3{font-size:1.18rem;margin-bottom:8px}
+  .intensity{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;padding:4px 9px;border-radius:8px;margin-bottom:8px;align-self:flex-start}
+  .i1{background:#e5f1f2;color:#0b6470}
+  .i2{background:#eef3e6;color:#4d6a2e}
+  .i3{background:#f6e6ef;color:#8a3f74}
+  .card-body .meta{display:flex;gap:12px;font-size:.78rem;color:var(--slate);margin-bottom:10px;flex-wrap:wrap}
+  .card-body p{font-size:.9rem;color:var(--slate);flex:1;margin:0 0 10px}
+  .when{font-size:.82rem;background:#f7f4ec;border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink)}
+  .when b{color:var(--sea-deep)}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.82rem;gap:10px}
+  .maplink{text-decoration:none;font-weight:600;color:var(--sea)}
+  .cost{font-weight:700;color:var(--sea-deep)}
+  .book{display:inline-block;background:var(--coral);color:#fff;text-decoration:none;padding:6px 11px;border-radius:10px;font-size:.78rem;font-weight:700}
+  .book:hover{background:#e05a3e}
+
+  /* Table */
+  .table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);margin-top:16px}
+  table{border-collapse:collapse;width:100%;min-width:820px;background:#fff;font-size:.87rem}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--sea-deep);color:#fff;font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
+  th:hover{background:var(--sea)}
+  th .arr{opacity:.5;font-size:.75rem}
+  tbody tr:hover{background:#f4faf9}
+  td .badge{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:6px}
+  .b-yes{background:#e2f2e8;color:#2c6a41}
+  .b-part{background:#fdf1d8;color:#8a6100}
+  .b-no{background:#f7e2dc;color:#a03a22}
+
+  /* Food */
+  .rests{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.rests{grid-template-columns:1fr}}
+  .rest{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .rest-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .rest h3{font-size:1.2rem}
+  .rest .area{font-size:.78rem;color:var(--slate);margin-top:2px}
+  .rest .price{white-space:nowrap;font-size:.78rem;font-weight:700;color:var(--sea-deep);background:#eef6f7;padding:4px 9px;border-radius:8px}
+  .dish{margin:12px 0;padding:12px 14px;background:linear-gradient(135deg,#fff8ec,#fdf2df);border:1px solid #f0e3c8;border-radius:12px;font-size:.9rem}
+  .dish .lab{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--coral);display:block;margin-bottom:3px}
+  .rest p.desc{font-size:.86rem;color:var(--slate);margin:0 0 10px;flex:1}
+  .rest .rwhen{font-size:.8rem;color:var(--ink);background:#f7f4ec;border:1px solid var(--line);border-radius:9px;padding:8px 10px;margin-bottom:12px}
+  .rest .rwhen b{color:var(--sea-deep)}
+  .rest .book{align-self:flex-start}
   .brunch-extra{margin-top:22px;font-size:.9rem;color:var(--slate);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
   .brunch-extra .bl{font-weight:700;color:var(--ink)}
   .brunch-extra a{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:.82rem;font-weight:600;text-decoration:none;color:var(--ink)}
   .brunch-extra a:hover{border-color:var(--sea);color:var(--sea)}
+
+  /* Map */
+  #map{height:520px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);z-index:1}
+  .map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
+  .map-legend label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-weight:600;color:var(--slate)}
+  .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #0002}
+  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)} .dot.city{background:var(--plum)}
+  .leaflet-popup-content{font-family:Inter,sans-serif;margin:12px 14px}
+  .pop b{font-family:Fraunces;font-size:1rem}
+  .pop .pd{font-size:.82rem;color:#5c6b6a;margin:4px 0 8px}
+  .pop a{display:inline-block;background:var(--sea);color:#fff;text-decoration:none;padding:6px 11px;border-radius:8px;font-size:.8rem;font-weight:600;margin-right:6px}
+  .pop a.dir{background:var(--coral)}
+  .pop a.book2{background:var(--sun);color:#5a3d00}
+
+  /* Prep */
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:34px}
+  .tip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.88rem;box-shadow:var(--shadow)}
+  .tip b{color:var(--sea-deep)}
 
   footer{background:var(--sea-deep);color:#dff1f2;padding:40px 0 32px;font-size:.9rem}
   footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
@@ -244,17 +265,14 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">🌊 Nuestro mes en Vigo</div>
+    <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">🌊 Nuestro mes en Vigo</div>
     <div class="navlinks" id="navlinks">
-      <a href="#sun">Horario</a>
-      <a href="#activities">Planes</a>
-      <a href="#city">Ciudad</a>
-      <a href="#compare">Comparar</a>
-      <a href="#days">Días</a>
-      <a href="#phases">Fases</a>
+      <a href="#resumen">Resumen</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#explore">Explorar</a>
       <a href="#food">Comer</a>
       <a href="#map-sec">Mapa</a>
-      <a href="#pack">Maleta</a>
+      <a href="#prep">Preparar</a>
     </div>
     <button class="menu-btn" id="menuBtn">☰</button>
   </div>
@@ -265,16 +283,17 @@
   <div class="hero-inner wrap">
     <h1>Nuestro mes en Vigo</h1>
     <div class="pills">
+      <span class="pill">🗓️ Agosto 2026</span>
       <span class="pill">🏠 Base en Portanet (Balaídos)</span>
       <span class="pill">🏖️ Playas</span>
       <span class="pill">💧 Sendas de agua</span>
       <span class="pill">⛴️ Las Cíes</span>
-      <span class="pill">🦪 Calle de las Ostras</span>
     </div>
   </div>
 </header>
 
-<div class="wrap stats">
+<!-- RESUMEN -->
+<div class="wrap stats" id="resumen">
   <div class="stat-grid">
     <div class="stat reveal"><div class="ic">🌡️</div><div class="k">25°C</div><div class="l">Máxima media de agosto (77°F), el mes más caluroso</div></div>
     <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Mínimas frescas (61°F), buen tiempo para dormir</div></div>
@@ -289,111 +308,13 @@
   </div>
 </div>
 
-<section id="sun" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
+<!-- AGENDA -->
+<section id="agenda">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Nuestro control del sol</div>
-      <h2>¿Cuándo es amable con el peque?</h2>
-      <p>Desliza por el día. Verde = adelante; la franja roja es el bloque de mediodía que evitamos.</p>
-    </div>
-    <div class="sun-card reveal">
-      <div class="sun-track">
-        <div class="sun-zones">
-          <div class="zone" style="flex:6.5">🌅 Mejor</div>
-          <div class="zone danger" style="flex:4">☀️ Evitar</div>
-          <div class="zone" style="flex:7.5">🌇 Mejor</div>
-        </div>
-        <div class="sun-marker" id="sunMarker" data-t="09:00" style="left:37.5%"></div>
-      </div>
-      <input type="range" min="6" max="21" value="9" step="0.5" class="slider" id="sunSlider" />
-      <div class="sun-verdict" id="sunVerdict"></div>
-      <div class="sun-recs" id="sunRecs"></div>
-    </div>
-  </div>
-</section>
-
-<section id="activities">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Nuestra lista, ordenada para un peque de 3 años</div>
-      <h2>Dónde podríamos ir</h2>
-      <p>Cada tarjeta muestra lo relajado o activo que es el día, y si va mejor entre semana o en fin de semana. Filtra para planear un tipo de día concreto. Las tarjetas con 💛 son las recomendaciones de la lista de la familia.</p>
-    </div>
-    <div class="filters reveal" id="filters">
-      <span class="flabel">Tipo</span>
-      <button class="chip active" data-f="all">Todo</button>
-      <button class="chip" data-f="beach">🏖️ Playas</button>
-      <button class="chip" data-f="park">🌳 Parques</button>
-      <button class="chip" data-f="agua">💧 Sendas de agua</button>
-      <button class="chip" data-f="daytrip">🚗 Excursiones</button>
-      <button class="chip" data-f="rainy">☔ A prueba de lluvia</button>
-      <button class="chip" data-f="stroller">👶 Fácil con carrito</button>
-      <span class="filter-divider"></span>
-      <span class="flabel">Intensidad</span>
-      <button class="chip intens" data-f="chill">🛋️ Relajado</button>
-      <button class="chip intens" data-f="easy">🚶 Paseo fácil</button>
-      <button class="chip intens" data-f="active">🥾 Activo / ruta</button>
-    </div>
-    <div class="cards" id="cards"></div>
-  </div>
-</section>
-
-<section id="city">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Vigo ciudad con peques</div>
-      <h2>Parques y planes a un paso</h2>
-      <p>Vigo está llena de parquiños de barrio con megatoboganes, más el zoo-parque de A Madroa y museos interactivos. Ideales para rellenar una mañana o una tarde sin coger el coche.</p>
-    </div>
-    <div class="cards" id="cityCards"></div>
-  </div>
-</section>
-
-<section id="compare" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">De un vistazo</div>
-      <h2>Compara todo</h2>
-      <p>Toca una cabecera para ordenar. Los tiempos de coche son sin tráfico desde el centro de Vigo, en finde el tráfico de playa puede sumar 10–20 min.</p>
-    </div>
-    <div class="table-scroll reveal">
-      <table id="cmp">
-        <thead><tr>
-          <th data-k="name">Lugar <span class="arr">↕</span></th>
-          <th data-k="drive" data-num="1">Coche (min) <span class="arr">↕</span></th>
-          <th data-k="intensity">Intensidad <span class="arr">↕</span></th>
-          <th data-k="best">Mejor día <span class="arr">↕</span></th>
-          <th data-k="cost">Precio <span class="arr">↕</span></th>
-          <th data-k="stroller">Carrito <span class="arr">↕</span></th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="days">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Días listos para usar</div>
-      <h2>Tres planes de día</h2>
-      <p>El centro de Vigo como base, una pausa a mediodía para la siesta y un plan B para el mal tiempo en cada uno.</p>
-    </div>
-    <div class="tabs" id="dayTabs">
-      <button class="tab active" data-d="0">🏖️ Día de costa fácil</button>
-      <button class="tab" data-d="1">⛴️ Día especial Cíes</button>
-      <button class="tab" data-d="2">🌳 Día verde con sombra</button>
-    </div>
-    <div id="dayPanels"></div>
-  </div>
-</section>
-
-<section id="phases">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Cómo se reparte el mes</div>
-      <h2>Calendario por fases</h2>
-      <p>Agosto va cambiando según quién esté con nosotros y el ritmo que toque. Tres bloques, con las fechas clave marcadas.</p>
+      <div class="eyebrow">Nuestra agenda del mes</div>
+      <h2>El plan, por fases</h2>
+      <p>El mes cambia según quién esté con nosotros y el ritmo que toque. Tres bloques con las fechas clave marcadas, y debajo tres "días tipo" listos para copiar.</p>
     </div>
     <div class="phases">
       <div class="phase p1 reveal">
@@ -427,10 +348,93 @@
         </ul>
       </div>
     </div>
+
+    <div class="subhead reveal">
+      <h3>Días tipo</h3>
+      <p>Plantillas de día con base en casa, pausa de siesta a mediodía y un plan B para el mal tiempo.</p>
+    </div>
+    <div class="tabs" id="dayTabs">
+      <button class="tab active" data-d="0">🏖️ Día de costa fácil</button>
+      <button class="tab" data-d="1">⛴️ Día especial Cíes</button>
+      <button class="tab" data-d="2">🌳 Día verde con sombra</button>
+    </div>
+    <div id="dayPanels"></div>
   </div>
 </section>
 
-<section id="food" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
+<!-- EXPLORAR -->
+<section id="explore" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Todo lo que podemos hacer</div>
+      <h2>Explorar planes</h2>
+      <p>Un solo catálogo con playas, parques, sendas de agua, excursiones y los parquiños de ciudad. Filtra por tipo, ritmo o carrito, y usa el control del sol para ver qué encaja a cada hora. 💛 = de la lista de la familia.</p>
+    </div>
+
+    <div class="sun-card reveal">
+      <div class="sun-head">
+        <div>
+          <div class="eyebrow">🌞 Control del sol</div>
+          <div class="sun-verdict" id="sunVerdict"></div>
+        </div>
+        <button class="sunfilter" id="sunFilterBtn">🕑 Ver planes para esta hora</button>
+      </div>
+      <div class="sun-track">
+        <div class="sun-zones">
+          <div class="zone" style="flex:6.5">🌅 Mejor</div>
+          <div class="zone danger" style="flex:4">☀️ Evitar</div>
+          <div class="zone" style="flex:7.5">🌇 Mejor</div>
+        </div>
+        <div class="sun-marker" id="sunMarker" data-t="09:00" style="left:37.5%"></div>
+      </div>
+      <input type="range" min="6" max="21" value="9" step="0.5" class="slider" id="sunSlider" />
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <span class="flabel">Tipo</span>
+      <button class="chip tipo active" data-f="all">Todo</button>
+      <button class="chip tipo" data-f="beach">🏖️ Playas</button>
+      <button class="chip tipo" data-f="park">🌳 Parques</button>
+      <button class="chip tipo" data-f="agua">💧 Sendas de agua</button>
+      <button class="chip tipo" data-f="daytrip">🚗 Excursiones</button>
+      <button class="chip tipo" data-f="city">🏙️ Ciudad</button>
+      <button class="chip tipo" data-f="rainy">☔ A prueba de lluvia</button>
+      <span class="filter-divider"></span>
+      <span class="flabel">Ritmo</span>
+      <button class="chip intens" data-r="chill">🛋️ Relajado</button>
+      <button class="chip intens" data-r="easy">🚶 Paseo fácil</button>
+      <button class="chip intens" data-r="active">🥾 Activo / ruta</button>
+      <span class="filter-divider"></span>
+      <button class="chip carrito" data-carrito>👶 Con carrito</button>
+    </div>
+
+    <div class="explore-bar reveal">
+      <div class="count" id="count"></div>
+      <div class="viewtoggle">
+        <button class="vt active" data-v="cards">▦ Tarjetas</button>
+        <button class="vt" data-v="table">☰ Tabla</button>
+      </div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <div class="table-scroll" id="tableWrap" style="display:none">
+      <table id="cmp">
+        <thead><tr>
+          <th data-k="name">Lugar <span class="arr">↕</span></th>
+          <th data-k="drive" data-num="1">Coche / zona <span class="arr">↕</span></th>
+          <th data-k="intensity">Tipo / ritmo <span class="arr">↕</span></th>
+          <th data-k="best">Mejor día <span class="arr">↕</span></th>
+          <th data-k="cost">Precio <span class="arr">↕</span></th>
+          <th data-k="stroller">Carrito <span class="arr">↕</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- COMER -->
+<section id="food">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Dónde comer</div>
@@ -448,12 +452,13 @@
   </div>
 </section>
 
-<section id="map-sec">
+<!-- MAPA -->
+<section id="map-sec" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Todo, en el mapa</div>
       <h2>Nuestro mapa</h2>
-      <p>Coral = sitios para ir, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
+      <p>Coral = planes y excursiones, morado = parques de ciudad, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
     </div>
     <div class="map-legend reveal">
       <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Planes y excursiones</label>
@@ -464,12 +469,20 @@
   </div>
 </section>
 
-<section id="pack" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
+<!-- PREPARAR -->
+<section id="prep">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Antes de irnos</div>
-      <h2>Lista de la maleta</h2>
-      <p>Lo marcado se guarda solo en este navegador.</p>
+      <h2>Preparar el viaje</h2>
+      <p>Recordatorios clave y la lista de la maleta. Lo marcado se guarda solo en este navegador.</p>
+    </div>
+    <div class="tips reveal">
+      <div class="tip">⛴️ <b>Cíes:</b> reserva el ferry con antelación (cupo ~1.700/día) y elige día entre semana.</div>
+      <div class="tip">💧 <b>Agua en Cíes:</b> no es potable, lleva suficiente para el día.</div>
+      <div class="tip">🌬️ <b>Patos:</b> evita el plan si sopla viento del norte.</div>
+      <div class="tip">🚗 <b>Illa de Arousa:</b> cruza el puente antes de las 10:30.</div>
+      <div class="tip">🌘 <b>Eclipse 12 ago (20:30):</b> horizonte oeste despejado, p. ej. Cabo Udra.</div>
     </div>
     <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start" class="packgrid">
       <ul class="pack-list" id="packList" style="list-style:none;padding:0;margin:0;columns:2;column-gap:26px"></ul>
@@ -546,7 +559,7 @@ const RESTS=[
 const CITY=[
  {name:"VigoNature (antiguo Vigozoo)",area:"A Madroa · Teis",kind:"🦉 Parque ambiental",lat:42.2494894,lng:-8.6729015,slots:['am','pm'],desc:"El antiguo zoo, ahora parque de naturaleza: animales de granja, suricatas, aves y reptiles, tirolina y actividades familiares los fines de semana.",q:"VigoNature A Madroa Vigo",book:"https://vigonature.es/"},
  {name:"Verbum, Casa das Palabras",area:"Junto a Samil",kind:"🔤 Museo interactivo",lat:42.2129364,lng:-8.7736954,slots:['mid','pm'],desc:"Museo del lenguaje muy manipulativo, con talleres y cuentacuentos. Plan de interior perfecto para el mediodía o un día de lluvia, a un paso de Samil.",q:"Verbum Casa das Palabras Vigo"},
- {name:"Museo MARCO",area:"Rúa do Príncipe · centro",kind:"🖼️ Arte y talleres",lat:42.2357986,lng:-8.7211529,slots:['mid','pm'],desc:"Arte contemporáneo con talleres familiares y entrada gratuita. Buen refugio con sombra en pleno centro.",q:"Museo MARCO Vigo"},
+ {name:"Museo MARCO",area:"Rúa do Príncipe · centro",kind:"🖼️ Museo y talleres",lat:42.2357986,lng:-8.7211529,slots:['mid','pm'],desc:"Arte contemporáneo con talleres familiares y entrada gratuita. Buen refugio con sombra en pleno centro.",q:"Museo MARCO Vigo"},
  {name:"Parque de Navia",area:"Navia",kind:"🛝 Macroparque",lat:42.2108975,lng:-8.7572100,slots:['am','pm'],desc:"Uno de los parques infantiles más grandes de la ciudad, con zona específica para menores de 6 años, toboganes y tirolinas.",q:"Parque de Navia Vigo"},
  {name:"Praza da Independencia",area:"As Travesas",kind:"🛝 Parque infantil",lat:42.2237991,lng:-8.7301282,slots:['am','pm'],desc:"Macroparque muy céntrico y de los que mejor se adaptan a los más pequeños: cúpula para trepar, cama elástica y tobogán gigante.",q:"Praza da Independencia Vigo"},
  {name:"Alameda Suárez Llanos",area:"Bouzas",kind:"🛝 Ideal para <4 años",lat:42.2243435,lng:-8.7531200,slots:['am','pm'],desc:"Parque nuevo con suelo de goma y juegos pensados para menores de 4 años, casi sin tráfico. Muy cómodo con un peque de 3.",q:"Alameda Suarez Llanos Bouzas Vigo"},
@@ -565,59 +578,61 @@ PLACES.forEach(p=>{if(BOOK[p.rank])p.book=BOOK[p.rank];});
 const RBOOK={"Silabario":"https://www.silabario.gal/","Morrofino":"https://www.mfgastronomia.es/"};
 RESTS.forEach(r=>{if(RBOOK[r.name])r.book=RBOOK[r.name];});
 
-// TARJETAS DE ACTIVIDADES
-const cardsEl=document.getElementById('cards');
-function badge(v){const m={'Sí':'b-yes','Parcial':'b-part','Limitado':'b-part','No':'b-no','Aconsejado':'b-part','Recomendado':'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
+// Catálogo unificado (planes + ciudad)
+PLACES.forEach(p=>p.type='out');
+CITY.forEach(c=>{
+  c.type='city';c.int='chill';c.best='either';
+  c.drive='En la ciudad';c.driveN=4;c.dur=c.dur||'1–2 h';
+  c.cost=c.cost||'Gratis';c.stroller='Sí';c.booking='No';
+  c.cats=['city'].concat(/Museo/.test(c.kind)?['rainy']:['park']);
+});
+const ITEMS=[...PLACES,...CITY];
+
 function gmap(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;}
-function renderCards(f){
-  cardsEl.innerHTML='';
-  PLACES.filter(p=>f==='all'||p.cats.includes(f)).forEach(p=>{
+function badge(v){const m={'Sí':'b-yes','Parcial':'b-part','Limitado':'b-part','No':'b-no','Aconsejado':'b-part','Recomendado':'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
+function slotText(sl){if(!sl||!sl.length)return '';const has=x=>sl.includes(x);if(has('am')&&has('mid')&&has('pm'))return 'cualquier hora';const p=[];if(has('am'))p.push('mañana');if(has('mid'))p.push('mediodía');if(has('pm'))p.push('tarde');return p.join(' · ');}
+const franjaName={am:'mañana',mid:'mediodía',pm:'tarde'};
+
+// Estado de filtros
+const F={tipo:'all',ritmo:null,carrito:false,franja:null};
+let current=[],view='cards',sortKey='drive',sortAsc=true;
+
+const cardsEl=document.getElementById('cards');
+function renderCards(list){
+  cardsEl.innerHTML=list.map(p=>{
+    const isCity=p.type==='city';
     const tags=[];
     if(p.stroller==='Sí')tags.push('<span class="tag stroller">👶 Con carrito</span>');
     if(['Sí','Aconsejado','Recomendado'].includes(p.booking))tags.push('<span class="tag booking">📅 Reservar</span>');
-    const i=INT[p.int];
-    const el=document.createElement('article');el.className='card reveal in';
-    el.innerHTML=`
-      <div class="thumb"><span class="rank${p.partner?' rankp':''}" title="${p.partner?'De la lista de la familia':'Nuestra lista'}">${p.partner?'💛':p.rank}</span>
-        <img loading="lazy" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0e7c86,#f4b942)'">
-        <div class="tags">${tags.join('')}</div></div>
+    const corner=isCity?'<span class="rank city" title="Vigo ciudad">🏙️</span>':`<span class="rank${p.partner?' rankp':''}" title="${p.partner?'De la lista de la familia':'Nuestra lista'}">${p.partner?'💛':p.rank}</span>`;
+    const thumb=p.img
+      ? `<div class="thumb">${corner}<img loading="lazy" src="${p.img}" alt="${p.name}" onerror="var t=this.parentElement;t.classList.add('noimg');t.insertAdjacentHTML('beforeend','<div class=bigemoji>🌊</div>');this.remove()"><div class="tags">${tags.join('')}</div></div>`
+      : `<div class="thumb noimg">${corner}<div class="bigemoji">${(p.kind||'🏙️').trim().split(/\s+/)[0]}</div><div class="tags">${tags.join('')}</div></div>`;
+    const topBadge=isCity?`<span class="intensity i3">${p.kind}</span>`:`<span class="intensity ${INT[p.int].c}">${INT[p.int].t}</span>`;
+    const meta=isCity?`<span>📍 ${p.area}</span><span>⏱️ ${p.dur}</span>`:`<span>🚗 ${p.drive}</span><span>⏱️ ${p.dur}</span>`;
+    const st=slotText(p.slots);
+    const when=isCity?(st?`<div class="when">🕑 Bueno para: <b>${st}</b></div>`:''):`<div class="when">📅 ${p.when}</div>`;
+    const cost=isCity?'':`<span class="cost">${p.cost}</span>`;
+    const book=p.book?`<a class="book" target="_blank" rel="noopener" href="${p.book}">${isCity?'Web ↗':'Reservar ↗'}</a>`:'';
+    return `<article class="card reveal in">
+      ${thumb}
       <div class="card-body">
-        <span class="intensity ${i.c}">${i.t}</span>
+        ${topBadge}
         <h3>${p.name}</h3>
-        <div class="meta"><span>🚗 ${p.drive}</span><span>⏱️ ${p.dur}</span></div>
+        <div class="meta">${meta}</div>
         <p>${p.desc}</p>
-        <div class="when">📅 ${p.when}</div>
-        <div class="card-foot"><span class="cost">${p.cost}</span>
-          <span style="display:flex;gap:10px;align-items:center">${p.book?`<a class="book" target="_blank" rel="noopener" href="${p.book}">Reservar ↗</a>`:''}<a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Ver en Maps ↗</a></span></div>
-      </div>`;
-    cardsEl.appendChild(el);
-  });
+        ${when}
+        <div class="card-foot">${cost||'<span></span>'}
+          <span style="display:flex;gap:10px;align-items:center">${book}<a class="maplink" target="_blank" rel="noopener" href="${gmap(p.q)}">Ver en Maps ↗</a></span></div>
+      </div>
+    </article>`;
+  }).join('');
+  if(!list.length)cardsEl.innerHTML='<p style="color:var(--slate)">No hay planes con estos filtros. Prueba a quitar alguno.</p>';
 }
-renderCards('all');
-document.getElementById('filters').addEventListener('click',e=>{
-  const b=e.target.closest('.chip');if(!b)return;
-  document.querySelectorAll('#filters .chip').forEach(c=>c.classList.remove('active'));
-  b.classList.add('active');renderCards(b.dataset.f);
-});
 
-// TARJETAS DE CIUDAD
-document.getElementById('cityCards').innerHTML=CITY.map(c=>`
-  <article class="card citycard reveal in">
-    <div class="card-body">
-      <span class="intensity i3">${c.kind}</span>
-      <h3>${c.name}</h3>
-      <div class="meta"><span>📍 ${c.area}</span></div>
-      <p>${c.desc}</p>
-      <div class="card-foot"><span></span>
-        <span style="display:flex;gap:10px;align-items:center">${c.book?`<a class="book" target="_blank" rel="noopener" href="${c.book}">Web ↗</a>`:''}<a class="maplink" target="_blank" rel="noopener" href="${gmap(c.q)}">Ver en Maps ↗</a></span></div>
-    </div>
-  </article>`).join('');
-
-// TABLA
 const tbody=document.querySelector('#cmp tbody');
-let sortKey='drive',sortAsc=true;
 function renderTable(){
-  const rows=[...PLACES].sort((a,b)=>{
+  const rows=[...current].sort((a,b)=>{
     let x,y;
     if(sortKey==='drive'){x=a.driveN;y=b.driveN;}
     else if(sortKey==='intensity'){const o={chill:1,easy:2,active:3};x=o[a.int];y=o[b.int];}
@@ -626,17 +641,83 @@ function renderTable(){
     if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase();}
     return (x<y?-1:x>y?1:0)*(sortAsc?1:-1);
   });
-  tbody.innerHTML=rows.map(p=>`<tr>
-    <td><b>${p.name}</b></td><td>${p.drive}</td>
-    <td>${INT[p.int].t}</td><td>${BEST[p.best]}</td>
-    <td>${p.cost}</td><td>${badge(p.stroller)}</td></tr>`).join('');
+  tbody.innerHTML=rows.map(p=>{
+    const isCity=p.type==='city';
+    const intCell=isCity?p.kind:INT[p.int].t;
+    return `<tr>
+      <td><b>${p.name}</b>${p.partner?' 💛':''}${isCity?' 🏙️':''}</td>
+      <td>${p.drive}</td>
+      <td>${intCell}</td><td>${BEST[p.best]}</td>
+      <td>${p.cost}</td><td>${badge(p.stroller)}</td></tr>`;
+  }).join('');
 }
-renderTable();
+
+function render(){
+  current=ITEMS.filter(it=>{
+    if(F.tipo!=='all' && !it.cats.includes(F.tipo))return false;
+    if(F.ritmo && it.int!==F.ritmo)return false;
+    if(F.carrito && it.stroller!=='Sí')return false;
+    if(F.franja && !(it.slots||[]).includes(F.franja))return false;
+    return true;
+  });
+  renderCards(current);
+  renderTable();
+  const n=current.length;
+  document.getElementById('count').textContent=`${n} ${n===1?'plan':'planes'}`+(F.franja?` · para la ${franjaName[F.franja]}`:'');
+}
+
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  if(b.classList.contains('tipo')){
+    document.querySelectorAll('#filters .chip.tipo').forEach(c=>c.classList.remove('active'));
+    b.classList.add('active');F.tipo=b.dataset.f;
+  }else if(b.classList.contains('intens')){
+    const on=b.classList.contains('active');
+    document.querySelectorAll('#filters .chip.intens').forEach(c=>c.classList.remove('active'));
+    if(!on){b.classList.add('active');F.ritmo=b.dataset.r;}else F.ritmo=null;
+  }else if(b.classList.contains('carrito')){
+    b.classList.toggle('active');F.carrito=b.classList.contains('active');
+  }
+  render();
+});
+
+function applyView(){document.getElementById('cards').style.display=view==='cards'?'':'none';document.getElementById('tableWrap').style.display=view==='table'?'':'none';}
+document.querySelector('.viewtoggle').addEventListener('click',e=>{
+  const b=e.target.closest('.vt');if(!b)return;
+  document.querySelectorAll('.vt').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');view=b.dataset.v;applyView();
+});
 document.querySelectorAll('#cmp th').forEach(th=>th.addEventListener('click',()=>{
   const k=th.dataset.k;if(sortKey===k)sortAsc=!sortAsc;else{sortKey=k;sortAsc=true;}renderTable();
 }));
 
-// ITINERARIOS
+// CONTROL DEL SOL (filtro por franja)
+const slider=document.getElementById('sunSlider'),marker=document.getElementById('sunMarker'),verdict=document.getElementById('sunVerdict'),sunBtn=document.getElementById('sunFilterBtn');
+let curSlot='am',sunFilter=false;
+function fmt(h){const H=Math.floor(h),M=h%1?'30':'00';return `${String(H).padStart(2,'0')}:${M}`;}
+function updateSun(){
+  const h=parseFloat(slider.value);marker.style.left=((h-6)/15)*100+'%';marker.dataset.t=fmt(h);
+  let v,s;
+  if(h<9){v="🌅 Hora ideal, fresco y tranquilo";s="El mejor bloque de playa antes de la gente y el calor.";}
+  else if(h<11){v="😎 Aún bien, corre a aparcar";s="Bien hasta ~11:00; el aparcamiento se llena rápido después.";}
+  else if(h<12.5){v="🌤️ Empieza a llenarse y aprieta el sol";s="Termina la playa; busca sombra o comida temprano.";}
+  else if(h<16.5){v="🚫 Evita el sol con el peque";s="Siesta, museo, parque con sombra o comer, nada de arena abierta ahora.";}
+  else if(h<18){v="🌇 De vuelta a la zona buena";s="La playa de la tarde vuelve, repón crema solar.";}
+  else if(h<20.5){v="🏖️ Magia de la hora dorada";s="Luz suave, arena más fresca, menos gente.";}
+  else{v="🌙 A bajar el ritmo";s="Cena en un paseo marítimo y a casa, a dormir con esos 16°C.";}
+  verdict.innerHTML=v+`<small>${s} (${fmt(h)})</small>`;
+  curSlot=h<11?'am':(h<16.5?'mid':'pm');
+  if(sunFilter){F.franja=curSlot;render();}
+}
+sunBtn.addEventListener('click',()=>{
+  sunFilter=!sunFilter;
+  if(sunFilter){F.franja=curSlot;sunBtn.classList.add('on');sunBtn.textContent='✕ Quitar filtro de hora';}
+  else{F.franja=null;sunBtn.classList.remove('on');sunBtn.textContent='🕑 Ver planes para esta hora';}
+  render();
+});
+slider.addEventListener('input',updateSun);
+
+// ITINERARIOS (días tipo)
 const DAYS=[
  {title:"Día de costa fácil en Vigo",why:"Nuestro plan por defecto de bajo riesgo: mucho tiempo al aire libre, comida flexible y un buen plan B si cambia el tiempo.",
   items:[["09:30","Coche a la playa de Samil (15–20 min)"],["10:00","Jugar en la arena y paseo mientras hace fresco"],["11:45","Comer en Parrillada Samil (¡parque infantil!) o en el paseo"],["13:00","A casa para la siesta o traslado tranquilo en coche"],["17:00","Museo do Mar y acuario"],["18:30","Copa al atardecer en Beach Club Marina Cíes"],["20:00","Vuelta a Vigo"]],
@@ -685,28 +766,6 @@ listEl.addEventListener('change',updatePack);
 document.getElementById('resetPack').addEventListener('click',()=>{listEl.querySelectorAll('input').forEach(b=>b.checked=false);updatePack();});
 updatePack();
 
-// SOL
-const slider=document.getElementById('sunSlider'),marker=document.getElementById('sunMarker'),verdict=document.getElementById('sunVerdict');
-function fmt(h){const H=Math.floor(h),M=h%1?'30':'00';return `${String(H).padStart(2,'0')}:${M}`;}
-function updateSun(){
-  const h=parseFloat(slider.value);marker.style.left=((h-6)/15)*100+'%';marker.dataset.t=fmt(h);
-  let v,s;
-  if(h<9){v="🌅 Hora ideal, fresco y tranquilo";s="El mejor bloque de playa antes de la gente y el calor.";}
-  else if(h<11){v="😎 Aún bien, corre a aparcar";s="Bien hasta ~11:00; el aparcamiento se llena rápido después.";}
-  else if(h<12.5){v="🌤️ Empieza a llenarse y aprieta el sol";s="Termina la playa; busca sombra o comida temprano.";}
-  else if(h<16.5){v="🚫 Evita el sol con el peque";s="Siesta, museo, parque con sombra o comer, nada de arena abierta ahora.";}
-  else if(h<18){v="🌇 De vuelta a la zona buena";s="La playa de la tarde vuelve, repón crema solar.";}
-  else if(h<20.5){v="🏖️ Magia de la hora dorada";s="Luz suave, arena más fresca, menos gente.";}
-  else{v="🌙 A bajar el ritmo";s="Cena en un paseo marítimo y a casa, a dormir con esos 16°C.";}
-  verdict.innerHTML=v+`<small>${s}</small>`;
-  const slot=h<11?'am':(h<16.5?'mid':'pm');
-  const pool=[...PLACES.map(p=>({name:p.name,q:p.q,slots:p.slots})),...CITY.map(c=>({name:c.name,q:c.q,slots:c.slots}))];
-  const recs=pool.filter(x=>x.slots.includes(slot));
-  const label=slot==='am'?`☀️ Buenos planes para esta mañana (${fmt(h)})`:(slot==='mid'?`🌳 Mejor con sombra o techo ahora (${fmt(h)})`:`🌇 Buenos planes para la tarde (${fmt(h)})`);
-  document.getElementById('sunRecs').innerHTML=`<div class="rl">${label}</div><div class="rchips">`+recs.map(r=>`<a class="rchip" target="_blank" rel="noopener" href="${gmap(r.q)}"><span class="rt">📍</span>${r.name}</a>`).join('')+`</div>`;
-}
-slider.addEventListener('input',updateSun);updateSun();
-
 // MAPA
 const map=L.map('map',{scrollWheelZoom:false}).setView([42.22,-8.75],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
@@ -723,8 +782,7 @@ function mk(item,color,type){
 const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53','act'))).addTo(map);
 const cityLayer=L.layerGroup(CITY.map(c=>mk(c,'#8a5a83','city'))).addTo(map);
 const resLayer=L.layerGroup(RESTS.map(r=>mk(r,'#0e7c86','res'))).addTo(map);
-const all=[...PLACES,...CITY,...RESTS].map(x=>[x.lat,x.lng]);
-map.fitBounds(all,{padding:[40,40]});
+map.fitBounds([...PLACES,...CITY,...RESTS].map(x=>[x.lat,x.lng]),{padding:[40,40]});
 document.getElementById('tglAct').addEventListener('change',e=>{e.target.checked?actLayer.addTo(map):map.removeLayer(actLayer);});
 document.getElementById('tglCity').addEventListener('change',e=>{e.target.checked?cityLayer.addTo(map):map.removeLayer(cityLayer);});
 document.getElementById('tglRes').addEventListener('change',e=>{e.target.checked?resLayer.addTo(map):map.removeLayer(resLayer);});
@@ -738,6 +796,11 @@ document.getElementById('menuBtn').addEventListener('click',()=>{
 });
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// INICIO
+updateSun();
+render();
+applyView();
 </script>
 </body>
 </html>
