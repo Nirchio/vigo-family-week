@@ -199,7 +199,7 @@
   .map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
   .map-legend label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-weight:600;color:var(--slate)}
   .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #0002}
-  .dot.act{background:var(--coral)} .dot.res{background:var(--sea)} .dot.city{background:var(--plum)}
+  .dot.beach{background:var(--coral)} .dot.park{background:var(--green)} .dot.play{background:var(--plum)} .dot.res{background:var(--sea)}
   .leaflet-popup-content{font-family:Inter,sans-serif;margin:12px 14px}
   .pop b{font-family:Fraunces;font-size:1rem}
   .pop .pd{font-size:.82rem;color:#5c6b6a;margin:4px 0 8px}
@@ -416,11 +416,12 @@
     <div class="section-head reveal">
       <div class="eyebrow">Todo, en el mapa</div>
       <h2>Nuestro mapa</h2>
-      <p>Coral = planes y excursiones, morado = playgrounds y ciudad, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
+      <p>Coral = playas, verde = parques y excursiones, morado = playgrounds, verde azulado = restaurantes. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
     </div>
     <div class="map-legend reveal">
-      <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Planes y excursiones</label>
-      <label><input type="checkbox" id="tglCity" checked> <span class="dot city"></span> Playgrounds y ciudad</label>
+      <label><input type="checkbox" id="tglBeach" checked> <span class="dot beach"></span> Playas</label>
+      <label><input type="checkbox" id="tglPark" checked> <span class="dot park"></span> Parques y excursiones</label>
+      <label><input type="checkbox" id="tglPlay" checked> <span class="dot play"></span> Playgrounds</label>
       <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurantes</label>
     </div>
     <div id="map" class="reveal"></div>
@@ -692,21 +693,26 @@ updatePack();
 const map=L.map('map',{scrollWheelZoom:false}).setView([42.22,-8.75],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
   attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
-function mk(item,color,type){
+function mk(item,color,cat){
   const m=L.circleMarker([item.lat,item.lng],{radius:9,color:'#fff',weight:2,fillColor:color,fillOpacity:1});
   const g=gmap(item.q),d=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.q)}`;
-  const icon=type==='res'?'🍽️ ':(type==='city'?'🛝 ':'');
-  const pd=type==='res'?('⭐ '+item.dish):(type==='city'?item.kind:(INT[item.int].t+' · '+BEST[item.best]));
+  const icon=cat==='res'?'🍽️ ':(cat==='play'?'🛝 ':(cat==='beach'?'🏖️ ':'🌳 '));
+  const pd=cat==='res'?('⭐ '+item.dish):(item.type==='city'?item.kind:(INT[item.int].t+' · '+BEST[item.best]));
   const bookBtn=item.book?`<a class="book2" href="${item.book}" target="_blank" rel="noopener">Reservar</a>`:'';
   m.bindPopup(`<div class="pop"><b>${icon}${item.name}</b><div class="pd">${pd}</div><a href="${g}" target="_blank" rel="noopener">Google Maps</a><a class="dir" href="${d}" target="_blank" rel="noopener">Cómo llegar</a>${bookBtn}</div>`);
   return m;
 }
-const actLayer=L.layerGroup(PLACES.map(p=>mk(p,'#ef6f53','act'))).addTo(map);
-const cityLayer=L.layerGroup(CITY.map(c=>mk(c,'#8a5a83','city'))).addTo(map);
+const beachItems=ITEMS.filter(x=>x.cats.includes('playa'));
+const playItems=ITEMS.filter(x=>x.cats.includes('playground'));
+const parkItems=ITEMS.filter(x=>!x.cats.includes('playa')&&!x.cats.includes('playground'));
+const beachLayer=L.layerGroup(beachItems.map(x=>mk(x,'#ef6f53','beach'))).addTo(map);
+const parkLayer=L.layerGroup(parkItems.map(x=>mk(x,'#4f9d69','park'))).addTo(map);
+const playLayer=L.layerGroup(playItems.map(x=>mk(x,'#8a5a83','play'))).addTo(map);
 const resLayer=L.layerGroup(RESTS.map(r=>mk(r,'#0e7c86','res'))).addTo(map);
-map.fitBounds([...PLACES,...CITY,...RESTS].map(x=>[x.lat,x.lng]),{padding:[40,40]});
-document.getElementById('tglAct').addEventListener('change',e=>{e.target.checked?actLayer.addTo(map):map.removeLayer(actLayer);});
-document.getElementById('tglCity').addEventListener('change',e=>{e.target.checked?cityLayer.addTo(map):map.removeLayer(cityLayer);});
+map.fitBounds([...ITEMS,...RESTS].map(x=>[x.lat,x.lng]),{padding:[40,40]});
+document.getElementById('tglBeach').addEventListener('change',e=>{e.target.checked?beachLayer.addTo(map):map.removeLayer(beachLayer);});
+document.getElementById('tglPark').addEventListener('change',e=>{e.target.checked?parkLayer.addTo(map):map.removeLayer(parkLayer);});
+document.getElementById('tglPlay').addEventListener('change',e=>{e.target.checked?playLayer.addTo(map):map.removeLayer(playLayer);});
 document.getElementById('tglRes').addEventListener('change',e=>{e.target.checked?resLayer.addTo(map):map.removeLayer(resLayer);});
 map.on('focus',()=>map.scrollWheelZoom.enable());
 map.on('blur',()=>map.scrollWheelZoom.disable());
