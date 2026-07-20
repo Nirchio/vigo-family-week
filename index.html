@@ -169,6 +169,28 @@
   .pop a{display:inline-block;background:var(--sea);color:#fff;text-decoration:none;padding:6px 11px;border-radius:8px;font-size:.8rem;font-weight:600;margin-right:6px}
   .pop a.dir{background:var(--coral)}
 
+  .rank.rankp{background:var(--sun);color:#5a3d00;font-size:1rem}
+  .basecard{margin:26px 0 0;background:linear-gradient(135deg,#fff,#eef6f7);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .basecard .bi{font-size:1.7rem}
+  .basecard .bt{flex:1;min-width:240px;font-size:.9rem;color:var(--ink)}
+  .basecard .bt b{color:var(--sea-deep)}
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.phases{grid-template-columns:1fr}}
+  .phase{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;border-top:4px solid var(--sea)}
+  .phase.p1{border-top-color:var(--green)} .phase.p2{border-top-color:var(--coral)} .phase.p3{border-top-color:var(--plum)}
+  .phase .pdate{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate)}
+  .phase h3{font-size:1.25rem;margin:4px 0 4px}
+  .phase .psub{font-size:.86rem;color:var(--slate);margin-bottom:14px}
+  .phase ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+  .phase li{font-size:.88rem;color:var(--ink);padding-left:18px;position:relative}
+  .phase li::before{content:"›";position:absolute;left:0;color:var(--sea);font-weight:700}
+  .keydate{background:linear-gradient(135deg,#fff8ec,#fdf2df);border:1px solid #f0e3c8;border-radius:10px;padding:9px 11px;font-size:.86rem}
+  .keydate b{color:var(--coral)}
+  .brunch-extra{margin-top:22px;font-size:.9rem;color:var(--slate);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .brunch-extra .bl{font-weight:700;color:var(--ink)}
+  .brunch-extra a{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:.82rem;font-weight:600;text-decoration:none;color:var(--ink)}
+  .brunch-extra a:hover{border-color:var(--sea);color:var(--sea)}
+
   footer{background:var(--sea-deep);color:#dff1f2;padding:40px 0 32px;font-size:.9rem}
   footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
   .cite{font-size:.78rem;color:#9fc7ca;max-width:640px;margin-top:8px}
@@ -188,6 +210,7 @@
       <a href="#city">Ciudad</a>
       <a href="#compare">Comparar</a>
       <a href="#days">Días</a>
+      <a href="#phases">Fases</a>
       <a href="#food">Comer</a>
       <a href="#map-sec">Mapa</a>
       <a href="#pack">Maleta</a>
@@ -202,8 +225,9 @@
     <span class="note-chip">🗒️ Nuestro plan privado · solo para nosotros</span>
     <h1>Nuestro mes en Vigo</h1>
     <div class="pills">
+      <span class="pill">🏠 Base en Portanet (Balaídos)</span>
       <span class="pill">🏖️ Playas</span>
-      <span class="pill">🌳 Parques con sombra</span>
+      <span class="pill">💧 Sendas de agua</span>
       <span class="pill">⛴️ Las Cíes</span>
       <span class="pill">🦪 Calle de las Ostras</span>
     </div>
@@ -216,6 +240,12 @@
     <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Mínimas frescas (61°F), buen tiempo para dormir</div></div>
     <div class="stat reveal"><div class="ic">⏰</div><div class="k">11:00</div><div class="l">Llega a las playas antes de esta hora para aparcar</div></div>
     <div class="stat reveal"><div class="ic">⛴️</div><div class="k">~1.700</div><div class="l">Cupo diario de las Cíes, reserva ferry entre semana</div></div>
+  </div>
+  <div class="basecard reveal">
+    <div class="bi">🏠</div>
+    <div class="bt"><b>Nuestra base:</b> Av. Alcalde Portanet (Balaídos / Castrelos), con salida directa a la <b>VG-20</b>. Casi todo queda a 10–15 min.</div>
+    <div class="bi">🅿️</div>
+    <div class="bt"><b>Truco de aparcamiento a mediodía:</b> a las 12:00 de agosto es lo crítico. Tira de las explanadas gratis (Samil junto al Verbum, Alcabre junto al cementerio o el Museo do Mar) o de las fincas de pago (~3 €) en Patos.</div>
   </div>
 </div>
 
@@ -247,13 +277,14 @@
     <div class="section-head reveal">
       <div class="eyebrow">Nuestra lista, ordenada para un peque de 3 años</div>
       <h2>Dónde podríamos ir</h2>
-      <p>Cada tarjeta muestra lo relajado o activo que es el día, y si va mejor entre semana o en fin de semana. Filtra para planear un tipo de día concreto.</p>
+      <p>Cada tarjeta muestra lo relajado o activo que es el día, y si va mejor entre semana o en fin de semana. Filtra para planear un tipo de día concreto. Las tarjetas con 💛 son las recomendaciones de la lista de la familia.</p>
     </div>
     <div class="filters reveal" id="filters">
       <span class="flabel">Tipo</span>
       <button class="chip active" data-f="all">Todo</button>
       <button class="chip" data-f="beach">🏖️ Playas</button>
       <button class="chip" data-f="park">🌳 Parques</button>
+      <button class="chip" data-f="agua">💧 Sendas de agua</button>
       <button class="chip" data-f="daytrip">🚗 Excursiones</button>
       <button class="chip" data-f="rainy">☔ A prueba de lluvia</button>
       <button class="chip" data-f="stroller">👶 Fácil con carrito</button>
@@ -317,14 +348,63 @@
   </div>
 </section>
 
+<section id="phases">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Cómo se reparte el mes</div>
+      <h2>Calendario por fases</h2>
+      <p>Agosto va cambiando según quién esté con nosotros y el ritmo que toque. Tres bloques, con las fechas clave marcadas.</p>
+    </div>
+    <div class="phases">
+      <div class="phase p1 reveal">
+        <div class="pdate">1 – 8 agosto</div>
+        <h3>Fase 1 · con la abuela</h3>
+        <div class="psub">Planes muy llanos y cerca de casa, fáciles de interrumpir para el teletrabajo (tardes del 3 al 6 y mediodía del 7).</div>
+        <ul>
+          <li><b>Mañanas:</b> Parque de Castrelos (andando desde el piso) o paseo llano por Samil con las piscinas infantiles.</li>
+          <li><b>Tardes (mientras trabajo):</b> parque de Bouzas o paseo por la ETEA en Teis, llano y tranquilo.</li>
+          <li><b>Día de lluvia o llegada:</b> centro comercial Vialia y el ascensor panorámico HALO.</li>
+        </ul>
+      </div>
+      <div class="phase p2 reveal">
+        <div class="pdate">9 – 16 agosto</div>
+        <h3>Fase 2 · con los abuelos aventureros</h3>
+        <div class="psub">Días completos, picnics y senderos espectaculares, con dos fechas grandes.</div>
+        <ul>
+          <li class="keydate">🌘 <b>Lunes 12 · Eclipse solar</b> (99,1% a las 20:30). Picnic con horizonte despejado al oeste-noroeste en Cabo Udra (Bueu) o en O Grove/Sanxenxo.</li>
+          <li class="keydate">🎂 <b>Martes 13 · Cumple de la abuela</b>. Día completo en Baiona: Monterreal/Parador y comida con vistas a la bahía.</li>
+          <li>Excursión de día a la Illa de Arousa (pinar de Carreirón); llegar antes de las 10:30 para evitar el colapso del puente.</li>
+        </ul>
+      </div>
+      <div class="phase p3 reveal">
+        <div class="pdate">17 – 30 agosto</div>
+        <h3>Fase 3 · solos los tres</h3>
+        <div class="psub">Ritmo más relajado: amigos en Redondela, escapadas a Portugal y ojear barrios para vivir.</div>
+        <ul>
+          <li><b>Playa resguardada:</b> Ría de Aldán (Menduíña o Areacova) a partir de las 17:30, cuando se liberan aparcamientos.</li>
+          <li><b>Scouting de vivienda:</b> tardes nubladas paseando sin prisa por Bouzas, la zona alta de O Castro y la ETEA en Teis.</li>
+          <li>Días sueltos de Portugal (Cerveira, Tui, Valença) combinados con las sendas de agua.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="food" style="background:linear-gradient(180deg,#fbf8f1,#fff)">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Dónde comer</div>
       <h2>La lista de comida</h2>
-      <p>Desde ostras abiertas en la calle hasta una cúpula con estrella Michelin y marisco familiar en Baiona, cada uno con el plato que hay que pedir y cuándo ir.</p>
+      <p>Desde ostras abiertas en la calle hasta una cúpula con estrella Michelin, marisco familiar en Baiona y cafeterías con zona de juegos para el peque, cada uno con el plato que hay que pedir y cuándo ir.</p>
     </div>
     <div class="rests" id="rests"></div>
+    <div class="brunch-extra reveal">
+      <span class="bl">Más brunch familiar:</span>
+      <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/KiALjAANj2MgaHnEA">☕ DDL Coffee</a>
+      <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/S1Bx5ezmL31MtjtS7">🥞 La Emilia Brunch & Drunch</a>
+      <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/P2kMiM9RvojvnLJf6">🍳 Ledicia Brunch & Bar</a>
+      <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/HJaX1iK3hUH7pUcA8">🌵 Cactus Coffee & Brunch</a>
+    </div>
   </div>
 </section>
 
@@ -394,7 +474,20 @@ const PLACES=[
  {rank:9,name:"Castillo y jardines de Soutomaior",cats:["daytrip","park","rainy","easy"],int:"easy",best:"either",lat:42.3300,lng:-8.5680,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Castelo_de_Soutomaior_-_1.jpg/1280px-Castelo_de_Soutomaior_-_1.jpg",drive:"25–30 min",driveN:28,dur:"2–3 h",cost:"Familiar 5 €",stroller:"Sí",booking:"Recomendado",q:"Castelo de Soutomaior",desc:"Media jornada con sombra entre árboles centenarios, horario amplio en verano y entrada familiar. Más fresco y tranquilo que la playa.",when:"<b>Cualquier día</b>, casi nunca hay gente, así que el finde va bien."},
  {rank:10,name:"Parque Natural Monte Aloia",cats:["daytrip","park","active"],int:"active",best:"weekday",lat:42.0847,lng:-8.6533,img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Vistas_Aloia_2.JPG",drive:"35–40 min",driveN:38,dur:"2–3 h",cost:"Gratis",stroller:"Limitado",booking:"No",q:"Parque Natural Monte Aloia",desc:"Miradores y una ruta botánica con juegos. Haz solo los tramos fáciles cerca del centro de visitantes, solo por la mañana en agosto.",when:"Más tranquilo un <b>día de semana por la mañana</b>; los findes atraen a familias locales de picnic."},
  {rank:11,name:"Granxa de Briz (parque sensorial)",cats:["daytrip","park","stroller","chill"],int:"chill",best:"weekday",lat:42.3897,lng:-8.6939,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg/1920px-Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg",drive:"40–45 min",driveN:43,dur:"1,5–3 h",cost:"Gratis",stroller:"Sí",booking:"No",q:"Granxa de Briz, Marín",desc:"Una antigua granja convertida en parque natural con juegos sensoriales, un pequeño laberinto y senderos con sombra. Nuestra tarde de 'que juegue a gusto'.",when:"Las <b>tardes entre semana</b> están tranquilas; los findes se llenan de familias locales."},
- {rank:12,name:"Lago de Castiñeiras",cats:["daytrip","park","easy"],int:"easy",best:"weekday",lat:42.3560,lng:-8.6720,img:"https://upload.wikimedia.org/wikipedia/commons/8/82/Lago_Casti%C3%B1eiras%2C_Vilaboa%2C_Galiza.jpg",drive:"40–50 min",driveN:45,dur:"2–4 h",cost:"Gratis",stroller:"Parcial",booking:"No",q:"Lago de Castiñeiras",desc:"Mesas, bancos, fuentes, aseos y una zona de barbacoa autorizada en un entorno de lago con bosque. Alternativa amable a la arena.",when:"Findes = gente de barbacoa y picnic. <b>Entre semana hay paz.</b>"}
+ {rank:12,name:"Lago de Castiñeiras",cats:["daytrip","park","easy"],int:"easy",best:"weekday",lat:42.3560,lng:-8.6720,img:"https://upload.wikimedia.org/wikipedia/commons/8/82/Lago_Casti%C3%B1eiras%2C_Vilaboa%2C_Galiza.jpg",drive:"40–50 min",driveN:45,dur:"2–4 h",cost:"Gratis",stroller:"Parcial",booking:"No",q:"Lago de Castiñeiras",desc:"Mesas, bancos, fuentes, aseos y una zona de barbacoa autorizada en un entorno de lago con bosque. Alternativa amable a la arena.",when:"Findes = gente de barbacoa y picnic. <b>Entre semana hay paz.</b>"},
+
+ // ── Recomendaciones de la lista de la familia ──
+ {partner:true,name:"Playa de Alcabre (Carril y Santa Baía)",cats:["beach","stroller","chill"],int:"chill",best:"weekday",lat:42.2088,lng:-8.7815,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Alcabre%2C_Praia_do_Carril%2C_1.JPG/1280px-Alcabre%2C_Praia_do_Carril%2C_1.JPG",drive:"10 min · VG-20",driveN:11,dur:"2–4 h",cost:"Gratis",stroller:"Sí",booking:"No",slots:['am','pm'],q:"Praia de Carril, Alcabre, Vigo",desc:"Calas pequeñas resguardadas del viento, con aguas muy tranquilas tipo piscina, y el Museo do Mar al lado si aprieta el sol.",when:"Aparca en la explanada gratis junto al <b>cementerio de Alcabre</b> o en el del Museo do Mar; pasan desapercibidas a mediodía."},
+ {partner:true,name:"Playa de Patos (Nigrán)",cats:["beach","daytrip","chill"],int:"chill",best:"weekday",lat:42.15533,lng:-8.82499,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Praia_de_Patos%2C_Nigr%C3%A1n.jpg/1280px-Praia_de_Patos%2C_Nigr%C3%A1n.jpg",drive:"15 min · AG-57",driveN:15,dur:"3–5 h",cost:"Finca ~3 €",stroller:"Sí",booking:"No",slots:['am','pm'],q:"Praia de Patos, Nigrán",desc:"Arena muy fina y vistas espectaculares a las Cíes. Los vecinos abren fincas de hierba para aparcar (~3 € todo el día): siempre hay hueco a mediodía. Hay un sitio de sándwich coreano cerca para comer.",when:"<b>Evitar si sopla viento del norte.</b> Mejor entre semana."},
+ {partner:true,name:"Fervenza de Segade (Caldas de Reis)",cats:["daytrip","agua","active"],int:"active",best:"weekday",lat:42.60653,lng:-8.62273,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Ruta_Auga%2C_Caldas_de_Reis.jpg/1280px-Ruta_Auga%2C_Caldas_de_Reis.jpg",drive:"35–40 min",driveN:38,dur:"3–4 h",cost:"Gratis",stroller:"No",booking:"Recomendado",slots:['am','pm'],q:"Fervenza de Segade, Caldas de Reis",desc:"Ruta llana de ~3 km entre molinos restaurados y sombra constante hasta una cascada de 30 m. Empieza en la Alameda de Caldas (secuoyas gigantes) y hay parque de madera en A Tafona.",when:"Reserva mesa en la <b>Taberna O Muíño</b> (molino del s. XVIII sobre el río). Mochila de porteo, no apta para carrito."},
+ {partner:true,name:"Senda do Miño y Parque do Castelinho (Cerveira, PT)",cats:["daytrip","agua","park","stroller","easy"],int:"easy",best:"weekday",lat:41.93888,lng:-8.74873,img:"https://upload.wikimedia.org/wikipedia/commons/5/57/Antiga_Camara_e_Pelourinho_Vila_Nova_de_Cerveira.jpg",drive:"35–40 min",driveN:38,dur:"3–4 h",cost:"Gratis",stroller:"Sí",booking:"No",slots:['am','pm'],q:"Parque do Castelinho, Vila Nova de Cerveira",desc:"Paseo fluvial de madera totalmente plano (ecovía) y apto para carrito. Acaba en el Parque do Castelinho, con juegos y una zona de chorros de agua gratis sobre suelo de goma.",when:"Findes de agosto muy concurrido; si el parking del parque está lleno, aparca junto a la piscina municipal o la Feira (10 min a pie llano)."},
+ {partner:true,name:"Muíños do Tripes y Paseo de Tui",cats:["daytrip","agua","easy"],int:"easy",best:"either",lat:42.06034,lng:-8.66726,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Cathedral_of_Tui_2021_-_exterior.jpg/1280px-Cathedral_of_Tui_2021_-_exterior.jpg",drive:"25–30 min",driveN:28,dur:"2–3 h",cost:"Gratis",stroller:"Parcial",booking:"No",slots:['am','pm'],q:"Senda dos Muíños do Tripes, Tui",desc:"Sendero boscoso y sombrío junto al río Tripes, con puentes de madera y molinos con musgo, como un bosque de cuento. Cerca, el Paseo Fluvial de Tui tiene un parque infantil de primera con vistas a Valença.",when:"El inicio del sendero es tranquilo y fácil de aparcar a cualquier hora; el paseo de Tui tiene gran parking de tierra gratis."},
+ {partner:true,name:"Fervenza de Bouzafría (Bembrive)",cats:["agua","park","easy"],int:"easy",best:"either",lat:42.204,lng:-8.66655,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg/1920px-Lago_Casti%C3%B1eiras%2C_arbolado_%2815696505150%29.jpg",drive:"12 min",driveN:12,dur:"1,5–2 h",cost:"Gratis",stroller:"No",booking:"No",slots:['am','pm'],q:"Parque Forestal de Bembrive, Vigo",desc:"A solo 12 min del piso. Sendero mágico (2,5 km ida y vuelta) que sube suave junto al río Eifonso, entre robles, molinos de piedra y puentes de madera, hasta la pequeña Fervenza de Bouzafría.",when:"Aparcamiento fácil en el <b>Parque Forestal de Bembrive</b>, con mesas de piedra a la sombra para un picnic."},
+ {partner:true,name:"Senda de Pontesampaio (Río Verdugo)",cats:["agua","stroller","chill"],int:"chill",best:"either",lat:42.36479,lng:-8.5899,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Praia_Ponte_Sampaio.jpg/1280px-Praia_Ponte_Sampaio.jpg",drive:"20–25 min",driveN:22,dur:"1–2 h",cost:"Gratis",stroller:"Sí",booking:"No",slots:['am','mid','pm'],q:"Ponte Sampaio, Pontevedra",desc:"Tramo cortísimo, llano y muy sombreado (2 km ida y vuelta) con pasarelas de madera desde la playa fluvial de A Xunqueira hasta el puente de piedra de Comboa.",when:"Paseo fresco junto al río, perfecto para un rato tranquilo <b>a cualquier hora</b>."},
+ {partner:true,name:"Parque da Canuda (Salvaterra de Miño)",cats:["daytrip","agua","park","stroller","easy"],int:"easy",best:"either",lat:42.07947,lng:-8.50489,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Rio_Mi%C3%B1o_-_Salvaterra_de_Mi%C3%B1o_-_Parque_-_panoramio.jpg/1280px-Rio_Mi%C3%B1o_-_Salvaterra_de_Mi%C3%B1o_-_Parque_-_panoramio.jpg",drive:"30 min",driveN:30,dur:"3–5 h",cost:"Gratis",stroller:"Sí",booking:"No",slots:['am','mid','pm'],q:"Parque da Canuda, Salvaterra de Miño",desc:"Paseo fluvial asfaltado y llano junto al Miño frente a Monção (hasta 6 km, andáis lo que queráis con carrito). El Parque da Canuda es gigante y gratis: lagos con patos, minizoo con cabras y aves, circuito de educación vial y juegos enormes.",when:"Parking masivo y gratis a la entrada; aparcar a las 12:00 aquí es <b>sencillísimo</b>."},
+ {partner:true,name:"Cabo Udra (Bueu) · eclipse",cats:["daytrip","active"],int:"easy",best:"either",lat:42.3406,lng:-8.83643,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Penedos_do_cabo_Udra_%28Bueu%29_03.jpg/1280px-Penedos_do_cabo_Udra_%28Bueu%29_03.jpg",drive:"35–40 min",driveN:38,dur:"tarde",cost:"Gratis",stroller:"No",booking:"No",slots:['pm'],q:"Cabo Udra, Bueu",desc:"Acantilados con horizonte despejado al oeste-noroeste: el sitio para el picnic del eclipse (12 ago, 99,1% a las 20:30) y para ver el sol ocultarse sobre el océano.",when:"<b>Lunes 12 de agosto</b> para el eclipse; llega con tiempo y prepara un buen picnic."},
+ {partner:true,name:"Illa de Arousa · pinar de Carreirón",cats:["daytrip","beach","park","easy"],int:"easy",best:"weekday",lat:42.5360,lng:-8.8740,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/A_Illa_de_Arousa_-_Praia_Comboa.jpg/1280px-A_Illa_de_Arousa_-_Praia_Comboa.jpg",drive:"45–55 min",driveN:50,dur:"todo el día",cost:"Gratis",stroller:"Parcial",booking:"No",slots:['am','pm'],q:"Parque Natural de Carreirón, Illa de Arousa",desc:"Picnic a la sombra de los pinos del Parque Natural de Carreirón, calas tranquilas y aves. Un día completo de naturaleza suave.",when:"Llega <b>antes de las 10:30</b> para evitar el colapso del puente a la isla."},
+ {partner:true,name:"Ría de Aldán (Menduíña / Areacova)",cats:["beach","daytrip","chill"],int:"chill",best:"either",lat:42.29538,lng:-8.82056,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ria_de_Aldan_-_panoramio.jpg/1280px-Ria_de_Aldan_-_panoramio.jpg",drive:"30–35 min",driveN:33,dur:"tarde",cost:"Gratis",stroller:"Parcial",booking:"No",slots:['pm'],q:"Praia de Menduíña, Aldán",desc:"Aguas muy tranquilas y resguardadas en la Ría de Aldán (Menduíña o Areacova), perfectas para una playa de última hora con el peque.",when:"Ve <b>a partir de las 17:30</b>, cuando se liberan aparcamientos y baja el calor."}
 ];
 
 const RESTS=[
@@ -404,7 +497,9 @@ const RESTS=[
  {name:"Parrillada Samil",area:"Detrás del Hotel Samil",price:"€€",lat:42.2098,lng:-8.7690,dish:"Pulpo á feira y zamburiñas a la plancha (¡y parque infantil!)",desc:"Taberna familiar con terraza, columpios para peques y aparcamiento propio. Unos 25–30 € por persona.",when:"Perfecta para <b>comer en un día de playa en Samil</b>. Reserva los findes.",q:"Parrillada Samil, Vigo"},
  {name:"Beach Club Marina Cíes",area:"En la playa de Samil",price:"€€–€€€",lat:42.2118,lng:-8.7738,dish:"Pulpo a la parrilla y tapas con puesta de sol sobre las Cíes",desc:"Terraza chill con hamacas en plena Samil, el sitio fácil de 'después de la playa' para tomar algo.",when:"<b>Hora dorada</b> tras la playa; relajado cualquier día.",q:"Beach Club Marina Cies Samil Vigo"},
  {name:"Restaurante Naveira",area:"Baiona · en el puerto",price:"€€",lat:42.1210,lng:-8.8490,dish:"Arroz con bogavante y croquetas de centollo",desc:"Justo en el paseo, excelente relación calidad-precio, familiar, un clásico local en Baiona.",when:"Combínalo con un <b>día en Baiona</b>; reserva para comer en finde.",q:"Restaurante Naveira, Baiona"},
- {name:"Pedro Madruga",area:"Baiona · puerto y castillo",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante y paella de marisco, con vistas al castillo",desc:"Terraza frente al puerto deportivo y el castillo. Menú infantil y tronas, genial de verdad con un peque.",when:"<b>Comida familiar</b> en un día en Baiona. Reserva con antelación.",q:"Restaurante Pedro Madruga, Baiona"}
+ {name:"Pedro Madruga",area:"Baiona · puerto y castillo",price:"€€–€€€",lat:42.1197,lng:-8.8470,dish:"Arroz con bogavante y paella de marisco, con vistas al castillo",desc:"Terraza frente al puerto deportivo y el castillo. Menú infantil y tronas, genial de verdad con un peque.",when:"<b>Comida familiar</b> en un día en Baiona. Reserva con antelación.",q:"Restaurante Pedro Madruga, Baiona"},
+ {name:"Lola & Lía",area:"Alcabre · brunch familiar",price:"€€",lat:42.2128,lng:-8.7710,dish:"Desayunos gigantes y tortitas, con zona de juegos infantil cerrada",desc:"Cafetería preciosa famosa por sus desayunos y menús del día, con una zona interior de juegos cerrada para que el peque juegue seguro mientras terminamos. Parking privado gratis.",when:"A 10 min del piso por la VG-20. Ideal para un <b>desayuno o comida sin prisas</b>.",q:"Lola & Lía, Alcabre, Vigo"},
+ {name:"Pizzería Dous Mares",area:"Coia · cena de barrio",price:"€€",lat:42.2270,lng:-8.7460,dish:"Pizzas artesanas, con rincón de juegos interior para niños",desc:"Pizzas artesanas excelentes en Coia, muy cerca del piso, con un rincón de juegos interior. Muy cómodo para cenar temprano sin complicaciones.",when:"Perfecta para una <b>cena temprana</b> de barrio, cualquier día.",q:"Pizzería Dous Mares, Coia, Vigo"}
 ];
 
 // VIGO CIUDAD: parques infantiles y planes a un paso
@@ -423,7 +518,7 @@ const CITY=[
 
 // Franjas horarias por plan (am: mañana, mid: mediodía, pm: tarde)
 const SLOTS={1:['am','pm'],2:['am','mid','pm'],3:['am'],4:['mid','pm'],5:['am','pm'],6:['am','pm'],7:['am','pm'],8:['am','pm'],9:['am','mid','pm'],10:['am'],11:['mid','pm'],12:['am','mid','pm']};
-PLACES.forEach(p=>p.slots=SLOTS[p.rank]);
+PLACES.forEach(p=>{if(SLOTS[p.rank])p.slots=SLOTS[p.rank];});
 // Enlaces de reserva
 const BOOK={3:"https://autorizacionillasatlanticas.xunta.gal/",8:"https://www.mardeons.com/",9:"https://tickets.castelodesoutomaior.com/"};
 PLACES.forEach(p=>{if(BOOK[p.rank])p.book=BOOK[p.rank];});
@@ -443,7 +538,7 @@ function renderCards(f){
     const i=INT[p.int];
     const el=document.createElement('article');el.className='card reveal in';
     el.innerHTML=`
-      <div class="thumb"><span class="rank">${p.rank}</span>
+      <div class="thumb"><span class="rank${p.partner?' rankp':''}" title="${p.partner?'De la lista de la familia':'Nuestra lista'}">${p.partner?'💛':p.rank}</span>
         <img loading="lazy" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0e7c86,#f4b942)'">
         <div class="tags">${tags.join('')}</div></div>
       <div class="card-body">
