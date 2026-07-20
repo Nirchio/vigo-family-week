@@ -632,6 +632,8 @@ function render(){
     if(F.franja && !(it.slots||[]).includes(F.franja))return false;
     return true;
   });
+  // Primero lo de la lista de la familia (Holidays 2026), luego el resto (deep research)
+  current.sort((a,b)=>(a.partner?0:1)-(b.partner?0:1));
   renderCards(current);
   renderTable();
   const n=current.length;
