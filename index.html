@@ -368,7 +368,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">Todo lo que podemos hacer</div>
       <h2>Explorar planes</h2>
-      <p>Un solo catálogo con playas, parques, sendas de agua, excursiones y los parquiños de ciudad. Filtra por tipo, ritmo o carrito, y usa el control del sol para ver qué encaja a cada hora. 💛 = de la lista de la familia.</p>
+      <p>Un solo catálogo con playas, playgrounds, paseos (parques grandes, montes y sendas de agua) y excursiones. Filtra por tipo, ritmo o carrito, y usa el control del sol para ver qué encaja a cada hora. 💛 = de la lista de la familia.</p>
     </div>
 
     <div class="sun-card reveal">
@@ -393,11 +393,11 @@
     <div class="filters reveal" id="filters">
       <span class="flabel">Tipo</span>
       <button class="chip tipo active" data-f="all">Todo</button>
-      <button class="chip tipo" data-f="beach">🏖️ Playas</button>
-      <button class="chip tipo" data-f="park">🌳 Parques</button>
+      <button class="chip tipo" data-f="playa">🏖️ Playa</button>
+      <button class="chip tipo" data-f="playground">🛝 Playgrounds</button>
+      <button class="chip tipo" data-f="paseo">🚶 Paseos</button>
       <button class="chip tipo" data-f="agua">💧 Sendas de agua</button>
       <button class="chip tipo" data-f="daytrip">🚗 Excursiones</button>
-      <button class="chip tipo" data-f="city">🏙️ Ciudad</button>
       <button class="chip tipo" data-f="rainy">☔ A prueba de lluvia</button>
       <span class="filter-divider"></span>
       <span class="flabel">Ritmo</span>
@@ -458,11 +458,11 @@
     <div class="section-head reveal">
       <div class="eyebrow">Todo, en el mapa</div>
       <h2>Nuestro mapa</h2>
-      <p>Coral = planes y excursiones, morado = parques de ciudad, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
+      <p>Coral = planes y excursiones, morado = playgrounds y ciudad, verde azulado = comida. Pincha en un pin para abrirlo en Google Maps o ver cómo llegar.</p>
     </div>
     <div class="map-legend reveal">
       <label><input type="checkbox" id="tglAct" checked> <span class="dot act"></span> Planes y excursiones</label>
-      <label><input type="checkbox" id="tglCity" checked> <span class="dot city"></span> Parques de ciudad</label>
+      <label><input type="checkbox" id="tglCity" checked> <span class="dot city"></span> Playgrounds y ciudad</label>
       <label><input type="checkbox" id="tglRes" checked> <span class="dot res"></span> Restaurantes</label>
     </div>
     <div id="map" class="reveal"></div>
@@ -587,6 +587,19 @@ CITY.forEach(c=>{
   c.cats=['city'].concat(/Museo/.test(c.kind)?['rainy']:['park']);
 });
 const ITEMS=[...PLACES,...CITY];
+
+// Tipos limpios: playa · playground · paseo (parques grandes, montes y sendas, sin mezclar con playgrounds)
+const PASEO=new Set(["Parque de Castrelos y Pazo","Monte do Castro","Castillo y jardines de Soutomaior","Parque Natural Monte Aloia","Lago de Castiñeiras","Cabo Udra (Bueu) · eclipse","VigoNature (antiguo Vigozoo)"]);
+const PLAYGROUND=new Set(["Granxa de Briz (parque sensorial)"]);
+ITEMS.forEach(it=>{
+  let t=null;
+  if(it.cats.includes('beach'))t='playa';
+  else if(it.cats.includes('agua'))t='paseo';
+  else if(PASEO.has(it.name))t='paseo';
+  else if(PLAYGROUND.has(it.name))t='playground';
+  else if(it.type==='city')t=/Museo/.test(it.kind)?null:'playground';
+  if(t&&!it.cats.includes(t))it.cats.push(t);
+});
 
 function gmap(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;}
 function badge(v){const m={'Sí':'b-yes','Parcial':'b-part','Limitado':'b-part','No':'b-no','Aconsejado':'b-part','Recomendado':'b-part'};return `<span class="badge ${m[v]||'b-part'}">${v}</span>`;}
