@@ -294,12 +294,6 @@
 
 <!-- RESUMEN -->
 <div class="wrap stats" id="resumen">
-  <div class="stat-grid">
-    <div class="stat reveal"><div class="ic">🌡️</div><div class="k">25°C</div><div class="l">Máxima media de agosto (77°F), el mes más caluroso</div></div>
-    <div class="stat reveal"><div class="ic">🌙</div><div class="k">16°C</div><div class="l">Mínimas frescas (61°F), buen tiempo para dormir</div></div>
-    <div class="stat reveal"><div class="ic">⏰</div><div class="k">11:00</div><div class="l">Llega a las playas antes de esta hora para aparcar</div></div>
-    <div class="stat reveal"><div class="ic">⛴️</div><div class="k">~1.700</div><div class="l">Cupo diario de las Cíes, reserva ferry entre semana</div></div>
-  </div>
   <div class="basecard reveal">
     <div class="bi">🏠</div>
     <div class="bt"><b>Nuestra base:</b> Av. Alcalde Portanet (Balaídos / Castrelos), con salida directa a la <b>VG-20</b>. Casi todo queda a 10–15 min.</div>
@@ -314,7 +308,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">Nuestra agenda del mes</div>
       <h2>El plan, por fases</h2>
-      <p>El mes cambia según quién esté con nosotros y el ritmo que toque. Tres bloques con las fechas clave marcadas, y debajo tres "días tipo" listos para copiar.</p>
+      <p>El mes cambia según quién esté con nosotros y el ritmo que toque. Tres bloques con las fechas clave marcadas.</p>
     </div>
     <div class="phases">
       <div class="phase p1 reveal">
@@ -348,48 +342,12 @@
         </ul>
       </div>
     </div>
-
-    <div class="subhead reveal">
-      <h3>Días tipo</h3>
-      <p>Plantillas de día con base en casa, pausa de siesta a mediodía y un plan B para el mal tiempo.</p>
-    </div>
-    <div class="tabs" id="dayTabs">
-      <button class="tab active" data-d="0">🏖️ Día de costa fácil</button>
-      <button class="tab" data-d="1">⛴️ Día especial Cíes</button>
-      <button class="tab" data-d="2">🌳 Día verde con sombra</button>
-    </div>
-    <div id="dayPanels"></div>
   </div>
 </section>
 
 <!-- EXPLORAR -->
 <section id="explore" style="background:linear-gradient(180deg,#fff,#fbf8f1)">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Todo lo que podemos hacer</div>
-      <h2>Explorar planes</h2>
-      <p>Un solo catálogo con playas, playgrounds, paseos (parques grandes, montes y sendas de agua) y excursiones. Filtra por tipo, ritmo o carrito, y usa el control del sol para ver qué encaja a cada hora. 💛 = de la lista de la familia.</p>
-    </div>
-
-    <div class="sun-card reveal">
-      <div class="sun-head">
-        <div>
-          <div class="eyebrow">🌞 Control del sol</div>
-          <div class="sun-verdict" id="sunVerdict"></div>
-        </div>
-        <button class="sunfilter" id="sunFilterBtn">🕑 Ver planes para esta hora</button>
-      </div>
-      <div class="sun-track">
-        <div class="sun-zones">
-          <div class="zone" style="flex:6.5">🌅 Mejor</div>
-          <div class="zone danger" style="flex:4">☀️ Evitar</div>
-          <div class="zone" style="flex:7.5">🌇 Mejor</div>
-        </div>
-        <div class="sun-marker" id="sunMarker" data-t="09:00" style="left:37.5%"></div>
-      </div>
-      <input type="range" min="6" max="21" value="9" step="0.5" class="slider" id="sunSlider" />
-    </div>
-
     <div class="filters reveal" id="filters">
       <span class="flabel">Tipo</span>
       <button class="chip tipo active" data-f="all">Todo</button>
@@ -704,55 +662,6 @@ document.querySelectorAll('#cmp th').forEach(th=>th.addEventListener('click',()=
   const k=th.dataset.k;if(sortKey===k)sortAsc=!sortAsc;else{sortKey=k;sortAsc=true;}renderTable();
 }));
 
-// CONTROL DEL SOL (filtro por franja)
-const slider=document.getElementById('sunSlider'),marker=document.getElementById('sunMarker'),verdict=document.getElementById('sunVerdict'),sunBtn=document.getElementById('sunFilterBtn');
-let curSlot='am',sunFilter=false;
-function fmt(h){const H=Math.floor(h),M=h%1?'30':'00';return `${String(H).padStart(2,'0')}:${M}`;}
-function updateSun(){
-  const h=parseFloat(slider.value);marker.style.left=((h-6)/15)*100+'%';marker.dataset.t=fmt(h);
-  let v,s;
-  if(h<9){v="🌅 Hora ideal, fresco y tranquilo";s="El mejor bloque de playa antes de la gente y el calor.";}
-  else if(h<11){v="😎 Aún bien, corre a aparcar";s="Bien hasta ~11:00; el aparcamiento se llena rápido después.";}
-  else if(h<12.5){v="🌤️ Empieza a llenarse y aprieta el sol";s="Termina la playa; busca sombra o comida temprano.";}
-  else if(h<16.5){v="🚫 Evita el sol con el peque";s="Siesta, museo, parque con sombra o comer, nada de arena abierta ahora.";}
-  else if(h<18){v="🌇 De vuelta a la zona buena";s="La playa de la tarde vuelve, repón crema solar.";}
-  else if(h<20.5){v="🏖️ Magia de la hora dorada";s="Luz suave, arena más fresca, menos gente.";}
-  else{v="🌙 A bajar el ritmo";s="Cena en un paseo marítimo y a casa, a dormir con esos 16°C.";}
-  verdict.innerHTML=v+`<small>${s} (${fmt(h)})</small>`;
-  curSlot=h<11?'am':(h<16.5?'mid':'pm');
-  if(sunFilter){F.franja=curSlot;render();}
-}
-sunBtn.addEventListener('click',()=>{
-  sunFilter=!sunFilter;
-  if(sunFilter){F.franja=curSlot;sunBtn.classList.add('on');sunBtn.textContent='✕ Quitar filtro de hora';}
-  else{F.franja=null;sunBtn.classList.remove('on');sunBtn.textContent='🕑 Ver planes para esta hora';}
-  render();
-});
-slider.addEventListener('input',updateSun);
-
-// ITINERARIOS (días tipo)
-const DAYS=[
- {title:"Día de costa fácil en Vigo",why:"Nuestro plan por defecto de bajo riesgo: mucho tiempo al aire libre, comida flexible y un buen plan B si cambia el tiempo.",
-  items:[["09:30","Coche a la playa de Samil (15–20 min)"],["10:00","Jugar en la arena y paseo mientras hace fresco"],["11:45","Comer en Parrillada Samil (¡parque infantil!) o en el paseo"],["13:00","A casa para la siesta o traslado tranquilo en coche"],["17:00","Museo do Mar y acuario"],["18:30","Copa al atardecer en Beach Club Marina Cíes"],["20:00","Vuelta a Vigo"]],
-  rain:"<b>Versión mal tiempo:</b> salta la playa y haz Museo do Mar + museo y jardines de Castrelos."},
- {title:"Día especial en las Cíes",why:"La excursión más memorable, pero necesita reserva y buen tiempo. Si no hay ferry o hace demasiado viento o calor, no lo fuerces.",
-  items:[["08:30","Puerto, embarcar en el ferry temprano (entre semana)"],["09:30","Playa de Rodas y exploración tranquila"],["11:30","Picnic temprano o restauración de la isla"],["12:30","Sombra y descanso junto al lago o el borde de la playa"],["15:00","Paseo corto opcional o segundo rato de playa"],["16:30","Ferry de vuelta"],["17:30","De vuelta en Vigo, ¿ostras en la Rúa da Pescadería?"]],
-  rain:"<b>Versión mal tiempo:</b> cambia al ferry Vigo–Cangas + Rodeira, o plan de tierra con Castrelos + Museo do Mar."},
- {title:"Día verde con sombra",why:"Nuestro antídoto a demasiados días de playa, árboles, movimiento y espacio sin una ruta dura.",
-  items:[["09:30","Coche al Castillo de Soutomaior (25–30 min)"],["10:00","Jardines del castillo y paseo tranquilo a la sombra"],["12:15","Coche al lago de Castiñeiras"],["12:45","Comida de picnic en las mesas"],["13:30","Paseo junto al lago y rato de sombra tranquilo"],["15:00","Café en Marín o vuelta a Vigo"]],
-  rain:"<b>Versión mal tiempo:</b> mantén Soutomaior si llueve poco y cambia el lago por el museo gratuito de Castrelos."}
-];
-document.getElementById('dayPanels').innerHTML=DAYS.map((d,i)=>`
-  <div class="day ${i===0?'active':''}" data-day="${i}">
-    <div class="day-head"><h3>${d.title}</h3><div class="why">${d.why}</div></div>
-    <div class="timeline">${d.items.map(it=>`<div class="tl-item"><span class="tl-dot"></span><div class="tl-time">${it[0]}</div><p>${it[1]}</p></div>`).join('')}</div>
-    <div class="rainy">☔ ${d.rain}</div></div>`).join('');
-document.getElementById('dayTabs').addEventListener('click',e=>{
-  const t=e.target.closest('.tab');if(!t)return;
-  document.querySelectorAll('#dayTabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
-  document.querySelectorAll('.day').forEach(x=>x.classList.toggle('active',x.dataset.day===t.dataset.d));
-});
-
 // RESTAURANTES
 document.getElementById('rests').innerHTML=RESTS.map(r=>`
   <div class="rest reveal">
@@ -811,7 +720,6 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // INICIO
-updateSun();
 render();
 applyView();
 </script>
