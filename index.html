@@ -197,9 +197,50 @@
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
   .reveal.in{opacity:1;transform:none}
+
+  #gate{position:fixed;inset:0;z-index:100000;background:linear-gradient(160deg,#075660,#0e7c86 60%,#16302f);display:flex;align-items:center;justify-content:center;padding:24px}
+  #gate .gbox{background:#fff;border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.35);max-width:400px;width:100%;padding:36px 30px;text-align:center}
+  #gate .gemoji{font-size:2.6rem}
+  #gate h2{font-family:Fraunces;font-size:1.7rem;margin:12px 0 6px;color:var(--ink)}
+  #gate p{color:var(--slate);font-size:.92rem;margin:0 0 20px}
+  #gate input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font-size:1rem;text-align:center;letter-spacing:.05em}
+  #gate input:focus{outline:none;border-color:var(--sea)}
+  #gate button{width:100%;margin-top:12px;background:var(--coral);color:#fff;border:0;border-radius:12px;padding:13px;font-size:1rem;font-weight:700;cursor:pointer}
+  #gate button:hover{background:#e05a3e}
+  #gate .gerr{color:#b23a1f;font-size:.85rem;font-weight:600;min-height:20px;margin-top:10px}
+  body.locked{overflow:hidden}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="gate">
+  <div class="gbox">
+    <div class="gemoji">🔒</div>
+    <h2>Nuestro plan de Vigo</h2>
+    <p>Página privada. Introduce la clave para entrar.</p>
+    <input type="password" id="gateInput" placeholder="Clave" autocomplete="off" />
+    <button id="gateBtn">Entrar</button>
+    <div class="gerr" id="gateErr"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Cambia esta clave por la que quieras compartir con la familia:
+  var SITE_CODE="vigo2026";
+  var KEY="vigoUnlocked";
+  var gate=document.getElementById('gate');
+  function unlock(){gate.style.display='none';document.body.classList.remove('locked');}
+  if(localStorage.getItem(KEY)===SITE_CODE){unlock();}
+  function tryCode(){
+    var v=document.getElementById('gateInput').value.trim();
+    if(v.toLowerCase()===SITE_CODE.toLowerCase()){localStorage.setItem(KEY,SITE_CODE);unlock();}
+    else{document.getElementById('gateErr').textContent='Clave incorrecta, inténtalo de nuevo.';}
+  }
+  document.getElementById('gateBtn').addEventListener('click',tryCode);
+  document.getElementById('gateInput').addEventListener('keydown',function(e){if(e.key==='Enter')tryCode();});
+})();
+</script>
 
 <nav>
   <div class="wrap">
@@ -222,7 +263,6 @@
 <header class="hero">
   <div class="hero-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg/1280px-Panor%C3%A1mica_da_Praia_de_Rodas_%28Illas_C%C3%ADes%29.jpg')"></div>
   <div class="hero-inner wrap">
-    <span class="note-chip">🗒️ Nuestro plan privado · solo para nosotros</span>
     <h1>Nuestro mes en Vigo</h1>
     <div class="pills">
       <span class="pill">🏠 Base en Portanet (Balaídos)</span>
